@@ -28,35 +28,11 @@ function Login() {
            
             
     
-            // Redirect based on user's role
-            // if (user.role === "ROLE_PATIENT") {
-            //   if(redirect != null){
-            //     navigate(redirect);
-            //   }
-            //   else if(re != null){
-            //     navigate(re);
-            //   }
-    
-            //   else{
-                
+            
     
                
               
-             
-              
-        //     } else if (user.role === "ROLE_DOCTOR") {
-        //       if(user.verified){
-        //         navigate("/doctordashboard");
-    
-        //       }
-              
-        //       sessionStorage.setItem("userId", user.doctorId);
-              
-        //     }
-        //     else if (user.role === "ROLE_ADMIN") {
-        //       navigate("/Admindashboard");
-        //       sessionStorage.setItem("userId", user.adminId);
-        //   } 
+       
             
         //   }
         //    catch (error) {
