@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
+import img from "../Images/Rectangle 4365.png";
+import loginService from '../../Services/Login/loginService';
+import loginLogo from "../Images/loginLogo.png";
 
 function Login() {
 
@@ -18,32 +21,21 @@ function Login() {
         } else if (loginData.password == "") {
           setErrormessage("password cant be empty!");
         } else {
+          setErrormessage("");
           const loginDataApi = {
             username: loginData.username,
             password: loginData.password,
-          };
-    
-          
-            setErrormessage("");
+          }
+          try {
+            const response = await loginService(loginDataApi);
+            console.log(response);
+            
+          } catch (error) {
+            console.error(error)
+            
+          }
            
-            
-    
-            
-    
-               
-              
-       
-            
-        //   }
-        //    catch (error) {
-        //     console.log(error.response.data);
-        //     if(error.response.data.message==='NOT VERIFIED DOCTOR'){
-        //       navigate("/waiting");
-        //       console.log("working")
-    
-        //     }else{
-        //        setErrormessage("Invalid Username");
-    
+          
              }
            
           
@@ -51,23 +43,39 @@ function Login() {
   return (
     <>
      <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
-      <div className=" bg-white w-fit flex p-5">
-        <div className="justify-center flex-col w-[45%] flex">
+      <div className=" backgroundImg2 w-[770px] w-[750px] h-[500px] flex ">
+
+
+      <div className="text-right ">
+
+
+{/* 2nd pat of image  */}
+{/* <button >
+  <i className="absolute text-right top-[120px]  text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
+</button> */}
+<img className=" h-full w-[480px]" src={img} alt="" />
+</div>
+
+        {/* ist one */}
+        <div className="justify-center flex-col w-[60%] p-5 flex">
           <div className="mb-4">
             <img className="" src="" alt="" />
+          </div>
+          <div className='flex items-center justify-center'>
+            <img className=' w-[60%]' src={loginLogo} alt="" />
           </div>
 
           <div className=" text-center  rounded-lg alert-danger" role="alert">
             {errorMessage}
           </div>
 
-          <div>
+          <div className='h-[300px]'>
             <label className="text-black mb-3">Username</label>
             <br />
             <input
-              className="border-b-[1px] w-full outline-none border-black"
+              className=" w-full bg-[#e4000036] h-[30px] rounded-lg outline-none border-black"
               type="text"
-              placeholder="Your Username"
+              placeholder="  Your Username"
               name="username"
               value={loginData.username}
               onChange={(e) =>
@@ -80,7 +88,7 @@ function Login() {
             </label>
             <br />
             <input
-              className="border-b-[1px] w-full border-t-0  border-black outline-none"
+              className="rounded-lg bg-[#e4000036] h-[30px] w-full border-t-0  border-black outline-none"
               type="password"
               name="password"
               placeholder=" ******************"
@@ -105,14 +113,14 @@ function Login() {
 
                 <p>Remember Me?</p>
               </div>
-              <p className="text-[#2181F1]">
+              <p className="text-[#EC2633]">
                 <a href="#">Forget Password?</a>
               </p>
             </div>
             <div className="mt-3 text-center w-full ">
               <button
                 onClick={handelClick}
-                className=" hover:bg-[#5672d7] bg-[#2182f1c4] active:bg-[#88b7ed] w-full py-2 rounded-lg text-white "
+                className=" hover:bg-[#5672d7] bg-[#EC2633] active:bg-[#88b7ed] w-full py-2 rounded-lg text-white "
               >
                 Login
               </button>
@@ -120,19 +128,14 @@ function Login() {
             <div className="flex mt-4 justify-between w-[9">
               <p>Don't have an account?</p>
               <a to="#">
-                <button  className="text-[#2181F1]">
+                <button  className="text-[#EC2633]">
                   Register?
                 </button>
               </a>
             </div>
           </div>
         </div>
-        <div className="text-right pl-6">
-          <button >
-            <i className="absolute text-right top-[120px]  text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
-          </button>
-          <img className="w-[450px]" src='' alt="" />
-        </div>
+       
       </div>
     </div></>
   )
