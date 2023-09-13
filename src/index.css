@@ -29,3 +29,9 @@ code {
 .backgroundImg2{
   background-image: url('../src/Pages/Images/background\ 2.png');
 }
+
+.khatra{
+  background-image: url('../src/Pages/Images/Vector.png');
+  background-repeat: no-repeat;
+  background-size: 210px;
+}

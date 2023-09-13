@@ -6,7 +6,7 @@ function AdminDashboard() {
     <>
       {/* <AdminNavbar /> */}
       <AdminNavbar/>
-      <div className="bg-[#e6d5d5]  flex flex-col gap-2 justify-center items-center w-full h-screen">
+      <div className="bg-[#ede9e9]  flex flex-col gap-2 justify-center items-center w-full h-screen">
        
         <div className="flex gap-[50px] mt-4">
           <div className="bg-white  w-[60vh] h-[100px] flex justify-around items-center ">
