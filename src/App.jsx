@@ -1,5 +1,5 @@
 import React from "react";
-import ResturantDashboard from "./Pages/Resturent/ResturantDashboard";
+import ResturantDashboard from "./Pages/Resturant/ResturantDashboard";
 
 function App() {
 
