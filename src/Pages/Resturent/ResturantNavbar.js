@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AdminNavbar() {
+function ResturantNavbar() {
   return (
     <>
     <div className='bg-[#d4d0d0] fixed shadow-xl h-screen'>
@@ -41,4 +41,4 @@ function AdminNavbar() {
   )
 }
 
-export default AdminNavbar
+export default ResturantNavbar;
