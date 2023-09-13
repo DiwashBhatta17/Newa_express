@@ -23,3 +23,9 @@ code {
 .dhamilo{
   background-color: rgba(0, 0, 0, 0.5);
 }
+.backgroundImg1{
+  background-image: url('../src/Pages/Images/background.png');
+}
+.backgroundImg2{
+  background-image: url('../src/Pages/Images/background\ 2.png');
+}
