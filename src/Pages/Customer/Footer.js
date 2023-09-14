@@ -5,7 +5,6 @@ import flag from "../Images/flagup.png";
 function Footer() {
   return (
     <>
-      <div className="h-[150px]"></div>
       <div className="bg-[#000000] absolute text-white flex flex-col justify-end h-[550px] w-full">
         <img
           className="w-[2000px] top-[150px] relative md:lg:top-[100px]"
