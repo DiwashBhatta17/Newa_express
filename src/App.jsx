@@ -19,8 +19,8 @@ function App() {
     <>
    {/* <ResturantDashboard/> */}
    {/* <ResturantOrderList/> */}
-   {/* <Resturent1stComp/> */}
-   <Resturent2ndComp/>
+   <Resturent1stComp/>
+   {/* <Resturent2ndComp/> */}
    
    {/* <Footer/> */}
    {/* <AsBreakfast/> */}
