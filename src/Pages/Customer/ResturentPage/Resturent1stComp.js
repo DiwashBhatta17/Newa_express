@@ -2,6 +2,8 @@ import React from "react";
 import left from "../../Images/RestroPageImage/leftVessel.png";
 import right from "../../Images/RestroPageImage/rightVessel.png";
 import background from "../../Images/RestroPageImage/bgRestu.png";
+import Resturent2ndComp from "./Resturent2ndComp";
+import Footer from "../Footer";
 
 function Resturent1stComp() {
   return (
@@ -37,7 +39,10 @@ function Resturent1stComp() {
           </p>
         </div>
         <hr className="border-[#EC2633] border-2 mx-[200px] mb-5" />
+        <Resturent2ndComp/>
       </div>
+     
+      <Footer/>
     </div>
   );
 }
