@@ -1,13 +1,17 @@
 import React from "react";
 import logo from "../Images/Logo.png";
-import flag from '../Images/flagup.png';
+import flag from "../Images/flagup.png";
 
 function Footer() {
   return (
     <>
-    <div className="h-[150px]"></div>
+      <div className="h-[150px]"></div>
       <div className="bg-[#000000] absolute text-white flex flex-col justify-end h-[550px] w-full">
-      <img className="w-[2000px] top-[150px] relative" src={flag} alt="logo" />
+        <img
+          className="w-[2000px] top-[150px] relative md:lg:top-[100px]"
+          src={flag}
+          alt="logo"
+        />
 
         <div className="flex justify-center">
           <img className="w-[200px]" src={logo} alt="logo" />
@@ -23,8 +27,16 @@ function Footer() {
               newsletter
             </h1>
             <div>
-              <input className="h-[30px] outline-none border-b border-[#323131] bg-[#101010]" type="text" placeholder=" Email" name="" id="" />
-              <button className="bg-[#d80b0b] rounded-sm py-[3px] px-3"><i className="fa-solid fa-angle-right"></i></button>
+              <input
+                className="h-[30px] outline-none border-b border-[#323131] bg-[#101010]"
+                type="text"
+                placeholder=" Email"
+                name=""
+                id=""
+              />
+              <button className="bg-[#d80b0b] rounded-sm py-[3px] px-3">
+                <i className="fa-solid fa-angle-right"></i>
+              </button>
             </div>
           </div>
           {/* 2nd parts  */}
