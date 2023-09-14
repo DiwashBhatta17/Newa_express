@@ -6,11 +6,8 @@ function Footer() {
   return (
     <>
       <div className="bg-[#000000] absolute text-white flex flex-col justify-end h-[550px] w-full">
-        <img
-          className="w-[2000px] top-[150px] relative md:lg:top-[100px]"
-          src={flag}
-          alt="logo"
-        />
+
+      <img className="w-[2000px] sm:top-[80px] lg:top-[100px] xl:top-[120px] relative" src={flag} alt="logo" />
 
         <div className="flex justify-center">
           <img className="w-[200px]" src={logo} alt="logo" />

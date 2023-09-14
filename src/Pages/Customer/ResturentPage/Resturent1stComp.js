@@ -4,16 +4,18 @@ import right from "../../Images/RestroPageImage/rightVessel.png";
 import background from "../../Images/RestroPageImage/bgRestu.png";
 import Resturent2ndComp from "./Resturent2ndComp";
 import Footer from "../Footer";
+import CustomerNavbar from "../customerNavbar";
 
 function Resturent1stComp() {
   return (
     <div>
-      <div className="relative">
+      <CustomerNavbar/>
+      <div className="">
         <img className="h-[80vh] w-full" src={background} alt="" />
-        <button className="text-bold text-white shadow-lg bg-[#EC2633] absolute bottom-[20px] px-4 py-2 rounded-full right-[100px]">
+        <button className="text-bold absolute text-white shadow-lg bg-[#EC2633] absolute bottom-[180px] px-4 py-2 rounded-full right-[100px]">
           Check Restaurant
         </button>
-        <div className="flex justify-center items-center absolute -bottom-[100px] left-1/2 transform -translate-x-1/2">
+        <div className="flex  relative justify-center items-center absolute bottom-[120px] left-1/2 transform -translate-x-1/2">
           <img
             className="h-[200px] w-[200px] rounded-full"
             src={background}
@@ -28,6 +30,7 @@ function Resturent1stComp() {
           <div className="w-[400px] text-center">
             <h1 className="text-5xl text-[#6A707E] font-bold ">
               Swagatam Nepali Khaja Ghar
+
             </h1>
           </div>
           <img className="h-[400px]" src={left} alt="" />
