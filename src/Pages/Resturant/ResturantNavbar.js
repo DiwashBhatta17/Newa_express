@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function ResturantNavbar() {
   return (
@@ -9,22 +10,22 @@ function ResturantNavbar() {
             <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
                 <h1 className='text-2xl font-bold text-black'>Resturent Name</h1>
             </div>
-            <button className=' px-5 py-2 rounded-full border-2 border-[#a42222]'>Logout</button>
+            <Link to="/" className=' px-5 py-2 rounded-full border-2 border-[#a42222]'>Logout</Link>
         </div>
         <div className='w-[30vh] top-[11vh] fixed flex flex-col items-start p-5 gap-4 h-[70vh] mt-4 bg-white shadow-xl'>
             <div className='flex gap-3'>
             <i className="fa-light text-xl fa-table-columns"></i>
-                <a className='mt-[3px] ' href="#">Dashboard</a>
+                <Link to="/resturantDashboard" className='mt-[3px] ' >Dashboard</Link>
             </div>
 
             <div className='flex gap-2'>
             <i className="fa-solid mt-1 fa-users"></i>
-                <a href="#">Orders</a>
+                <Link to="/resturantOrderList" href="#">Orders</Link>
             </div>
 
             <div className='flex gap-[10px]'>
             <i className="fa-regular mt-1 fa-hourglass"></i>
-                <a className='ml-2' href="#">Menus</a>
+                <Link to="/resturantMenu" className='ml-2'>Menus</Link>
             </div>
 
             <div className='flex gap-3'>

@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import AsBreakfast from "./menuNavbar/asBreakfast";
-import AsSnacks from "./menuNavbar/asSnacks";
-import AsDrinks from "./menuNavbar/asDrinks";
-import AsFestival from "./menuNavbar/asFestival";
-import food from "../../Images/RestroPageImage/food2.jpg";
+import Footer from "../Footer";
 import line from "../../Images/RestroPageImage/line.png";
-import bg from "../../Images/bg3.png";
+import Home3rdcomponent from "./Home3rdcomponent";
+import Home4thcomponent from "./Home5thcomponent";
 
-function Resturent2ndComp() {
-  const [role, setrole] = useState(1);
+export default function Restcomponent() {
+
   const [data, setData] = useState([
     "",
     "",
@@ -23,7 +20,7 @@ function Resturent2ndComp() {
     "",
   ]);
 
-  const itemsPerPage = 6; // Number of items to display per page
+  const itemsPerPage = 3; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(0);
 
   const handleNext = () => {
@@ -43,31 +40,18 @@ function Resturent2ndComp() {
     currentPage * itemsPerPage + itemsPerPage
   );
 
-  let componentToRender;
-
-  switch (role) {
-    case 1:
-      componentToRender = <AsBreakfast setrole={setrole} />;
-      break;
-    case 2:
-      componentToRender = <AsSnacks setrole={setrole} />;
-      break;
-    case 3:
-      componentToRender = <AsDrinks setrole={setrole} />;
-      break;
-    case 4:
-      componentToRender = <AsFestival setrole={setrole} />;
-      break;
-    default:
-      componentToRender = <AsBreakfast setrole={setrole} />;
-      break;
-  }
   return (
-    <>
-      {" "}
-      {componentToRender}
-      <div className=" backgroundImg mt-5">
-        <div className=" flex justify-end mx-[145px] mb-4 gap-3">
+    <div className="middlepart flex flex-col ">
+      <div className="banner pt-[20px] border flex justify-center">
+        <img src="/Image/banner.gif" alt="banner" className="w-full" />
+      </div>
+      {/* Culture and fest food banner */}
+      <div className="flex mt-5 justify-center">
+        <img src="/Image/Vector.png" alt="" className=" w-[80%] h-[150px] " />
+      </div>
+
+      {/* images */}
+      <div className=" flex justify-end mx-[145px]  my-4 gap-3">
           <button className="bg-[#EC2633] px-2 text-white" onClick={handlePrev}>
             <i className="fa-solid fa-angle-left"></i>
           </button>
@@ -77,7 +61,7 @@ function Resturent2ndComp() {
         </div>
         
 
-        <div className="flex flex-wrap gap-5 items-center mx-[120px] justify-around">
+        <div className="flex flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
           {displayedItems.map((value, index) => (
             <div
               key={index}
@@ -86,7 +70,7 @@ function Resturent2ndComp() {
               <div className="relative h-[280px] overflow-hidden ">
                 <img
                   className="h-[280px] w-[650px] transition-transform transform scale-100 hover:scale-110"
-                  src={food}
+                  src="/Image/samay.png"
                   alt=""
                 />
               </div>
@@ -108,11 +92,16 @@ function Resturent2ndComp() {
           ))}
 
           {/* this is a comp */}
-          <img className="absolut h-[600px] w-[1700px] " src={bg} alt="" />
         </div>
-      </div>
-    </>
+        
+        
+        
+
+
+
+     
+
+     
+    </div>
   );
 }
-
-export default Resturent2ndComp;

@@ -18,7 +18,7 @@ function Signup(props) {
 
   const [status, setStatus] = useState(true);
   const [errorMessage, setErrormessage] = useState("");
-  //   const [redirectToOTP, setRedirectToOTP] = useState(false);
+    const [redirectToOTP, setRedirectToOTP] = useState(false);
 
   async function handelClick() {
     if (signupData.name == "") {
@@ -47,6 +47,7 @@ function Signup(props) {
       try {
         const response = await signupService(data);
         console.log("response", response);
+        setRedirectToOTP(true);
       } catch (error) {
         console.error(error);
       }
@@ -62,16 +63,17 @@ function Signup(props) {
     });
   }
 
-  //   useEffect(() => {
-  //     if (redirectToOTP) {
-  //       const timeout = setTimeout(() => {
-  //         setRedirectToOTP(false); // Reset the flag
-  //         navigate('/otp')
-  //       }, 3000); // 3000 milliseconds = 3 seconds
+    useEffect(() => {
+      if (redirectToOTP) {
+        const timeout = setTimeout(() => {
+          setRedirectToOTP(false); // Reset the flag
+          props.setSignup(false);
+          props.setOtp(true);
+        }, 3000); // 3000 milliseconds = 3 seconds
 
-  //       return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
-  //     }
-  //   }, [redirectToOTP]);
+        return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
+      }
+    }, [redirectToOTP]);
 
   function handelChange(event) {
     const { name, value } = event.target;
@@ -82,12 +84,17 @@ function Signup(props) {
   //     dispatch(setlogin(true));
   //     dispatch(setSignup(false));
   //   }
-  return (
+  return (props.signup)?
     <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
-      <div className=" bg-white h-[550px] w-[480px] overflow-hidden flex flex-col ">
+      <div className=" bg-white h-[580px] w-[480px] overflow-hidden flex flex-col ">
         <div className=" h-[100px] border-[#a03636]">
           <img className=" relative -top-[480px] w-[600px] h-[600px] " src={flag} alt="" />
         </div>
+        <div className="mb-4 flex  pl-4">
+              <button onClick={()=>props.setSignup(false)}>
+                <i className="absolute  top-[150px]   text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
+              </button>
+            </div>
 
         <div className=" justify-end items-center flex-col mt-2 mb-6 flex">
           <img className="w-[50%] pt-[0px]" src={logo} alt="" />
@@ -194,7 +201,7 @@ function Signup(props) {
         </div>
       </div>
     </div>
-  );
+  :"";
 }
 
 export default Signup;

@@ -28,15 +28,22 @@ code {
 .backgroundImg2 {
   background-image: url("../src/Pages/Images/background\ 2.png");
 }
-.ImageheaderSection {
-  background-image: url("../public/Image/steptodown.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .bg3{
   background-image: url('../src/Pages/Images/bg3.png');
 }
+/* Landing page ko part */
+.ImageheaderSection {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  background-image: url("../public/Image/steptodown.png");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  
+
+  background-size: cover;
+}
+
 
 .middlepart {
   background-image: url("../public/Image/Bgex.png");

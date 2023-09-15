@@ -4,7 +4,7 @@ import otpService from '../../Services/Login/otpService';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-function Otp() {
+function Otp(props) {
 
 
   const [otp, setOtp] = useState(['', '', '', '']);
@@ -14,8 +14,6 @@ function Otp() {
   const [errorMessage, setErrormessage] = useState("");
 
 
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -30,7 +28,6 @@ function Otp() {
       }
     }
   };
-
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && index > 0 && otp[index] === '') {
       otpInputs[index - 1].focus();
@@ -59,6 +56,8 @@ function Otp() {
   useEffect(() => {
     if (redirectTologin) {
       const timeout = setTimeout(() => {
+        props.setOtp(false)
+        props.setLogin(true);
         // navigate('/');
         // dispatch(setlogin(true));
         setRedirectTologin(false); // Reset the flag
@@ -73,8 +72,8 @@ function Otp() {
     
   
 
-  return (
-    <div className='flex justify-center items-center h-screen dhamilo'>
+  return (props.otp)?
+    <div className='flex justify-center top-0 w-full left-0 fixed items-center h-screen dhamilo'>
       <div className='w-[260px] py-2 bg-white text-center rounded-lg flex flex-col justify-center items-center border'>
         <img className='my-2 w-[40%]' src={img} alt="img" />
         <div
@@ -99,10 +98,10 @@ function Otp() {
             />
           ))}
         </div>
-        <button  onClick={handelSubmit} className='hover:bg-[#5672d7] bg-[#2182f1c4] active:bg-[#88b7ed] text-white px-[80px] py-2 rounded-md my-2'>Submit</button>
+        <button  onClick={handelSubmit} className='hover:bg-[#c34e56] bg-[#EC2633] active:bg-[#88b7ed] text-white px-[80px] py-2 rounded-md my-2'>Submit</button>
       </div>
     </div>
-  );
+  :"";
 }
 
 

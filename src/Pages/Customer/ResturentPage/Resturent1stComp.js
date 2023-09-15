@@ -10,21 +10,48 @@ function Resturent1stComp() {
   return (
     <div>
       <CustomerNavbar/>
-      <div className="">
-        <img className="h-[80vh] w-full" src={background} alt="" />
-        <button className="text-bold absolute text-white shadow-lg bg-[#EC2633] absolute bottom-[180px] px-4 py-2 rounded-full right-[100px]">
-          Check Restaurant
-        </button>
-        <div className="flex  relative justify-center items-center absolute bottom-[120px] left-1/2 transform -translate-x-1/2">
+      <div className="border-2 border-black">
+        <img className="h-[70vh] w-full" src={background} alt="" />
+       
+        <div className="flex -
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         absolute justify-center items-center bottom-[120px] left-1/2 transform -translate-x-1/2">
           <img
-            className="h-[200px] w-[200px] rounded-full"
+            className="h-[200px]  w-[200px] rounded-full"
             src={background}
             alt="Profile"
           />
         </div>
       </div>
 
-      <div className=" py-[80px]  backgroundImg2">
+      <div className=" py-[80px] border  backgroundImg2">
         <div className="flex mx-[100px] justify-around items-center">
           <img className="h-[400px]" src={right} alt="" />
           <div className="w-[400px] text-center">
@@ -42,8 +69,9 @@ function Resturent1stComp() {
           </p>
         </div>
         <hr className="border-[#EC2633] border-2 mx-[200px] mb-5" />
-        <Resturent2ndComp/>
       </div>
+      <Resturent2ndComp/>
+
      
       <Footer/>
     </div>
