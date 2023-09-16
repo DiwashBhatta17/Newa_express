@@ -42,7 +42,6 @@ function ResturantOrderList() {
                   <td>@twitter</td>
                   <td>@twitter</td>
                   <td><button className="mr-1 border px-3 py-1 rounded-lg text-white bg-[#4f9cdf]">Received</button><button className="mr-1 border px-3 py-1 rounded-lg text-white bg-[#49e78e]">Picked</button></td>
-
                 </tr>
               </tbody>
             </table>

@@ -13,6 +13,7 @@ function ResturantMenu() {
           <table className="table table-hover  table-striped">
             <thead>
               <tr>
+                
                 <th scope="col">Item</th>
                 <th scope="col">Price</th>
                 <th scope="col">Preparation Time</th>
