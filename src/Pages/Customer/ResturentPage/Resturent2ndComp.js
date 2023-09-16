@@ -6,8 +6,17 @@ import AsFestival from "./menuNavbar/asFestival";
 import food from "../../Images/RestroPageImage/food2.jpg";
 import line from "../../Images/RestroPageImage/line.png";
 import bg from "../../Images/bg3.png";
+import Itempopup from "./Itempopup";
 
 function Resturent2ndComp() {
+  //popup logic
+  const [popup, setPopup] = useState(false);
+  function openPopup() {
+    setPopup(true);
+  }
+  function closePopup() {
+    setPopup(false);
+  }
   const [role, setrole] = useState(1);
   const [data, setData] = useState([
     "",
@@ -75,30 +84,31 @@ function Resturent2ndComp() {
             <i className="fa-solid fa-angle-right"></i>
           </button>
         </div>
-        
 
         <div className="flex flex-wrap gap-5 items-center mx-[120px] justify-around">
           {displayedItems.map((value, index) => (
             <div
               key={index}
-              className="border-2 h-[400px] backgroundImg1 border-black w-[330px] overflow-hidden"
+              className="border-2 h-[372px] backgroundImg1 border-red-600 w-[360px] overflow-hidden"
             >
-              <div className="relative h-[280px] overflow-hidden ">
+              <div className="relative h-[250px] overflow-hidden ">
                 <img
-                  className="h-[280px] w-[650px] transition-transform transform scale-100 hover:scale-110"
+                  className="h-[250px] w-[650px] transition-transform transform scale-100 hover:scale-105"
                   src={food}
                   alt=""
+                  onClick={openPopup}
                 />
+                {popup && <Itempopup onClose={closePopup} />}
               </div>
               <div className="dhamilo flex flex-col justify-center items-center text-white  h-[120px]">
-                <div className="text-[#d4f532] flex gap-1">
+                <div className="text-[#FEBB41] flex gap-1">
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                 </div>
-                <h1>Samaya Bhajiya</h1>
+                <h1>Samay Baji</h1>
                 <div className="mx-4">
                   <img src={line} alt="" />
                 </div>

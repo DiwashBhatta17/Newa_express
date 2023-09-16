@@ -2,30 +2,19 @@ import React from "react";
 
 import CustomerNavbar from "./Pages/Customer/customerNavbar";
 import Resturent1stComp from "./Pages/Customer/ResturentPage/Resturent1stComp";
-import Topcomponent from "./Pages/Customer/Homepage/Home1stcomponent";
-import Browse1 from "./Pages/Customer/BrowseRestropage/Browse1";
+import AsBreakfast from "./Pages/Customer/ResturentPage/menuNavbar/asBreakfast";
+import Restcomponent from "./Pages/Customer/ResturentPage/Homepage/Restcomponent";
+import Resturent2ndComp from "./Pages/Customer/ResturentPage/Resturent2ndComp";
+import Topcomponent from "./Pages/Customer/ResturentPage/Homepage/Topcomponent";
+import Itempopup from "./Pages/Customer/ResturentPage/Itempopup";
 
 function App() {
-
-
-
-    
-
-
-  
-  
-  
-  return(
+  return (
     <>
-    {/* <CustomerNavbar/> */}
-    {/* <Resturent1stComp/> */}
-    {/* <Topcomponent/> */}
-    <Browse1/>
-    
-    
-  
-  
-
+      <Topcomponent />
+      <Restcomponent />
+      <Resturent1stComp />
+      {/* <Itempopup /> */}
     </>
   );
 }
