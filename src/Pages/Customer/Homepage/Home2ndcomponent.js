@@ -12,12 +12,8 @@ export default function Restcomponent() {
     "",
     "",
     "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
+    
+    
   ]);
 
   const itemsPerPage = 3; // Number of items to display per page
@@ -51,14 +47,7 @@ export default function Restcomponent() {
       </div>
 
       {/* images */}
-      <div className=" flex justify-end mx-[145px]  my-4 gap-3">
-          <button className="bg-[#EC2633] px-2 text-white" onClick={handlePrev}>
-            <i className="fa-solid fa-angle-left"></i>
-          </button>
-          <button className="bg-[#FF9800] px-2 text-white" onClick={handleNext}>
-            <i className="fa-solid fa-angle-right"></i>
-          </button>
-        </div>
+     
         
 
         <div className="flex flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
@@ -92,6 +81,19 @@ export default function Restcomponent() {
           ))}
 
           {/* this is a comp */}
+        </div>
+
+        <div className=" flex justify-center items-center mx-[145px]  my-4 gap-3">
+          <div className="border-2 border-black w-full"></div>
+          <div className="flex justify-center items-center my-4 gap-3 ">
+          <button className="bg-[#EC2633] px-3 py-1 text-white" onClick={handlePrev}>
+            <i className="fa-solid fa-angle-left"></i>
+          </button>
+          <button className="bg-[#FF9800] px-3 py-1 text-white" onClick={handleNext}>
+            <i className="fa-solid fa-angle-right"></i>
+          </button>
+          </div>
+          <div className="border-2 border-black w-full"></div>
         </div>
         
         

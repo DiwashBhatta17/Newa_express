@@ -47,7 +47,7 @@ function Login(props) {
   }
   return (props.login)?
     <>
-      <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
+      <div className="flex z-40 top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
         <div className=" backgroundImg2 w-[770px] w-[750px] h-[500px] flex ">
           <div className="text-right ">
             {/* 2nd pat of image  */}

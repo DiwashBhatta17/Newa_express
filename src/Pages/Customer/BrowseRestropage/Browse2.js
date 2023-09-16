@@ -1,39 +1,40 @@
-import React, { useState } from "react";
-import Home4thcomponent from "./Home4thcomponent";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import restu from "../../Images/RestroPageImage/bgRestu.png";
+import CustomerNavbar from '../customerNavbar';
+import Footer from '../Footer';
 
-function Home3rdcomponent() {
-  const [data, setData] = useState(["", "", ""]);
+
+function Browse2() {
+    
+
+    const [data, setData] = useState(["","","","","","","",""])
   return (
-    <div className="backgroundImg1 p-5">
-      <div className="flex justify-center">
-        <img
-          src="/Image/vector2.png"
-          alt="aboutus"
-          className="my-5 ml-[100px]"
-        />
-      </div>
-      <Link to="/resturant">
-        <div className="flex  flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
+    <div className='backgroundImg1 mb-5'> 
+    <div className='py-5 px-[120px]'>
+        <img className='w-[30%]' src="/Image/restroList.png" alt="" />
+    </div>
+       <div className='pb-[280px]'>
+       <Link to="/resturant">
+        <div className="flex backgroundImg2 py-5 flex-wrap gap-3 items-cente justify-center mx-[110px] ">
           {data.map((value, index) => (
             <div
               key={index}
-              className="border-2  h-[360px] backgroundImg1 border-black w-[301px] overflow-hidden"
+              className="border-2  h-[300px] backgroundImg1 border-black w-[280px] overflow-hidden"
             >
-              <div className="h-[230px] overflow-hidden ">
+              <div className="h-[190px] overflow-hidden ">
                 <img
-                  className="h-[240px] w-[650px] transition-transform transform scal scale-110 hover:scale-125"
+                  className="h-[240px] -z-30 w-[650px] transition-transform transform  scale-110 hover:scale-125"
                   src={restu}
                   alt=""
                 />
               </div>
-              <div className=" flex item-center justify-center absolute ml-[102px] -mt-[50px]">
+              <div className=" flex item-center justify-center absolute ml-[100px] -mt-[80px]">
                 
                 <img className="" src="/Image/logo1.png" alt="" />
               </div>
 
-              <div className="bg-[#0e0e0e97] flex flex-col justify-center items-center text-white  h-[170px]">
+              <div className="bg-[#0e0e0e97] flex flex-col justify-center items-center text-white  h-[130px]">
                 <div className="text-[#d4f532] flex gap-1">
                   {/* <i className="fa-solid fa-star"></i> */}
                   <i className="fa-solid fa-star"></i>
@@ -52,8 +53,11 @@ function Home3rdcomponent() {
           {/* this is a comp */}
         </div>
       </Link>
+       </div>
+       <Footer/>
+      
     </div>
-  );
+  )
 }
 
-export default Home3rdcomponent;
+export default Browse2

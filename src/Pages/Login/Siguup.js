@@ -85,7 +85,7 @@ function Signup(props) {
   //     dispatch(setSignup(false));
   //   }
   return (props.signup)?
-    <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
+    <div className="flex z-40 top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white h-[580px] w-[480px] overflow-hidden flex flex-col ">
         <div className=" h-[100px] border-[#a03636]">
           <img className=" relative -top-[480px] w-[600px] h-[600px] " src={flag} alt="" />
