@@ -28,17 +28,22 @@ code {
 .backgroundImg2 {
   background-image: url("../src/Pages/Images/background\ 2.png");
 }
-.ImageheaderSection {
-  background-image: url("../public/Image/steptodown.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .bg3 {
   background-image: url("../src/Pages/Images/bg3.png");
 }
-.roughbg {
-  background-image: url("../public/Image/roughbg.png");
+.bg4 {
+  background-image: url("https://t3.ftcdn.net/jpg/00/89/06/58/240_F_89065800_xEBEyMs4S5huPT24hXFHXrqPlk0wHwJ4.jpg");
+}
+/* Landing page ko part */
+.ImageheaderSection {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  background-image: url("../public/Image/steptodown.png");
+
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-size: cover;
 }
 
 .middlepart {

@@ -7,6 +7,42 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Topcomponent from './Pages/Customer/Homepage/Home1stcomponent';
+import Resturent1stComp from './Pages/Customer/ResturentPage/Resturent1stComp';
+import ResturantDashboard from './Pages/Resturant/ResturantDashboard';
+import ResturantMenu from './Pages/Resturant/ResturantMenu';
+import ResturantOrderList from './Pages/Resturant/ResturantOrderList';
+import Browse1 from './Pages/Customer/BrowseRestropage/Browse1';
+
+const routerConfig = createBrowserRouter([
+  {
+    path: "/",
+    element: <Topcomponent/>,
+  },
+  {
+    path: "resturant",
+    element: <Resturent1stComp/>,
+  },
+  // Resturant part
+
+  {
+    path: "resturantDashboard",
+    element: <ResturantDashboard/>,
+  },
+  {
+    path: "resturantMenu",
+    element: <ResturantMenu/>,
+  },
+  {
+    path: "resturantOrderList",
+    element: <ResturantOrderList/>,
+  },
+  {
+    path: "browseResturant",
+    element: <Browse1/>
+  },
+
+]);
 
 
 
@@ -14,7 +50,8 @@ import {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <RouterProvider router={routerConfig} />
   </React.StrictMode>
 );
 

@@ -4,6 +4,7 @@ import ResturantNavbar from './ResturantNavbar'
 function ResturantDashboard() {
   return (
     <>
+    
     {/* <AdminNavbar /> */}
     <ResturantNavbar/>
     <div className="bg-[#ede9e9]  flex flex-col gap-2 justify-center items-center w-full h-screen">

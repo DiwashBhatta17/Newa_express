@@ -22,16 +22,16 @@ export default function Itempopup({ onClose }) {
         <p className="text-white ml-[300px] mt-[-180px]">Item Description</p>
         <table className="text-white  transform translate-y-[-110px] ml-[-100px]">
           <tr>
-            <th>Price</th>
+            <th>Price: {}</th>
           </tr>
           <tr>
-            <th>Type</th>
+            <th>Type:{}</th>
           </tr>
           <tr>
-            <th>Meat</th>
+            <th>Meat:{}</th>
           </tr>
           <tr>
-            <th>Quantity</th>
+            <th>Quantity:{}</th>
           </tr>
         </table>
         <img
