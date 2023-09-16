@@ -34,8 +34,11 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.bg3{
-  background-image: url('../src/Pages/Images/bg3.png');
+.bg3 {
+  background-image: url("../src/Pages/Images/bg3.png");
+}
+.roughbg {
+  background-image: url("../public/Image/roughbg.png");
 }
 
 .middlepart {
