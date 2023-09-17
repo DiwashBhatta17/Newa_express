@@ -9,42 +9,38 @@ import Login from "../../Login/Login";
 import Signup from "../../Login/Siguup";
 
 export default function Topcomponent() {
-
-  
-
   return (
     <>
-   
-    <CustomerNavbar/>
+      <CustomerNavbar />
       <div className="ImageheaderSection  flex flex-col justify-center items-center  h-[100vh]">
         <div className="dhamilo flex flex-col justify-center items-center w-full  h-[100vh] ">
-        <p className=" text-[#ffffff]  text-2xl mt-5 ">
-          Search Authentic Newari food from the widest range of Newari
-          restaurants.
-        </p>
-        {/* <div> */}
+          <p className=" text-[#ffffff]  text-xl mt-5 font-semibold">
+            Search Authentic Newari food from the widest range of Newari
+            restaurants.
+          </p>
+          {/* <div> */}
 
-        <div className="flex mt-4 justify-end outline-none bg-[#ffffffb8] w-[880px] h-[50px]  rounded-[10px] rounded-full">
-          <div>
-            {" "}
-            <input
-              type="text"
-              className=" relative outline-none bg-transparent  text-black border-black   w-[810px] h-[48px]  rounded-[10px]"
+          <div className="flex mt-4 justify-end outline-none bg-[#ffffffb8] w-[750px] h-[42px]  rounded-full">
+            <div className=" w-[700px]">
+              {" "}
+              <input
+                type="text"
+                className="mt-[=10px] text-center relative outline-none bg-transparent  text-black border-black   w-[750px] h-[48px]  rounded-[10px]"
+              />
+            </div>
+            <img
+              src="/Image/search.png"
+              alt="icon"
+              className="w-[27px] h-[27px] mt-2 mr-4 "
             />
           </div>
-          <img
-            src="/Image/search.png"
-            alt="icon"
-            className="w-[30px] h-[30px] mt-2 mr-4 "
-          />
-        </div>
         </div>
       </div>
       <Restcomponent />
-      <Home3rdcomponent/>
-      <Home4thcomponent/>
-      <Home5thcomponent/>
-      <Footer/>
+      <Home3rdcomponent />
+      <Home4thcomponent />
+      <Home5thcomponent />
+      <Footer />
     </>
   );
 }

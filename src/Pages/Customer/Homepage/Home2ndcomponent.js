@@ -5,18 +5,9 @@ import Home3rdcomponent from "./Home3rdcomponent";
 import Home4thcomponent from "./Home5thcomponent";
 
 export default function Restcomponent() {
+  const [data, setData] = useState(["", "", "", ""]);
 
-  const [data, setData] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    
-    
-  ]);
-
-  const itemsPerPage = 3; // Number of items to display per page
+  const itemsPerPage = 2; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(0);
 
   const handleNext = () => {
@@ -39,7 +30,7 @@ export default function Restcomponent() {
   return (
     <div className="middlepart flex flex-col ">
       <div className="banner pt-[20px] border flex justify-center">
-        <img src="/Image/banner.gif" alt="banner" className="w-full" />
+        <img src="/Image/banner.gif" alt="banner" className="w-[1100px]" />
       </div>
       {/* Culture and fest food banner */}
       <div className="flex mt-5 justify-center">
@@ -47,63 +38,49 @@ export default function Restcomponent() {
       </div>
 
       {/* images */}
-     
-        
 
-        <div className="flex flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
-          {displayedItems.map((value, index) => (
-            <div
-              key={index}
-              className="border-2 h-[400px] backgroundImg1 border-black w-[330px] overflow-hidden"
-            >
-              <div className="relative h-[280px] overflow-hidden ">
-                <img
-                  className="h-[280px] w-[650px] transition-transform transform scale-100 hover:scale-110"
-                  src="/Image/samay.png"
-                  alt=""
-                />
-              </div>
-              <div className="dhamilo flex flex-col justify-center items-center text-white  h-[120px]">
-                <div className="text-[#d4f532] flex gap-1">
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                </div>
-                <h1>Samaya Bhajiya</h1>
-                <div className="mx-4">
-                  <img src={line} alt="" />
-                </div>
-                <p>Rs 350</p>
-              </div>
+      <div className="flex flex-wrap gap-0 mb-5 items-center mx-[120px] justify-around">
+        {displayedItems.map((value, index) => (
+          <div
+            key={index}
+            className=" h-[312px] backgroundImg1 border-black w-[315px] overflow-hidden"
+          >
+            <div className="relative h-[230px] overflow-hidden ">
+              <img
+                className="h-[230px] w-[630px] transition-transform transform scale-100 hover:scale-110"
+                src="/Image/samay.png"
+                alt=""
+              />
             </div>
-          ))}
+            <div className="roughbg flex flex-col justify-center items-center text-white  h-[80px]">
+              <h1 className=" font-semibold  mt-[-10px]">Samay Baji</h1>
+              <div className="mx-4">{/* <img src={line} alt="" /> */}</div>
+              <p>Rs 350</p>
+            </div>
+          </div>
+        ))}
 
-          {/* this is a comp */}
-        </div>
+        {/* this is a comp */}
+      </div>
 
-        <div className=" flex justify-center items-center mx-[145px]  my-4 gap-3">
-          <div className="border-2 border-black w-full"></div>
-          <div className="flex justify-center items-center my-4 gap-3 ">
-          <button className="bg-[#EC2633] px-3 py-1 text-white" onClick={handlePrev}>
+      <div className=" flex justify-center items-center mx-[130px] mt-[-15px] mb-[10px] gap-3">
+        <div className="border-2 border-black w-full  "></div>
+        <div className="flex justify-center items-center my-4 gap-3 ">
+          <button
+            className="bg-[#EC2633] px-3 py-1 text-white"
+            onClick={handlePrev}
+          >
             <i className="fa-solid fa-angle-left"></i>
           </button>
-          <button className="bg-[#FF9800] px-3 py-1 text-white" onClick={handleNext}>
+          <button
+            className="bg-[#FF9800] px-3 py-1 text-white"
+            onClick={handleNext}
+          >
             <i className="fa-solid fa-angle-right"></i>
           </button>
-          </div>
-          <div className="border-2 border-black w-full"></div>
         </div>
-        
-        
-        
-
-
-
-     
-
-     
+        <div className="border-2 border-black w-full"></div>
+      </div>
     </div>
   );
 }
