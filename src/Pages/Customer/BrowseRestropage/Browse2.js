@@ -1,11 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import restu from "../../Images/RestroPageImage/bgRestu.png";
 import CustomerNavbar from '../customerNavbar';
 import Footer from '../Footer';
+import getAllrestaurantService, {getBannerImage, getProfileImage} from '../../../Services/CustomerService/getAllrestaurantService';
 
 
 function Browse2() {
+  
+
+  async function fetchRestaurant() {
+    try {
+      const response = await getAllrestaurantService();
+      if (response) {
+        console.log(response);
+        for (let i = 0; i < response.length; i++) {
+          let bannerImg = await fetchBannerImage(response[i]?.restaurantId);
+          let profileImg = await fetchProfileImage(response[i]?.restaurantId);
+          response[i]["bannerImg"] = bannerImg;
+          response[i]["profileImg"]= profileImg;
+        }
+        setData(response);
+      }
+    } catch (error) {
+      console.error("Cannot get the News", error);
+    }
+  }
+
+  async function fetchBannerImage(restaurantId) {
+    try {
+      const response = await getBannerImage(restaurantId);
+      return URL.createObjectURL(response);
+    } catch (error) {
+      console.error("Cannot get images", error);
+      return [];
+    }
+  }
+
+  async function fetchProfileImage(restaurantId) {
+    try {
+      const response = await getProfileImage(restaurantId);
+      return URL.createObjectURL(response);
+    } catch (error) {
+      console.error("Cannot get images", error);
+      return [];
+    }
+  }
+
+  useEffect(()=>{
+    fetchRestaurant();
+  },[]);
+
     
 
     const [data, setData] = useState(["","","","","","","",""])
@@ -25,13 +70,13 @@ function Browse2() {
               <div className="h-[190px] overflow-hidden ">
                 <img
                   className="h-[240px] -z-30 w-[650px] transition-transform transform  scale-110 hover:scale-125"
-                  src={restu}
+                  src={value.bannerImg}
                   alt=""
                 />
               </div>
               <div className=" flex item-center justify-center absolute ml-[100px] -mt-[80px]">
                 
-                <img className="" src="/Image/logo1.png" alt="" />
+                <img className="" src={value.profileImg} alt="" />
               </div>
 
               <div className="bg-[#0e0e0e97] flex flex-col justify-center items-center text-white  h-[130px]">
