@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AsBreakfast from "./menuNavbar/asBreakfast";
 import AsSnacks from "./menuNavbar/asSnacks";
 import AsDrinks from "./menuNavbar/asDrinks";
@@ -7,6 +7,8 @@ import food from "../../Images/RestroPageImage/food2.jpg";
 import line from "../../Images/RestroPageImage/line.png";
 import bg from "../../Images/bg3.png";
 import Itempopup from "./Itempopup";
+import getAllrestaurantService, {getBannerImage,getProfileImage} from "../../../Services/CustomerService/getAllrestaurantService";
+
 
 function Resturent2ndComp() {
   //popup logic
@@ -32,6 +34,8 @@ function Resturent2ndComp() {
     "",
   ]);
 
+
+
   const itemsPerPage = 6; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -51,6 +55,51 @@ function Resturent2ndComp() {
     currentPage * itemsPerPage,
     currentPage * itemsPerPage + itemsPerPage
   );
+  //get all restaurant service call here
+
+ 
+
+  async function fetchRestaurant() {
+    try {
+      const response = await getAllrestaurantService();
+      if (response) {
+        console.log(response);
+        for (let i = 0; i < response.length; i++) {
+          let bannerImg = await fetchBannerImage(response[i]?.restaurantId);
+          // let profileImg = await fetchProfileImage(response[i]?.restaurantId);
+          response[i]["bannerImg"] = bannerImg;
+          // response[i]["profileImg"]= profileImg;
+        }
+        setData(response);
+      }
+    } catch (error) {
+      console.error("Cannot get the News", error);
+    }
+  }
+
+  async function fetchBannerImage(restaurantId) {
+    try {
+      const response = await getBannerImage(restaurantId);
+      return URL.createObjectURL(response);
+    } catch (error) {
+      console.error("Cannot get images", error);
+      return [];
+    }
+  }
+
+  async function fetchProfileImage(restaurantId) {
+    try {
+      const response = await getProfileImage(restaurantId);
+      return URL.createObjectURL(response);
+    } catch (error) {
+      console.error("Cannot get images", error);
+      return [];
+    }
+  }
+
+  useEffect(()=>{
+    fetchRestaurant();
+  },[]);
 
   let componentToRender;
 
@@ -94,8 +143,8 @@ function Resturent2ndComp() {
               <div className="relative h-[250px] overflow-hidden ">
                 <img
                   className="h-[250px] w-[650px] transition-transform transform scale-100 hover:scale-105"
-                  src={food}
-                  alt=""
+                  src={value.bannerImg}
+                  alt="img"
                   onClick={openPopup}
                 />
                 {popup && <Itempopup onClose={closePopup} />}
