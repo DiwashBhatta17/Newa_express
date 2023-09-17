@@ -10,7 +10,6 @@ async function topRestaurantService() {
         
     }  
 }
-
  async function getBannerImage(restaurantId) {
     try {
       const response = await axios.get(
