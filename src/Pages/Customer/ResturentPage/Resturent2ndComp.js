@@ -59,47 +59,7 @@ function Resturent2ndComp() {
 
  
 
-  async function fetchRestaurant() {
-    try {
-      const response = await getAllrestaurantService();
-      if (response) {
-        console.log(response);
-        for (let i = 0; i < response.length; i++) {
-          let bannerImg = await fetchBannerImage(response[i]?.restaurantId);
-          // let profileImg = await fetchProfileImage(response[i]?.restaurantId);
-          response[i]["bannerImg"] = bannerImg;
-          // response[i]["profileImg"]= profileImg;
-        }
-        setData(response);
-      }
-    } catch (error) {
-      console.error("Cannot get the News", error);
-    }
-  }
-
-  async function fetchBannerImage(restaurantId) {
-    try {
-      const response = await getBannerImage(restaurantId);
-      return URL.createObjectURL(response);
-    } catch (error) {
-      console.error("Cannot get images", error);
-      return [];
-    }
-  }
-
-  async function fetchProfileImage(restaurantId) {
-    try {
-      const response = await getProfileImage(restaurantId);
-      return URL.createObjectURL(response);
-    } catch (error) {
-      console.error("Cannot get images", error);
-      return [];
-    }
-  }
-
-  useEffect(()=>{
-    fetchRestaurant();
-  },[]);
+  
 
   let componentToRender;
 
@@ -138,24 +98,34 @@ function Resturent2ndComp() {
           {displayedItems.map((value, index) => (
             <div
               key={index}
-              className="border-2 h-[372px] backgroundImg1 border-red-600 w-[360px] overflow-hidden"
+              className="border-2 h-[352px] backgroundImg1 border-red-600 w-[300px] overflow-hidden"
             >
               <div className="relative h-[250px] overflow-hidden ">
+              <div className=" flex flex-col absolute z-20 items-end px-3 justify-center h-full w-full">
+               <div className="flex flex-col gap-3 text-2xl items-center">
+                 
+               <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
+                <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
+                <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
+               </div>
+                </div>
                 <img
                   className="h-[250px] w-[650px] transition-transform transform scale-100 hover:scale-105"
-                  src={value.bannerImg}
+                  src={food}
                   alt="img"
                   onClick={openPopup}
                 />
+              
                 {popup && <Itempopup onClose={closePopup} />}
               </div>
-              <div className="dhamilo flex flex-col justify-center items-center text-white  h-[120px]">
+              <div className="dhamilo flex flex-col justify-center items-center text-white  h-[110px]">
                 <div className="text-[#FEBB41] flex gap-1">
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
+                  
                 </div>
                 <h1>Samay Baji</h1>
                 <div className="mx-4">
