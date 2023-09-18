@@ -9,10 +9,10 @@ import CustomerNavbar from "../customerNavbar";
 function Resturent1stComp() {
   return (
     <div>
-      <CustomerNavbar/>
+      <CustomerNavbar />
       <div className="border-2 border-black">
         <img className="h-[70vh] w-full" src={background} alt="" />
-       
+
         <div className="flex absolute justify-center items-center bottom-[120px] left-1/2 transform -translate-x-1/2">
           <img
             className="h-[200px]  w-[200px] rounded-full"
@@ -28,7 +28,6 @@ function Resturent1stComp() {
           <div className="w-[400px] text-center">
             <h1 className="text-5xl text-[#6A707E] font-bold ">
               Swagatam Nepali Khaja Ghar
-
             </h1>
           </div>
           <img className="h-[400px]" src={left} alt="" />
@@ -41,10 +40,9 @@ function Resturent1stComp() {
         </div>
         <hr className="border-[#EC2633] border-2 mx-[200px] mb-5" />
       </div>
-      <Resturent2ndComp/>
+      <Resturent2ndComp />
 
-     
-      <Footer/>
+      <Footer />
     </div>
   );
 }

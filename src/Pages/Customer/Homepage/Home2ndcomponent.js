@@ -8,7 +8,10 @@ import food from "../../Images/RestroPageImage/food2.jpg";
 
 
 export default function Restcomponent() {
+  const [data, setData] = useState(["", "", "", ""]);
 
+
+// Number of items to display per page
   const [data, setData] = useState([
     "",
     "",
@@ -50,7 +53,7 @@ export default function Restcomponent() {
   return (
     <div className="middlepart flex flex-col ">
       <div className="banner pt-[20px] border flex justify-center">
-        <img src="/Image/banner.gif" alt="banner" className="w-full" />
+        <img src="/Image/banner.gif" alt="banner" className="w-[1100px]" />
       </div>
       {/* Culture and fest food banner */}
       <div className="flex mt-5 justify-center">
@@ -58,8 +61,6 @@ export default function Restcomponent() {
       </div>
 
       {/* images */}
-     
-        
 
         <div className="flex flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
           {displayedItems.map((value, index) => (
@@ -114,30 +115,28 @@ export default function Restcomponent() {
           </div>
           ))}
 
-          {/* this is a comp */}
-        </div>
 
-        <div className=" flex justify-center items-center mx-[145px]  my-4 gap-3">
-          <div className="border-2 border-black w-full"></div>
-          <div className="flex justify-center items-center my-4 gap-3 ">
-          <button className="bg-[#EC2633] px-3 py-1 text-white" onClick={handlePrev}>
+        {/* this is a comp */}
+      </div>
+
+      <div className=" flex justify-center items-center mx-[130px] mt-[-15px] mb-[10px] gap-3">
+        <div className="border-2 border-black w-full  "></div>
+        <div className="flex justify-center items-center my-4 gap-3 ">
+          <button
+            className="bg-[#EC2633] px-3 py-1 text-white"
+            onClick={handlePrev}
+          >
             <i className="fa-solid fa-angle-left"></i>
           </button>
-          <button className="bg-[#FF9800] px-3 py-1 text-white" onClick={handleNext}>
+          <button
+            className="bg-[#FF9800] px-3 py-1 text-white"
+            onClick={handleNext}
+          >
             <i className="fa-solid fa-angle-right"></i>
           </button>
-          </div>
-          <div className="border-2 border-black w-full"></div>
         </div>
-        
-        
-        
-
-
-
-     
-
-     
+        <div className="border-2 border-black w-full"></div>
+      </div>
     </div>
   );
 }

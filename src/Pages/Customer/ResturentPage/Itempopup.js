@@ -1,6 +1,21 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Itempopup({ onClose }) {
+  //Quantity update
+  const [quantity, setQuantity] = useState(0);
+
+  function addQuantity() {
+    setQuantity(quantity + 1);
+  }
+
+  function subtractQuantity() {
+    setQuantity(quantity - 1);
+  }
+  //data fetching
+  const [datano, setDatano] = useState(null);
+
   return (
     <div className="dhamilo  fixed inset-0 flex items-center justify-center z-50 backdrop-blur backdrop-filter bg-opacity-40">
       <div className="roughbg w-[530px] h-[450px] flex flex-wrap">
@@ -28,14 +43,29 @@ export default function Itempopup({ onClose }) {
             <th>Type:{}</th>
           </tr>
           <tr>
-            <th>Meat:{}</th>
+            <th>Meat:</th>
           </tr>
           <tr>
-            <th>Quantity:{}</th>
+            <th>
+              Quantity:{" "}
+              <button
+                className="border-1 border-white w-[26px] "
+                onClick={subtractQuantity}
+              >
+                -
+              </button>{" "}
+              {quantity}
+              <button
+                className="border-1 border-white w-[26px]"
+                onClick={addQuantity}
+              >
+                +
+              </button>
+            </th>
           </tr>
         </table>
         <img
-          src="/Image/Vector.png"
+          src="/Image/redcomp.png"
           alt="order"
           className="w-[300px] mx-[100px] h-[70px] mb-[20px] "
         />
