@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Home4thcomponent from "./Home4thcomponent";
 import { Link } from "react-router-dom";
 import restu from "../../Images/RestroPageImage/bgRestu.png";
+import getTopRestaurant from "../../../Services/CustomerService/topRestaurantService";
+import axios from "axios";
 
 function Home3rdcomponent() {
   const [data, setData] = useState(["", "", ""]);
+  
+
+  useEffect(() => {
+    // Inside the useEffect, you make the Axios GET request
+    getTopRestaurant().then((res) => {
+      setData(res);
+    });
+  }, []); // Empty dependency array to run this effect only once when the component mounts
+  
+   
+
+ 
   return (
     <div className="backgroundImg1 p-5">
       <div className="flex justify-center">
@@ -24,13 +38,13 @@ function Home3rdcomponent() {
               <div className="h-[230px] overflow-hidden ">
                 <img
                   className="h-[240px] w-[650px] transition-transform transform scal scale-110 hover:scale-125"
-                  src={restu}
+                  src={value.bannerImg}
                   alt=""
                 />
               </div>
               <div className=" flex item-center justify-center absolute ml-[102px] -mt-[50px]">
                 
-                <img className="" src="/Image/logo1.png" alt="" />
+                <img className="" src={value.profileImg} alt="" />
               </div>
 
               <div className="bg-[#0e0e0e97] flex flex-col justify-center items-center text-white  h-[170px]">
@@ -41,7 +55,7 @@ function Home3rdcomponent() {
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                 </div>
-                <h1 className="text-[#f24d4d] text-xl font-bold">Swagatam Newari Resturant</h1>
+                <h1 className="text-[#f24d4d] text-xl font-bold">{value.restaurantName}</h1>
                 <p className="text-[#e2dddd]">Srijanagar Kathmandu</p>
                 <div className="mx-4">{/* <img src={line} alt="" /> */}</div>
                 
