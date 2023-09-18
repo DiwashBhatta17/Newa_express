@@ -87,6 +87,8 @@ function Browse2() {
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                 </div>
+
+
                 <h1 className="text-[#f24d4d] text-xl font-bold">Swagatam Newari Resturant</h1>
                 <p className="text-[#e2dddd]">Srijanagar Kathmandu</p>
                 <div className="mx-4">{/* <img src={line} alt="" /> */}</div>
@@ -105,4 +107,4 @@ function Browse2() {
   )
 }
 
-export default Browse2
+export default Browse2;
