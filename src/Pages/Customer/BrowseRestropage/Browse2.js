@@ -74,9 +74,9 @@ function Browse2() {
                   alt=""
                 />
               </div>
-              <div className=" flex item-center justify-center absolute ml-[100px] -mt-[80px]">
+              <div className=" flex item-center justify-center absolute ml-[90px] -mt-[80px]">
                 
-                <img className="" src={value.profileImg} alt="" />
+                <img className=" h-[100px] w-[100px] rounded-full" src={value.profileImg} alt="" />
               </div>
 
               <div className="bg-[#0e0e0e97] flex flex-col justify-center items-center text-white  h-[130px]">

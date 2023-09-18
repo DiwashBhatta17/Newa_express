@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function ResturantNavbar() {
   return (
     <>
-    <div className='bg-[#d4d0d0] fixed shadow-xl h-screen'>
-        <div className='flex w-screen fixed justify-between shadow-xl itmes-center bg-white py-4 px-5'>
+    <div className='bg-[#d4d0d0] absolute shadow-xl h-screen'>
+        <div className='flex w-screen justify-between absolute shadow-xl itmes-center bg-white py-4 px-5'>
             <div className='flex gap-2 '>
             <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
                 <h1 className='text-2xl font-bold text-black'>Resturent Name</h1>

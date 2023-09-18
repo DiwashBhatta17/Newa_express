@@ -63,7 +63,8 @@ async function topRestaurantService() {
     }
     
    } catch (error) {
-    throw error
+    console.error(error);
+    throw error;
     
    }
 

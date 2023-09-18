@@ -12,15 +12,7 @@ export default function Restcomponent() {
 
 
 // Number of items to display per page
-  const [data, setData] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    
-    
-  ]);
+  
 
   const [popup, setPopup] = useState(false);
   function openPopup() {
