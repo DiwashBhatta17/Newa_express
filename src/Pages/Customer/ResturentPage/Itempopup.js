@@ -17,7 +17,7 @@ export default function Itempopup({ onClose }) {
   const [datano, setDatano] = useState(null);
 
   return (
-    <div className="dhamilo fixed inset-0 flex items-center justify-center ">
+    <div className="dhamilo z-20 fixed inset-0 flex items-center justify-center ">
       <div className="roughbg w-[530px] h-[450px] flex flex-wrap">
         <img
           src="/Image/samay.png"

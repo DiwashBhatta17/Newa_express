@@ -20,7 +20,7 @@ const routerConfig = createBrowserRouter([
     element: <Topcomponent/>,
   },
   {
-    path: "resturant",
+    path: "restaurant/:restaurantId",
     element: <Resturent1stComp/>,
   },
   // Resturant part

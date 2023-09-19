@@ -8,9 +8,11 @@ import line from "../../Images/RestroPageImage/line.png";
 import bg from "../../Images/bg3.png";
 import Itempopup from "./Itempopup";
 import getAllrestaurantService, {getBannerImage,getProfileImage} from "../../../Services/CustomerService/getAllrestaurantService";
+import { Link } from "react-router-dom";
 
 
 function Resturent2ndComp() {
+  
   //popup logic
   const [popup, setPopup] = useState(false);
   function openPopup() {
@@ -96,6 +98,7 @@ function Resturent2ndComp() {
 
         <div className="flex flex-wrap gap-5 items-center mx-[120px] justify-around">
           {displayedItems.map((value, index) => (
+            <Link to={`restaurant/${value.restaurantId}`}>
             <div
               key={index}
               className="border-2 h-[352px] backgroundImg1 border-red-600 w-[300px] overflow-hidden"
@@ -134,6 +137,7 @@ function Resturent2ndComp() {
                 <p>Rs 350</p>
               </div>
             </div>
+            </Link>
           ))}
 
           {/* this is a comp */}
