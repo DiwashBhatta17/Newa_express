@@ -7,9 +7,11 @@ import getAllrestaurantService, {getBannerImage, getProfileImage} from '../../..
 
 
 function Browse2() {
-  
+  const [data, setData] = useState(["","","","","","","","",""])
+
 
   async function fetchRestaurant() {
+
     try {
       const response = await getAllrestaurantService();
       if (response) {
@@ -53,7 +55,6 @@ function Browse2() {
 
     
 
-    const [data, setData] = useState(["","","","","","","",""])
   return (
     <div className='backgroundImg1 mb-5'> 
     <div className='py-5 px-[120px]'>

@@ -3,7 +3,7 @@ import baseURL from '../Api/api';
 
 async function restaurantDescriptionService(restaurantId) {
     try {
-        const response = await axios.get(baseURL+"restaurants/get-restaurant/2")
+        const response = await axios.get(baseURL+"restaurants/get-restaurant/"+restaurantId)
         return response.data;
         
     } catch (error) {

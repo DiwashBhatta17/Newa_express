@@ -9,19 +9,22 @@ import bg from "../../Images/bg3.png";
 import Itempopup from "./Itempopup";
 import getAllrestaurantService, {getBannerImage,getProfileImage} from "../../../Services/CustomerService/getAllrestaurantService";
 import { Link } from "react-router-dom";
+import { getFood, getBreakfast,getDrink,getSnacks } from "../../../Services/CustomerService/foodItemService";
 
 
-function Resturent2ndComp() {
+function Resturent2ndComp(props) {
+
+  const {restaurantId} = props;
   
   //popup logic
-  const [popup, setPopup] = useState(false);
-  function openPopup() {
-    setPopup(true);
-  }
+  const [popup, setPopup] = useState([""]);
+  const openPopup = (value) => {
+    setPopup(value);
+  };
   function closePopup() {
     setPopup(false);
   }
-  const [role, setrole] = useState(1);
+  const [role, setRole] = useState(1);
   const [data, setData] = useState([
     "",
     "",
@@ -36,6 +39,33 @@ function Resturent2ndComp() {
     "",
   ]);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        switch (role) {
+          case 1:
+            const breakfastData = await getBreakfast(restaurantId);
+            setData(breakfastData);
+            break;
+          case 2:
+            const snacksData = await getSnacks(restaurantId);
+            setData(snacksData);
+            break;
+          case 3:
+            const drinkData = await getDrink(restaurantId);
+            setData(drinkData);
+            break;
+          default:
+            // Handle default case or no fetching needed
+            break;
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    }
+
+    fetchData(); // Fetch data when the component mounts and when 'role' changes
+  }, [role, restaurantId]);
 
 
   const itemsPerPage = 6; // Number of items to display per page
@@ -64,22 +94,21 @@ function Resturent2ndComp() {
   
 
   let componentToRender;
-
   switch (role) {
     case 1:
-      componentToRender = <AsBreakfast setrole={setrole} />;
+      componentToRender = <AsBreakfast setRole={setRole} />;
       break;
     case 2:
-      componentToRender = <AsSnacks setrole={setrole} />;
+      componentToRender = <AsSnacks setRole={setRole} />;
       break;
     case 3:
-      componentToRender = <AsDrinks setrole={setrole} />;
+      componentToRender = <AsDrinks setRole={setRole} />;
       break;
     case 4:
-      componentToRender = <AsFestival setrole={setrole} />;
+      componentToRender = <AsFestival setRole={setRole} />;
       break;
     default:
-      componentToRender = <AsBreakfast setrole={setrole} />;
+      componentToRender = <AsBreakfast setRole={setRole} />;
       break;
   }
   return (
@@ -98,28 +127,27 @@ function Resturent2ndComp() {
 
         <div className="flex flex-wrap gap-5 items-center mx-[120px] justify-around">
           {displayedItems.map((value, index) => (
-            <Link to={`restaurant/${value.restaurantId}`}>
+            
             <div
-              key={index}
-              className="border-2 h-[352px] backgroundImg1 border-red-600 w-[300px] overflow-hidden"
-            >
-              <div className="relative h-[250px] overflow-hidden ">
-              <div className=" flex flex-col absolute z-20 items-end px-3 justify-center h-full w-full">
-               <div className="flex flex-col gap-3 text-2xl items-center">
-                 
-               <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
-                <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
-                <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
-               </div>
-                </div>
-                <img
-                  className="h-[250px] w-[650px] transition-transform transform scale-100 hover:scale-105"
-                  src={food}
-                  alt="img"
-                  onClick={openPopup}
-                />
+            key={index}
+            className="border-2 h-[352px]   backgroundImg1 border-red-600 w-[300px] overflow-hidden"
+          >
+            <div className="relative h-[250px] overflow-hidden ">
+            <div className=" flex flex-col absolute  items-end px-3 justify-center h-full w-full">
+             <div className=" z-10 flex flex-col gap-3 text-2xl items-center">
+               
+             <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
+              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
+              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
+             </div>
+              </div>
+              <img
+                className="h-[250px] -z-10 w-[650px] transition-transform transform scale-100 hover:scale-105"
+                src={value.foodImage}
+                alt="img"
+                onClick={() => openPopup(value.id)}              />
               
-                {popup && <Itempopup onClose={closePopup} />}
+                {popup && <Itempopup onClose={closePopup} value={popup} />}
               </div>
               <div className="dhamilo flex flex-col justify-center items-center text-white  h-[110px]">
                 <div className="text-[#FEBB41] flex gap-1">
@@ -130,14 +158,14 @@ function Resturent2ndComp() {
                   <i className="fa-solid fa-star"></i>
                   
                 </div>
-                <h1>Samay Baji</h1>
+                <h1>{value.foodName}</h1>
                 <div className="mx-4">
                   <img src={line} alt="" />
                 </div>
-                <p>Rs 350</p>
+                <p>Rs {value.price}</p>
               </div>
             </div>
-            </Link>
+           
           ))}
 
           {/* this is a comp */}

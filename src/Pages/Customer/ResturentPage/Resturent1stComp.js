@@ -12,6 +12,7 @@ function Resturent1stComp() {
 
   
   const {restaurantId} = useParams();
+  console.log(restaurantId);
   
   const [restoData , setRestoData]  = useState([]);
 
@@ -57,7 +58,7 @@ function Resturent1stComp() {
         </div>
         <hr className="border-[#EC2633] border-2 mx-[200px] mb-5" />
       </div>
-      <Resturent2ndComp />
+      <Resturent2ndComp restaurantId={restaurantId} />
 
       <Footer />
     </div>
