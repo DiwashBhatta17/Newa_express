@@ -5,22 +5,39 @@ import Home3rdcomponent from "./Home3rdcomponent";
 import Home4thcomponent from "./Home5thcomponent";
 import Itempopup from "../ResturentPage/Itempopup";
 import food from "../../Images/RestroPageImage/food2.jpg";
+import img1 from "../../Images/festival/chaku.jpg";
+import img2 from "../../Images/festival/qwati.jpeg";
+import img3 from "../../Images/festival/samaybaji.jpeg";
+import img4 from "../../Images/festival/yomari.jpeg";
+
+
 
 
 export default function Restcomponent() {
-  const [data, setData] = useState(["", "", "", ""]);
-
-
-// Number of items to display per page
   const [data, setData] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    
-    
+    {
+      link: img1,
+      name: "Chaku",
+      text: "Manghe Sangaranthi",
+    },
+    {
+      link: img2,
+      name: "Qwati",
+      text: "Qwati Purney",
+    },
+    {
+      link: img3,
+      name: "Samayabaji",
+      text: "Indra Jatra",
+    },
+    {
+      link: img4,
+      name: "Yomari",
+      text: "Yomari Purney",
+    },
   ]);
+
+  // Number of items to display per page
 
   const [popup, setPopup] = useState(false);
   function openPopup() {
@@ -62,39 +79,27 @@ export default function Restcomponent() {
 
       {/* images */}
 
-        <div className="flex flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
-          {displayedItems.map((value, index) => (
-            <div
+      <div className="flex flex-wrap gap-5 mb-5 items-center mx-[120px] justify-around">
+        {displayedItems.map((value, index) => (
+          <div
             key={index}
-            className="border-2 h-[352px] backgroundImg1 border-red-600 w-[300px] overflow-hidden"
+            className="border-2 h-[352px]   backgroundImg1 border-red-600 w-[300px] overflow-hidden"
           >
-             <div className=" flex flex-col absolute  items-end px-3 justify-center h-full w-full">
-             <div className="flex flex-col gap-3 text-2xl items-center">
-               
-             <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
-              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
-              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
-             </div>
+            <div className="relative h-[250px] overflow-hidden ">
+              <div className=" flex flex-col absolute  items-end px-3 justify-center h-full w-full">
+                <div className=" z-10 flex flex-col gap-3 text-2xl items-center">
+                  <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
+                  <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
+                  <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
+                </div>
               </div>
-            
-            <div className=" relative h-[250px] overflow-hidden ">
-              
-           
               <img
-                className="h-[250px]  w-[650px] transition-transform trans scale-100 hover:scale-105"
-                src={food}
+                className="h-[250px] -z-10 w-[650px] transition-transform transform scale-100 hover:scale-105"
+                src={value.link}
                 alt="img"
                 onClick={openPopup}
               />
-               <div className=" flex flex-col absolute  items-end px-3 z- justify-center h-full w-full">
-             <div className="flex flex-col gap-3 text-2xl items-center">
-               
-             <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
-              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
-              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
-             </div>
-              </div>
-            
+
               {popup && <Itempopup onClose={closePopup} />}
             </div>
             <div className="dhamilo flex flex-col justify-center items-center text-white  h-[110px]">
@@ -104,17 +109,15 @@ export default function Restcomponent() {
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i>
-                
               </div>
-              <h1>Samay Baji</h1>
+              <h1>{value.name}</h1>
               <div className="mx-4">
                 <img src={line} alt="" />
               </div>
-              <p>Rs 350</p>
+              <p>{value.text}</p>
             </div>
           </div>
-          ))}
-
+        ))}
 
         {/* this is a comp */}
       </div>

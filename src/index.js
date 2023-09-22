@@ -13,6 +13,8 @@ import ResturantDashboard from './Pages/Resturant/ResturantDashboard';
 import ResturantMenu from './Pages/Resturant/ResturantMenu';
 import ResturantOrderList from './Pages/Resturant/ResturantOrderList';
 import Browse1 from './Pages/Customer/BrowseRestropage/Browse1';
+import { Provider } from 'react-redux';
+import store from './Services/Redux-Service/store';
 
 const routerConfig = createBrowserRouter([
   {
@@ -20,8 +22,12 @@ const routerConfig = createBrowserRouter([
     element: <Topcomponent/>,
   },
   {
-    path: "resturant",
+    path: "restaurant/:restaurantId",
     element: <Resturent1stComp/>,
+  },
+  {
+    path: "browseResturant",
+    element: <Browse1/>
   },
   // Resturant part
 
@@ -37,10 +43,7 @@ const routerConfig = createBrowserRouter([
     path: "resturantOrderList",
     element: <ResturantOrderList/>,
   },
-  {
-    path: "browseResturant",
-    element: <Browse1/>
-  },
+  
 
 ]);
 
@@ -49,10 +52,10 @@ const routerConfig = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     {/* <App /> */}
     <RouterProvider router={routerConfig} />
-  </React.StrictMode>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
