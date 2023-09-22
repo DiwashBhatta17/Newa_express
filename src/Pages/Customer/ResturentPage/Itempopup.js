@@ -2,40 +2,37 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getFoodById } from "../../../Services/CustomerService/foodItemService";
-import cartService from "./cartService";
+import cartService from "../../../Services/CustomerService/cartService";
 
 export default function Itempopup(props) {
   const userId = localStorage.getItem("customerId");
 
-  const { onClose, value} = props
+  const { onClose, value } = props;
   console.log(value);
   //Quantity update
   const [quantity, setQuantity] = useState(0);
   const [data, setData] = useState("");
 
-
-  async function fetchData(){
+  async function fetchData() {
     try {
       const response = await getFoodById(value);
-      setData(response);  
+      setData(response);
     } catch (error) {
-      console.error(error);   
+      console.error(error);
     }
   }
 
-  async function addToCart(){
+  async function addToCart() {
     try {
       const response = await cartService(userId, value);
       console.log(response);
-      
     } catch (error) {
       console.error(error);
-      
     }
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   function addQuantity() {
     setQuantity(quantity + 1);
@@ -66,7 +63,7 @@ export default function Itempopup(props) {
           X
         </h1>
         <p className="text-white ml-[300px] mt-[-180px]">{data.description}</p>
-        <table className="text-white font-thin transform translate-y-[-110px] ml-[-100px]">
+        <table className="text-white font-thin transform translate-y-[-110px] ml-[300px]">
           <tr>
             <th>Price: Rs {data.price}</th>
           </tr>
@@ -95,17 +92,19 @@ export default function Itempopup(props) {
             </th>
           </tr>
         </table>
-        <button onClick={addToCart} className="bg-white">Add to Cart</button>
-       <div> <img
-          src="/Image/redcomp.png"
-          alt="order"
-          className="w-[300px] mx-[100px] h-[70px] mb-[20px] "
-        />
-        <p className="text-white mt-[-85px] ml-[220px] font-semibold text-[28px] hover:cursor-pointer ">
-          {" "}
-          Order{" "}
-        </p></div>
        
+        <button className="mb-5"  onClick={addToCart} >
+          {" "}
+          <img
+            src="/Image/redcomp.png"
+            alt="order"
+            className="w-[300px] mx-[100px] h-[70px] mb-[20px] "
+          />
+          <p className="text-white mt-[-85px] ml-[20px] font-semibold text-[28px] hover:cursor-pointer ">
+            {" "}
+            Add to Cart{" "}
+          </p>
+        </button>
       </div>
     </div>
   );

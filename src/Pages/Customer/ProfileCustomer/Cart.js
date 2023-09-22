@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getCartItem } from '../../../Services/CustomerService/cartService';
+import CustomerOrderPage from './CustomerOrderPage';
+import OrderPopup from './OrderPopup';
 
 function Cart(props) {
   const { isCartOpen } = props;
+  const userId = localStorage.getItem("customerId");
+  const [isOpen , setisOpen] = useState(false);
 
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Product 1', price: 10.00, quantity: 1 },
     { id: 2, name: 'Product 2', price: 15.00, quantity: 1 },
     { id: 3, name: 'Product 3', price: 20.00, quantity: 1 },
   ]);
+  const [top, setTop] = useState(null);
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  // const totalPrice = cartItems.reduce((total, item) => total + item.cartItems.foodPrice * item.cartItems.cartFoodItemQuantity, 0);
 
   const increaseQuantity = (itemId) => {
     setCartItems((prevItems) =>
@@ -29,6 +35,17 @@ function Cart(props) {
     );
   };
 
+  async function fetchCartItem(){
+    const response = await getCartItem(userId)
+    setCartItems(response.cartItems);
+    setTop(response);
+    console.log(response);
+  }
+  useEffect(()=>{
+    fetchCartItem();
+  },
+  []);
+
   return (
     <div>
       {isCartOpen && (
@@ -46,7 +63,7 @@ function Cart(props) {
                 <li key={item.id} className="mb-2">
                   <div className="flex justify-between">
                     <span>
-                      {item.name} - ${item.price.toFixed(2)} x {item.quantity}
+                      {item.foodItem.foodName} - Rs {item.foodPrice.toFixed(2)} x {item.cartFoodItemQuantity}
                     </span>
                     <div className="flex space-x-2">
                       <button
@@ -67,12 +84,12 @@ function Cart(props) {
               ))}
             </ul>
             <div className="mt-4">
-              <strong>Total: ${totalPrice.toFixed(2)}</strong>
+              <strong>Total: Rs{top.cartTotalPrice}</strong>
             </div>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mt-2 w-full"
               onClick={() => {
-                // Handle confirm order action
+               setisOpen(true);
               }}
             >
               Confirm Order
@@ -80,6 +97,7 @@ function Cart(props) {
           </div>
         </div>
       )}
+      <OrderPopup isOpen={isOpen} />
     </div>
   );
 }

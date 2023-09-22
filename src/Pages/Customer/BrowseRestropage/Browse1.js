@@ -8,7 +8,7 @@ function Browse1() {
       <CustomerNavbar />
       <div className="ImageheaderSection  flex flex-col justify-center items-center  h-[40vh]">
         <div className="dhamilo flex flex-col justify-center items-center w-full  h-[100vh] ">
-          <div className="flex mt-2  justify-end outline-none bg-[#ffffff87] w-[580px] h-[45px]  rounded-[10px] rounded-full">
+          <div className="flex mt-[29px] -ml-[250px]  justify-end outline-none bg-[#ffffff87] w-[570px] h-[45px]  rounded-[10px] rounded-full">
           <div>
             {" "}
             <input

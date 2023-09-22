@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { confirmOrder } from '../../../Services/CustomerService/cartService';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
-function OrderPopup({ isOpen, onRequestClose }) {
+function OrderPopup({ isOpen }) {
   const [address, setAddress] = useState('');
   const [promoCode, setPromoCode] = useState('');
   const [specialInstructions, setSpecialInstructions] = useState('');
 
-  const handleSubmit = () => {
-    // Handle order submission here
-    // You can use the 'address', 'promoCode', and 'specialInstructions' variables
-    // to send the order data to your server or perform any necessary actions.
-    // For this example, we'll simply log the data.
-    console.log('Address:', address);
-    console.log('Promo Code:', promoCode);
-    console.log('Special Instructions:', specialInstructions);
+  const[onRequestClose, setonRequestClose] = useState(false);
 
-    // Close the modal after submission
-    onRequestClose();
+  const userId = localStorage.getItem("customerId");
+
+  const handleSubmit = async () => {
+    
+    const data ={
+        'address': address,
+        'promocode': promoCode,
+        'speciaInstruction':specialInstructions,
+    }
+    const response = await confirmOrder(userId, data);
+    console.log(response);
+
+
+
+
+    setonRequestClose(true);
   };
+
 
   return (
     <Modal

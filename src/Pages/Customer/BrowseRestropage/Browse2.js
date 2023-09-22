@@ -61,9 +61,10 @@ function Browse2() {
         <img className='w-[30%]' src="/Image/restroList.png" alt="" />
     </div>
        <div className='pb-[280px]'>
-       <Link to="/resturant">
+       
         <div className="flex backgroundImg2 py-5 flex-wrap gap-3 items-cente justify-center mx-[110px] ">
           {data.map((value, index) => (
+            <Link to={`/restaurant/${value.restaurantId}`}>
             <div
               key={index}
               className="border-2  h-[300px] backgroundImg1 border-black w-[280px] overflow-hidden"
@@ -90,17 +91,18 @@ function Browse2() {
                 </div>
 
 
-                <h1 className="text-[#f24d4d] text-xl font-bold">Swagatam Newari Resturant</h1>
-                <p className="text-[#e2dddd]">Srijanagar Kathmandu</p>
+                <h1 className="text-[#f24d4d] text-xl font-bold">{value.restaurantName}</h1>
+                <p className="text-[#e2dddd]">{value.restaurantAddress}</p>
                 <div className="mx-4">{/* <img src={line} alt="" /> */}</div>
                 
               </div>
             </div>
+            </Link>
           ))}
 
           {/* this is a comp */}
         </div>
-      </Link>
+      
        </div>
        <Footer/>
       

@@ -17,9 +17,15 @@ function Resturent2ndComp(props) {
   const {restaurantId} = props;
   
   //popup logic
-  const [popup, setPopup] = useState([""]);
-  const openPopup = (value) => {
-    setPopup(value);
+  const [popup, setPopup] = useState(false);
+  const [valueData, setValueData] = useState([""]);
+
+  const goThere = (value)=>{
+    setValueData(value);
+
+  }
+  const openPopup = () => {
+    setPopup(true);
   };
   function closePopup() {
     setPopup(false);
@@ -96,19 +102,19 @@ function Resturent2ndComp(props) {
   let componentToRender;
   switch (role) {
     case 1:
-      componentToRender = <AsBreakfast setRole={setRole} />;
+      componentToRender = <AsBreakfast setrole={setRole} />;
       break;
     case 2:
-      componentToRender = <AsSnacks setRole={setRole} />;
+      componentToRender = <AsSnacks setrole={setRole} />;
       break;
     case 3:
-      componentToRender = <AsDrinks setRole={setRole} />;
+      componentToRender = <AsDrinks setrole={setRole} />;
       break;
     case 4:
-      componentToRender = <AsFestival setRole={setRole} />;
+      componentToRender = <AsFestival setrole={setRole} />;
       break;
     default:
-      componentToRender = <AsBreakfast setRole={setRole} />;
+      componentToRender = <AsBreakfast setrole={setRole} />;
       break;
   }
   return (
@@ -145,9 +151,12 @@ function Resturent2ndComp(props) {
                 className="h-[250px] -z-10 w-[650px] transition-transform transform scale-100 hover:scale-105"
                 src={value.foodImage}
                 alt="img"
-                onClick={() => openPopup(value.id)}              />
+                onClick={() => {
+                  openPopup(true)
+                  goThere(value.id)
+                   }   }              />
               
-                {popup && <Itempopup onClose={closePopup} value={popup} />}
+                {popup && <Itempopup onClose={closePopup} value={valueData} />}
               </div>
               <div className="dhamilo flex flex-col justify-center items-center text-white  h-[110px]">
                 <div className="text-[#FEBB41] flex gap-1">
