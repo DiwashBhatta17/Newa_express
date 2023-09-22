@@ -1,53 +1,73 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Topcomponent from './Pages/Customer/Homepage/Home1stcomponent';
-import Resturent1stComp from './Pages/Customer/ResturentPage/Resturent1stComp';
-import ResturantDashboard from './Pages/Resturant/ResturantDashboard';
-import ResturantMenu from './Pages/Resturant/ResturantMenu';
-import ResturantOrderList from './Pages/Resturant/ResturantOrderList';
-import Browse1 from './Pages/Customer/BrowseRestropage/Browse1';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Topcomponent from "./Pages/Customer/Homepage/Home1stcomponent";
+import Resturent1stComp from "./Pages/Customer/ResturentPage/Resturent1stComp";
+import ResturantDashboard from "./Pages/Resturant/ResturantDashboard";
+import ResturantMenu from "./Pages/Resturant/ResturantMenu";
+import ResturantOrderList from "./Pages/Resturant/ResturantOrderList";
+import AdminHeader from "./Pages/Admin/AdminHeader";
+import Browse1 from "./Pages/Customer/BrowseRestropage/Browse1";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import AdminRestaurant from "./Pages/Admin/AdminRestaurant";
+import Adminrider from "./Pages/Admin/Adminrider";
+import Adminreview from "./Pages/Admin/Adminreview";
 
 const routerConfig = createBrowserRouter([
   {
     path: "/",
-    element: <Topcomponent/>,
+    element: <Topcomponent />,
   },
   {
     path: "resturant",
-    element: <Resturent1stComp/>,
+    element: <Resturent1stComp />,
   },
   // Resturant part
 
   {
     path: "resturantDashboard",
-    element: <ResturantDashboard/>,
+    element: <ResturantDashboard />,
   },
   {
     path: "resturantMenu",
-    element: <ResturantMenu/>,
+    element: <ResturantMenu />,
   },
   {
     path: "resturantOrderList",
-    element: <ResturantOrderList/>,
+    element: <ResturantOrderList />,
   },
   {
     path: "browseResturant",
-    element: <Browse1/>
+    element: <Browse1 />,
   },
 
+  //Admin part
+  {
+    path: "adminnav",
+    element: <AdminHeader />,
+  },
+  {
+    path: "/admin",
+    element: <AdminDashboard />,
+  },
+  {
+    path: "/adminRestaurant",
+    element: <AdminRestaurant />,
+  },
+  {
+    path: "/adminRider",
+    element: <Adminrider />,
+  },
+  {
+    path: "/adminreviews",
+    element: <Adminreview />,
+  },
 ]);
 
-
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* <App /> */}

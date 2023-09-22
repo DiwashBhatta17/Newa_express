@@ -1,18 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ResturantNavbar() {
+export default function Admin1stpage() {
   return (
     <>
-      <div className="bg-[#d4d0d0] fixed shadow-xl h-screen">
-        <div className="flex w-screen fixed justify-between shadow-xl itmes-center bg-white py-4 px-5">
+      <div className="bg-[#ffffff] fixed shadow-xl h-screen">
+        <div className="flex w-screen fixed justify-between shadow-xl h-[90px] itmes-center bg-[#ffffff] py-4 px-5">
           <div className="flex gap-2 ">
-            <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
-            <h1 className="text-2xl font-bold text-black">Resturent Name</h1>
+            <Link to="/admin">
+              <img
+                src="/Image/newaExpress.png"
+                alt="logo"
+                className=" h-[80px] mt-[-20px] hover:cursor-pointer"
+              />
+            </Link>
+            <i className="fa-solid text-2xl mt-[2px] ml-[300px] text-black fa-user-lock"></i>
+            <h1 className="text-2xl font-bold text-black">Admin</h1>
           </div>
           <Link
             to="/"
-            className=" px-5 py-2 rounded-full border-2 border-[#a42222]"
+            className=" px-4 py-2 rounded-full border-2 border-[#a42222]"
           >
             Logout
           </Link>
@@ -20,30 +27,28 @@ function ResturantNavbar() {
         <div className="w-[30vh] top-[11vh] fixed flex flex-col items-start p-5 gap-4 h-[70vh] mt-4 bg-white shadow-xl">
           <div className="flex gap-3">
             <i className="fa-light text-xl fa-table-columns"></i>
-            <Link to="/resturantDashboard" className="mt-[3px] ">
+            <Link to="/admin" className="mt-[3px] ">
               Dashboard
             </Link>
           </div>
 
           <div className="flex gap-2">
             <i className="fa-solid mt-1 fa-users"></i>
-            <Link to="/resturantOrderList" href="#">
-              Orders
+            <Link to="/adminRestaurant" href="#">
+              Restaurant
             </Link>
           </div>
 
           <div className="flex gap-[10px]">
             <i className="fa-regular mt-1 fa-hourglass"></i>
-            <Link to="/resturantMenu" className="ml-2">
-              Menus
+            <Link to="/adminRider" className="ml-2">
+              Drivers
             </Link>
           </div>
 
           <div className="flex gap-3">
             <i className="fa-regular mt-1 fa-chart-bar"></i>
-            <a className="" href="#">
-              Analytics
-            </a>
+            <Link to="/adminreviews">Reviews</Link>
           </div>
         </div>
         <div className="bg-white fixed top-[84vh] left-0 mt-3 w-[30vh] h-[10vh] flex flex-col shadow-xl items-center gap-1">
@@ -54,5 +59,3 @@ function ResturantNavbar() {
     </>
   );
 }
-
-export default ResturantNavbar;

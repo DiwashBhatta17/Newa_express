@@ -13,7 +13,12 @@ function Home4thcomponent() {
           alt="next"
           className="h-[40px] mt-[120px] ml-[-590px] hover:h-[42px] "
         />
-        <div className="reviews bg-[#EC2633] w-[360px] h-[100px] rounded-[30px] mt-[80px] ml-[100px]"></div>
+        <div className=" reviews bg-[#EC2633] w-[360px] h-[100px] rounded-[30px] mt-[80px] ml-[100px] text-[white] font-semibold justify-center">
+          <h1 className=" text-[13px] ml-[130px] mt-8">Costumer Name</h1>
+          <p className="mt-[10px] text-[11px] ml-2">
+            I recently order from Newa Express and the experience was fantastic
+          </p>
+        </div>
         <div className="reviews bg-[#EC2633] w-[360px] h-[100px] rounded-[30px] mt-[80px] ml-[100px]"></div>
         <img
           src="/Image/nextr.png"
