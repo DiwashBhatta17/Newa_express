@@ -1,7 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ResturantNavbar() {
+    const navigate = useNavigate()
+    function handleLogout(){
+        localStorage.removeItem("JWTtoken");
+        localStorage.removeItem("customerId");
+    
+        navigate("/")
+    
+    
+      }
   return (
     <>
     <div className='bg-[#d4d0d0] absolute shadow-xl h-screen'>
@@ -10,7 +19,7 @@ function ResturantNavbar() {
             <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
                 <h1 className='text-2xl font-bold text-black'>Resturent Name</h1>
             </div>
-            <Link to="/" className=' px-5 py-2 rounded-full border-2 border-[#a42222]'>Logout</Link>
+            <button onClick={handleLogout} className=' px-5 py-2 rounded-full border-2 border-[#a42222]'>Logout</button>
         </div>
         <div className='w-[30vh] top-[11vh] fixed flex flex-col items-start p-5 gap-4 h-[70vh] mt-4 bg-white shadow-xl'>
             <div className='flex gap-3'>

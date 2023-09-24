@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import dummy from "../Images/dummy-profile-pic.jpg";
 import CusProfileNavbar from "./ProfileCustomer/CusProfileNavbar";
 import Cart from "./ProfileCustomer/Cart";
+import CusBigNavbar from "./ProfileCustomer/CustomerBigNavbar";
 
 
 function CustomerNavbar() {
@@ -23,6 +24,7 @@ function CustomerNavbar() {
       <Login login={login} setLogin={setLogin} />
       <Signup signup={signup} setOtp={setOtp} setSignup={setSignup} />
       <Otp setOtp={setOtp} setLogin={setLogin} otp={otp} />
+      {/* <CusBigNavbar  profile={profile} setProfile={setProfile}/> */}
       <CusProfileNavbar profile={profile} setProfile={setProfile}/>
       <div className="w-full m  absolute">
         <div className="flex justify-between items-center mx-[130px] mt-[15px]">

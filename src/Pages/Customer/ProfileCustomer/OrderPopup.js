@@ -4,7 +4,7 @@ import { confirmOrder } from '../../../Services/CustomerService/cartService';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
-function OrderPopup({ isOpen }) {
+function OrderPopup({ isOpen,setisOpen }) {
   const [address, setAddress] = useState('');
   const [promoCode, setPromoCode] = useState('');
   const [specialInstructions, setSpecialInstructions] = useState('');
@@ -22,11 +22,12 @@ function OrderPopup({ isOpen }) {
     }
     const response = await confirmOrder(userId, data);
     console.log(response);
+    setisOpen(false);
 
 
 
 
-    setonRequestClose(true);
+    
   };
 
 

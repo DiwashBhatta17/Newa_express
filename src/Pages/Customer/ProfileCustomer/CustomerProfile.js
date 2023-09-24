@@ -23,7 +23,7 @@ function CustomerProfile() {
   }
 
   return (
-    <div className="flex justify-around w-full gap-4">
+    <div className="flex justify-around w-[] gap-4">
       {/* item goes in this div  */}
 
       <div className=" flex items-center mt-4 flex-col ">
