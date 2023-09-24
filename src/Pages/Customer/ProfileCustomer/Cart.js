@@ -97,7 +97,7 @@ function Cart(props) {
           </div>
         </div>
       )}
-      <OrderPopup isOpen={isOpen} />
+      <OrderPopup isOpen={isOpen} setisOpen={setisOpen} />
     </div>
   );
 }
