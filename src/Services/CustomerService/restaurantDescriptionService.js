@@ -1,16 +1,19 @@
-import axios from "axios";
-import baseURL from "../Api/api";
-async function topRestaurantService() {
+import axios from 'axios';
+import baseURL from '../Api/api';
+
+async function restaurantDescriptionService(restaurantId) {
     try {
-        const response = await axios.get(baseURL+"restaurants/topRestaurant");
+        const response = await axios.get(baseURL+"restaurants/get-restaurant/"+restaurantId)
         return response.data;
         
     } catch (error) {
         throw error;
         
-    }  
+    }
+  
 }
- async function getBannerImage(restaurantId) {
+
+async function getBannerImage(restaurantId) {
     try {
       const response = await axios.get(
         baseURL + "restaurants/getRestaurantBannerImage/" + restaurantId,
@@ -48,25 +51,26 @@ async function topRestaurantService() {
     }
   }
 
-  export async function getTopRestaurant(){
+  export async function getRestaurantService(restaurantId){
    try {
-    const response = await topRestaurantService();
+    const response = await restaurantDescriptionService(restaurantId);
+    console.log(response);
     if(response){
-      
-      for(let i = 0; i< response.length; i++){
-        let bannerImg = await getBannerImage(response[i]?.restaurantId);
-        let profileImg = await getProfileImage(response[i]?.restaurantId);
-        response[i]["bannerImg"] = bannerImg;
-        response[i]["profileImg"] = profileImg;  
+
+        let bannerImg = await getBannerImage(restaurantId);
+        let profileImg = await getProfileImage(restaurantId);
+        response["bannerImg"] = bannerImg;
+        response["profileImg"] = profileImg;  
       }
       return response;
     }
     
-   } catch (error) {
+    catch (error) {
     console.error(error);
     throw error;
     
    }
 
   }
-export default getTopRestaurant;
+
+export default getRestaurantService;

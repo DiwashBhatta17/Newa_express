@@ -4,10 +4,15 @@ import img from "../Images/Rectangle 4365.png";
 import loginService from "../../Services/Login/loginService";
 import loginLogo from "../Images/loginLogo.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserTrue, setAdminTrue,setRestaurantTrue } from "../../Services/Redux-Service/counterSlice";
 
 function Login(props) {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -33,12 +38,17 @@ function Login(props) {
         console.log(response.user.role);
 
         if(response.user.role==="ROLE_RESTAURANT"){
+          dispatch(setRestaurantTrue());
           navigate("/resturantDashboard");
 
         }
-        else {
+        else if(response.user.role==="ROLE_CUSTOMER") {
+          dispatch(setUserTrue());
+          localStorage.setItem("customerId",response.user.customerId);
           navigate("/");
+
         }
+        localStorage.setItem("JWTtoken", response.accessToken);
         
       } catch (error) {
         console.error(error);

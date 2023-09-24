@@ -1,10 +1,38 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { getFoodById } from "../../../Services/CustomerService/foodItemService";
+import cartService from "../../../Services/CustomerService/cartService";
 
-export default function Itempopup({ onClose }) {
+export default function Itempopup(props) {
+  const userId = localStorage.getItem("customerId");
+
+  const { onClose, value } = props;
+  console.log(value);
   //Quantity update
   const [quantity, setQuantity] = useState(0);
+  const [data, setData] = useState("");
+
+  async function fetchData() {
+    try {
+      const response = await getFoodById(value);
+      setData(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function addToCart() {
+    try {
+      const response = await cartService(userId, value);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   function addQuantity() {
     setQuantity(quantity + 1);
@@ -17,15 +45,15 @@ export default function Itempopup({ onClose }) {
   const [datano, setDatano] = useState(null);
 
   return (
-    <div className="dhamilo  fixed inset-0 flex items-center justify-center z-50 backdrop-blur backdrop-filter bg-opacity-40">
-      <div className="roughbg w-[530px] h-[450px] flex flex-wrap">
+    <div className="dhamilo z-20 fixed inset-0 flex items-center justify-center ">
+      <div className="roughbg w-[550px] h-[450px] flex flex-wrap">
         <img
           src="/Image/samay.png"
           alt="samay"
           className="h-[220px] w-[240px] mt-8 ml-5"
         />
         <h1 className="text-white font-semibold text-[25px] mx-10 my-8">
-          Samay Baji
+          {data.foodName}
         </h1>
         <h1
           className="text-white font-bold text-[22px] ml-[24px] mt-[8px] hover:cursor-pointer"
@@ -34,10 +62,10 @@ export default function Itempopup({ onClose }) {
           {" "}
           X
         </h1>
-        <p className="text-white ml-[300px] mt-[-180px]">Item Description</p>
-        <table className="text-white  transform translate-y-[-110px] ml-[-100px]">
+        <p className="text-white ml-[300px] mt-[-180px]">{data.description}</p>
+        <table className="text-white font-thin transform translate-y-[-110px] ml-[300px]">
           <tr>
-            <th>Price: {}</th>
+            <th>Price: Rs {data.price}</th>
           </tr>
           <tr>
             <th>Type:{}</th>
@@ -64,15 +92,19 @@ export default function Itempopup({ onClose }) {
             </th>
           </tr>
         </table>
-        <img
-          src="/Image/redcomp.png"
-          alt="order"
-          className="w-[300px] mx-[100px] h-[70px] mb-[20px] "
-        />
-        <p className="text-white mt-[-85px] ml-[220px] font-semibold text-[28px] hover:cursor-pointer ">
+       
+        <button className="mb-5"  onClick={addToCart} >
           {" "}
-          Order{" "}
-        </p>
+          <img
+            src="/Image/redcomp.png"
+            alt="order"
+            className="w-[300px] mx-[100px] h-[70px] mb-[20px] "
+          />
+          <p className="text-white mt-[-85px] ml-[20px] font-semibold text-[28px] hover:cursor-pointer ">
+            {" "}
+            Add to Cart{" "}
+          </p>
+        </button>
       </div>
     </div>
   );

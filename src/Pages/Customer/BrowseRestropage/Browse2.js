@@ -7,9 +7,11 @@ import getAllrestaurantService, {getBannerImage, getProfileImage} from '../../..
 
 
 function Browse2() {
-  
+  const [data, setData] = useState(["","","","","","","","",""])
+
 
   async function fetchRestaurant() {
+
     try {
       const response = await getAllrestaurantService();
       if (response) {
@@ -53,16 +55,16 @@ function Browse2() {
 
     
 
-    const [data, setData] = useState(["","","","","","","",""])
   return (
     <div className='backgroundImg1 mb-5'> 
     <div className='py-5 px-[120px]'>
         <img className='w-[30%]' src="/Image/restroList.png" alt="" />
     </div>
        <div className='pb-[280px]'>
-       <Link to="/resturant">
+       
         <div className="flex backgroundImg2 py-5 flex-wrap gap-3 items-cente justify-center mx-[110px] ">
           {data.map((value, index) => (
+            <Link to={`/restaurant/${value.restaurantId}`}>
             <div
               key={index}
               className="border-2  h-[300px] backgroundImg1 border-black w-[280px] overflow-hidden"
@@ -74,9 +76,9 @@ function Browse2() {
                   alt=""
                 />
               </div>
-              <div className=" flex item-center justify-center absolute ml-[100px] -mt-[80px]">
+              <div className=" flex item-center justify-center absolute ml-[90px] -mt-[80px]">
                 
-                <img className="" src={value.profileImg} alt="" />
+                <img className=" h-[100px] w-[100px] rounded-full" src={value.profileImg} alt="" />
               </div>
 
               <div className="bg-[#0e0e0e97] flex flex-col justify-center items-center text-white  h-[130px]">
@@ -89,17 +91,18 @@ function Browse2() {
                 </div>
 
 
-                <h1 className="text-[#f24d4d] text-xl font-bold">Swagatam Newari Resturant</h1>
-                <p className="text-[#e2dddd]">Srijanagar Kathmandu</p>
+                <h1 className="text-[#f24d4d] text-xl font-bold">{value.restaurantName}</h1>
+                <p className="text-[#e2dddd]">{value.restaurantAddress}</p>
                 <div className="mx-4">{/* <img src={line} alt="" /> */}</div>
                 
               </div>
             </div>
+            </Link>
           ))}
 
           {/* this is a comp */}
         </div>
-      </Link>
+      
        </div>
        <Footer/>
       
