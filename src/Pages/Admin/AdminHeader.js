@@ -42,7 +42,7 @@ export default function Admin1stpage() {
           <div className="flex gap-[10px]">
             <i className="fa-regular mt-1 fa-hourglass"></i>
             <Link to="/adminRider" className="ml-2">
-              Drivers
+              Riders
             </Link>
           </div>
 

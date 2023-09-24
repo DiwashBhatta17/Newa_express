@@ -15,6 +15,7 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminRestaurant from "./Pages/Admin/AdminRestaurant";
 import Adminrider from "./Pages/Admin/Adminrider";
 import Adminreview from "./Pages/Admin/Adminreview";
+import Riderdashboard from "./Pages/Rider/Riderdashboard";
 
 const routerConfig = createBrowserRouter([
   {
@@ -64,6 +65,12 @@ const routerConfig = createBrowserRouter([
   {
     path: "/adminreviews",
     element: <Adminreview />,
+  },
+
+  //
+  {
+    path: "/riderdashboard",
+    element: <Riderdashboard />,
   },
 ]);
 
