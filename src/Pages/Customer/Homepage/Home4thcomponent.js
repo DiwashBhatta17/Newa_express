@@ -25,6 +25,7 @@ function Home4thcomponent() {
   );
 
   return (
+
     // reviewSection   src="/Image/next.png"    src="/Image/nextr.png"
     <div className="h-[260px] reviewSection border-2 border-[#EC2633]">
       <h1 className="text-center text-2xl font-bold text-white">CUSTOMER REVIEWS</h1>
@@ -54,6 +55,7 @@ function Home4thcomponent() {
           ))}
         </div>
         <button onClick={handlePrev}><img className="" src="/Image/nextr.png" alt="" /></button>
+
       </div>
     </div>
   );

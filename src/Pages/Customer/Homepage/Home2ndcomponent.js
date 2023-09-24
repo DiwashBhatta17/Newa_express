@@ -13,6 +13,7 @@ import img4 from "../../Images/festival/yomari.jpeg";
 
 
 
+
 export default function Restcomponent() {
   const [data, setData] = useState([
     {
@@ -36,6 +37,7 @@ export default function Restcomponent() {
       text: "Yomari Purney",
     },
   ]);
+
 
   // Number of items to display per page
 
@@ -85,6 +87,7 @@ export default function Restcomponent() {
             key={index}
             className="border-2 h-[352px]   backgroundImg1 border-red-600 w-[300px] overflow-hidden"
           >
+
             <div className="relative h-[250px] overflow-hidden ">
               <div className=" flex flex-col absolute  items-end px-3 justify-center h-full w-full">
                 <div className=" z-10 flex flex-col gap-3 text-2xl items-center">
@@ -93,12 +96,14 @@ export default function Restcomponent() {
                   <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
                 </div>
               </div>
+
               <img
                 className="h-[250px] -z-10 w-[650px] transition-transform transform scale-100 hover:scale-105"
                 src={value.link}
                 alt="img"
                 onClick={openPopup}
               />
+
 
               {popup && <Itempopup onClose={closePopup} />}
             </div>

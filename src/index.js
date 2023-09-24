@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -7,6 +8,15 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+import AdminHeader from "./Pages/Admin/AdminHeader";
+
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import AdminRestaurant from "./Pages/Admin/AdminRestaurant";
+import Adminrider from "./Pages/Admin/Adminrider";
+import Adminreview from "./Pages/Admin/Adminreview";
+import Riderdashboard from "./Pages/Rider/Riderdashboard";
+
 import Topcomponent from './Pages/Customer/Homepage/Home1stcomponent';
 import Resturent1stComp from './Pages/Customer/ResturentPage/Resturent1stComp';
 import ResturantDashboard from './Pages/Resturant/ResturantDashboard';
@@ -16,14 +26,17 @@ import Browse1 from './Pages/Customer/BrowseRestropage/Browse1';
 import { Provider } from 'react-redux';
 import store from './Services/Redux-Service/store';
 
+
 const routerConfig = createBrowserRouter([
   {
     path: "/",
-    element: <Topcomponent/>,
+    element: <Topcomponent />,
   },
   {
+
     path: "restaurant/:restaurantId",
     element: <Resturent1stComp/>,
+
   },
   {
     path: "browseResturant",
@@ -33,24 +46,47 @@ const routerConfig = createBrowserRouter([
 
   {
     path: "resturantDashboard",
-    element: <ResturantDashboard/>,
+    element: <ResturantDashboard />,
   },
   {
     path: "resturantMenu",
-    element: <ResturantMenu/>,
+    element: <ResturantMenu />,
   },
   {
     path: "resturantOrderList",
-    element: <ResturantOrderList/>,
+    element: <ResturantOrderList />,
   },
-  
 
+
+
+  //Admin part
+  {
+    path: "adminnav",
+    element: <AdminHeader />,
+  },
+  {
+    path: "/admin",
+    element: <AdminDashboard />,
+  },
+  {
+    path: "/adminRestaurant",
+    element: <AdminRestaurant />,
+  },
+  {
+    path: "/adminRider",
+    element: <Adminrider />,
+  },
+  {
+    path: "/adminreviews",
+    element: <Adminreview />,
+  },
+  {
+    path: "/riderdashboard",
+    element: <Riderdashboard />,
+  },
 ]);
 
-
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     {/* <App /> */}
