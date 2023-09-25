@@ -5,10 +5,20 @@ import Home4thcomponent from "./Home4thcomponent";
 import Home5thcomponent from "./Home5thcomponent";
 import Footer from "../Footer";
 import CustomerNavbar from "../customerNavbar";
-import Login from "../../Login/Login";
-import Signup from "../../Login/Siguup";
+import { useNavigate } from "react-router-dom";
 
 export default function Topcomponent() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    // Use navigate to programmatically navigate to the browseRestaurant route
+    if (searchQuery.trim() !== "") {
+      // Use navigate to programmatically navigate to the browseRestaurant route with the query parameter.
+      navigate(`/browseRestaurant/${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <>
       <CustomerNavbar />
@@ -21,18 +31,22 @@ export default function Topcomponent() {
           {/* <div> */}
 
           <div className="flex mt-4 justify-end outline-none bg-[#ffffffb8] w-[750px] h-[42px]  rounded-full">
-            <div className=" w-[700px]">
+            <div className="w-[700px]">
               {" "}
               <input
                 type="text"
-                className="mt-[=10px] text-center relative outline-none bg-transparent  text-black border-black   w-[750px] h-[48px]  rounded-[10px]"
+                className="mt-[=10px]  relative outline-none bg-transparent text-black border-black w-[750px] h-[40px] ml-3 rounded-[10px]"
+                placeholder="Search for a restaurant..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <img
-              src="/Image/search.png"
-              alt="icon"
-              className="w-[27px] h-[27px] mt-2 mr-4 "
-            />
+            <button 
+              onClick={handleSearch}
+              className="w-[27px] z-10 h-[27px] mt-2 mr-4"
+            >
+              <img src="/Image/search.png" alt="icon" />
+            </button>
           </div>
         </div>
       </div>

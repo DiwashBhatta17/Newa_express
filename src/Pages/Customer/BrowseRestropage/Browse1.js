@@ -1,9 +1,12 @@
 import React from "react";
 import CustomerNavbar from "../customerNavbar";
 import Browse2 from "./Browse2";
+import { useParams } from "react-router-dom";
 
 function Browse1() {
+ 
   return (
+
     <>
       <CustomerNavbar />
       <div className="ImageheaderSection  flex flex-col justify-center items-center  h-[40vh]">
