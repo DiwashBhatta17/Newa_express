@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import restu from "../../Images/RestroPageImage/bgRestu.png";
 import CustomerNavbar from '../customerNavbar';
 import Footer from '../Footer';
 import getAllrestaurantService, {getBannerImage, getProfileImage} from '../../../Services/CustomerService/getAllrestaurantService';
+import searchRestaurantService from '../../../Services/CustomerService/searchRestaurantService';
 
 
 function Browse2() {
-  const [data, setData] = useState(["","","","","","","","",""])
+  const [data, setData] = useState(["","","","","","",])
+  const query = useParams()
 
 
   async function fetchRestaurant() {
 
     try {
+  
       const response = await getAllrestaurantService();
+
+    
+     
       if (response) {
         console.log(response);
         for (let i = 0; i < response.length; i++) {

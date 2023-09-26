@@ -50,7 +50,7 @@ function CustomerNavbar() {
             </Link>
 
             {
-              userLogin && localStorage.getItem("JWTtoken") ? <><button
+              userLogin && localStorage.getItem("customerId") ? <><button
               onClick={() => setIsCartOpen(!isCartOpen)}
               
               className=" hover:text-red-700 hover:underline underline-offset-4"

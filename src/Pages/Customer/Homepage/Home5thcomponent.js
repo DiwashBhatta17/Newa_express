@@ -4,7 +4,7 @@ import ABOUT from "../../Images/ABOUT.png";
 function Home5thcomponent() {
   return (
     <div>
-      <div className="h-[650px] flex  items-center justify-between  mb-[230px]">
+      <div className="h-[650px] flex  items-center justify-between ml-[120px  mb-[230px]">
         <div className="ml-[120px]">
 
           <p className="text-black mb-5 ">
@@ -25,29 +25,17 @@ function Home5thcomponent() {
             the true essence of Newari culture and culinary heritage with every
             bite.
           </p>
-          <img
-            src="/Image/design.png"
-            alt=""
-            className="ml-[800px] mt-[-200px]"
-          />
-          <p className="ml-[820px] mt-[-65px] font-bold text-[white] text-[15px]  w-[240px]">
-            Register your restaurant with us
-          </p>
-          <p className="ml-[820px] mt-[50px] font-semibold text-[black]">
-            Register with newa express and reach new customers
-          </p>
-          <button className="ml-[860px] mt-[20px] w-[200px] bg-[#ff1414] text-[white] hover:cursor-pointer z-50 rounded-[20px] h-[60px]">
-            Send a Request
-          </button>
+          
+         
         </div>
 
-        <div className="absolute w-full flex items-center justify-center  ">
-         <div>
+        <div className="absolute w-full flex items-center justify-end   ">
+         <div className="mx-[120px]">
          <div className="mt-2">
-            <h1 className="text-2xl text-[#EC2633]">List Your Restaurant</h1>
-            <p className="text-black">At NewaExpress!</p>
+            <h1 className="text-5xl text-[#EC2633]">List Your Restaurant</h1>
+            <p className="text-black text-2xl">At NewaExpress!</p>
           </div>
-          <button className="bg-[#EC2633] mt-2 text-white px-4 py-1 rounded-xl">
+          <button className="bg-[#EC2633] mt-3 text-2xl text-white px-4 py-1 rounded-xl">
             Send a request
           </button>
          </div>
