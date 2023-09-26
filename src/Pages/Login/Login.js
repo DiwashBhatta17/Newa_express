@@ -39,6 +39,8 @@ function Login(props) {
 
         if(response.user.role==="ROLE_RESTAURANT"){
           dispatch(setRestaurantTrue());
+          localStorage.setItem("restaurantId",response.user.restaurantId);
+
           navigate("/resturantDashboard");
 
         }
