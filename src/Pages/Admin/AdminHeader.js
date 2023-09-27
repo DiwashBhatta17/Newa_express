@@ -63,7 +63,7 @@ export default function Admin1stpage() {
         </div>
         <div className="bg-white fixed top-[84vh] left-0 mt-3 w-[30vh] h-[10vh] flex flex-col shadow-xl items-center gap-1">
           <h1 className="mt-2">Newa Express</h1>
-          <p>version: 1.0.0.11</p>
+          <p>version: 1.0.0.10</p>
         </div>
       </div>
       <ToastContainer />
