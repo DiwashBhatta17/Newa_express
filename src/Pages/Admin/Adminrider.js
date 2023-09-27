@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminHeader from "./AdminHeader";
 import AddRiderpopup from "./Popups/AddRiderpopup";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Adminrider() {
   //addrider popup logic
@@ -42,6 +44,11 @@ export default function Adminrider() {
       .catch((error) => {
         console.log("Error deleting riders:", error);
       });
+    toast.success("Rider removed.", {
+      position: "top-center",
+      transition: Flip,
+      autoClose: 2000,
+    });
   };
 
   return (
@@ -92,6 +99,7 @@ export default function Adminrider() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

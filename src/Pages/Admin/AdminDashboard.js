@@ -33,7 +33,7 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/orders/get-all-orders")
+      .get("http://localhost:8080/admin/totalAmount")
       .then((resp) => {
         setOrders(resp.data);
       })

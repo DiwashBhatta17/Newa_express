@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Admin1stpage() {
+  function handletoast() {
+    toast.success("Logged out", {
+      position: "top-center",
+      transition: Flip,
+      autoClose: 2000,
+    });
+  }
   return (
     <>
       <div className="bg-[#ffffff] fixed shadow-xl h-screen">
@@ -20,6 +29,7 @@ export default function Admin1stpage() {
           <Link
             to="/"
             className=" px-4 py-2 rounded-full border-2 border-[#a42222]"
+            onClick={handletoast}
           >
             Logout
           </Link>
@@ -56,6 +66,7 @@ export default function Admin1stpage() {
           <p>version: 1.0.0.11</p>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

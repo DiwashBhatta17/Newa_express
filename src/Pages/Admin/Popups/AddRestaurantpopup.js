@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function AddRestaurantpopup({ onClose }) {
@@ -85,7 +85,11 @@ export default function AddRestaurantpopup({ onClose }) {
   }
 
   const successToast = () => {
-    toast("Restaurant added.");
+    toast.success("Restaurant successfully added.", {
+      position: "top-center",
+      autoClose: 5000,
+      transition: Flip,
+    });
   };
 
   const handleButtonClick = () => {

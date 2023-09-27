@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminHeader from "./AdminHeader";
 import AddRestaurantpopup from "./Popups/AddRestaurantpopup";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { Flip, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminRestaurant() {
@@ -57,7 +57,11 @@ export default function AdminRestaurant() {
         console.log("Error deleting restaurant:", error);
       });
     //succesfulDeletion Toast
-    toast.success("Succesfully deleted");
+    toast.success("Succesfully deleted", {
+      position: "top-center",
+      autoClose: 2000,
+      transition: Flip,
+    });
   };
 
   return (
