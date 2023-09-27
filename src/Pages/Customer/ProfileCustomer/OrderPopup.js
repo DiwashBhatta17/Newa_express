@@ -1,35 +1,28 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
-import { confirmOrder } from '../../../Services/CustomerService/cartService';
+import React, { useState } from "react";
+import Modal from "react-modal";
+import { confirmOrder } from "../../../Services/CustomerService/cartService";
 
-Modal.setAppElement('#root'); // Set the root element for accessibility
+Modal.setAppElement("#root"); // Set the root element for accessibility
 
-function OrderPopup({ isOpen,setisOpen }) {
-  const [address, setAddress] = useState('');
-  const [promoCode, setPromoCode] = useState('');
-  const [specialInstructions, setSpecialInstructions] = useState('');
+function OrderPopup({ isOpen, setisOpen }) {
+  const [address, setAddress] = useState("");
+  const [promoCode, setPromoCode] = useState("");
+  const [specialInstructions, setSpecialInstructions] = useState("");
 
-  const[onRequestClose, setonRequestClose] = useState(false);
+  const [onRequestClose, setonRequestClose] = useState(false);
 
   const userId = localStorage.getItem("customerId");
 
   const handleSubmit = async () => {
-    
-    const data ={
-        'address': address,
-        'promocode': promoCode,
-        'speciaInstruction':specialInstructions,
-    }
+    const data = {
+      address: address,
+      promocode: promoCode,
+      speciaInstruction: specialInstructions,
+    };
     const response = await confirmOrder(userId, data);
     console.log(response);
     setisOpen(false);
-
-
-
-
-    
   };
-
 
   return (
     <Modal
@@ -60,7 +53,9 @@ function OrderPopup({ isOpen,setisOpen }) {
         />
       </div>
       <div className="form-group">
-        <label className="block text-sm font-medium">Special Instructions:</label>
+        <label className="block text-sm font-medium">
+          Special Instructions:
+        </label>
         <textarea
           value={specialInstructions}
           onChange={(e) => setSpecialInstructions(e.target.value)}

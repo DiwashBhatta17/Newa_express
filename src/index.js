@@ -40,6 +40,10 @@ const routerConfig = createBrowserRouter([
 
   },
   {
+    path: "browseRestaurant/:query",
+    element: <Browse1/>
+  },
+  {
     path: "browseResturant",
     element: <Browse1/>
   },

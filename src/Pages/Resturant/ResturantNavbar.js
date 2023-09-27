@@ -1,18 +1,30 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import restaurantInfoService from '../../Services/restaurantService/restaurantInfoService';
 
 
 function ResturantNavbar() {
+    const [data,setData] = useState("");
+
     const navigate = useNavigate()
     function handleLogout(){
         localStorage.removeItem("JWTtoken");
-        localStorage.removeItem("customerId");
+        localStorage.removeItem("restaurantId");
     
         navigate("/")
     
     
       }
+
+      useEffect(()=>{
+        restaurantInfoService().then((res)=>{
+          setData(res);
+          console.log("Res",res);
+        }
+        )
+        .catch((e)=>console.log("Error",e));
+      },[])
   return (
     <>
 
@@ -20,7 +32,7 @@ function ResturantNavbar() {
         <div className='flex w-screen justify-between absolute shadow-xl itmes-center bg-white py-4 px-5'>
             <div className='flex gap-2 '>
             <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
-                <h1 className='text-2xl font-bold text-black'>Resturent Name</h1>
+                <h1 className='text-2xl font-bold text-black'>{data.restaurantName}</h1>
             </div>
             <button onClick={handleLogout} className=' px-5 py-2 rounded-full border-2 border-[#a42222]'>Logout</button>
 

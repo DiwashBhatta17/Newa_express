@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import ResturantNavbar from "./ResturantNavbar";
 
 function ResturantDashboard() {
+  const [profileImage, setProfileImage] = useState(null);
+  const [bannerImage, setBannerImage] = useState(null);
+
+  const handleProfileImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    if (imageFile) {
+      setProfileImage(imageFile);
+    }
+  };
+
+  const handleBannerImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    if (imageFile) {
+      setBannerImage(imageFile);
+    }
+  };
+
+  const handleUploadProfileImage = () => {
+    // Implement the logic to upload the profile image here
+    if (profileImage) {
+      // Use profileImage to upload the image to the server
+      console.log("Uploading profile image:", profileImage);
+    }
+  };
+
+  const handleUploadBannerImage = () => {
+    // Implement the logic to upload the banner image here
+    if (bannerImage) {
+      // Use bannerImage to upload the image to the server
+      console.log("Uploading banner image:", bannerImage);
+    }
+  };
   return (
     <>
       {/* <AdminNavbar /> */}
@@ -16,12 +48,12 @@ function ResturantDashboard() {
             <i className="text-3xl fa-solid fa-users-gear"></i>
           </div>
 
-          <div className="bg-white  w-[60vh] h-[100px] flex justify-around items-center ">
+          <div className="bg-white  w-[60vh] h-[100px] text-[#FABC25] flex justify-around items-center ">
             <div className="">
-              <h1 className="text-3xl">2,02,150</h1>
-              <p>Today Order</p>
+              <h1 className="text-3xl">Rs: 50,000</h1>
+              <p className="text-[#565252]">Today Reveneu</p>
             </div>
-            <i className="text-3xl fa-solid fa-users-gear"></i>
+            <i className="fa-solid text-4xl fa-hand-holding-dollar border-2 p-2 border-[#FABC25] rounded-full "></i>{" "}
           </div>
         </div>
 
@@ -43,20 +75,78 @@ function ResturantDashboard() {
             </div>
             {/* <i className="text-3xl fa-solid fa-users-gear"></i> */}
           </div>
-          <div className="bg-white w-[60vh] h-[340px] flex justify-start  pl-5 ">
+          <div className="bg-white w-[60vh] h-[340px] flex justify-start pl-5">
             <div className="mt-5">
-              <h1 className="text-3xl mb-4">Update Profile</h1>
-              <p>Name</p>
-              <input className="border w-[250px]" type="text" />
-              <p>Age</p>
-              <input className="border w-[250px]" type="text" />
-              <p>Description</p>
-              <input className="border h-[80px] w-[250px]" type="text" />
+              <h1 className="text-2xl mb-4">
+                Update Profile and Banner Images
+              </h1>
+              <div className="flex">
+                <div className="w-[35%] mb-4">
+                  <p className="mb-4">Update Profile Image:</p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleProfileImageChange}
+                  />
+                  <button
+                    className="bg-[#9ebd92] text-white px-5 py-1 rounded-xl mt-3"
+                    onClick={handleUploadProfileImage}
+                  >
+                    Upload
+                  </button>
+                </div>
+                <div className="w-[35%]">
+                  <p className="mb-4"> Update Banner Image:</p>
+                  <input
+                    className="w-["
+                    type="file"
+                    accept="image/*"
+                    onChange={handleBannerImageChange}
+                  />
+                  <button
+                    className="bg-[#9ebd92] text-white px-5 py-1 rounded-xl mt-3"
+                    onClick={handleUploadBannerImage}
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
             </div>
-            {/* <i className="text-3xl fa-solid fa-users-gear"></i> */}
           </div>
         </div>
-        <div className="bg-white w-[941px] mt-2 h-[10vh]"></div>
+        <div className="bg-white flex justify-around items-center w-[941px] mt-2 h-[10vh]">
+          <div className="flex items-center gap-2">
+            <i className="fa-solid text-[#1D8FF7] text-3xl fa-boxes-stacked"></i>{" "}
+            <div>
+              <h1 className="text-3xl text-[#1D8FF7]">62,150</h1>
+              <p>Total Orders</p>
+            </div>
+          </div>
+
+          <div className="flex  items-center gap-2">
+            <i className="fa-solid text-[#71D875] text-3xl fa-truck-fast"></i>{" "}
+            <div>
+              <h1 className="text-[#71D875] text-3xl">9,750</h1>
+              <p>Total Delivery</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <i className="fa-solid text-3xl text-[#F48665] fa-clipboard-list"></i>{" "}
+            <div>
+              <h1 className="text-3xl text-[#F48665]">4,250</h1>
+              <p>Pending Orders</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <i className="fa-solid text-[#FF9800] text-3xl fa-hand"></i>{" "}
+            <div>
+              <h1 className="text-3xl text-[#FF9800]">3,750</h1>
+              <p>Orders Hold</p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

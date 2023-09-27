@@ -45,62 +45,59 @@ export default function Itempopup(props) {
   const [datano, setDatano] = useState(null);
 
   return (
-    <div className="dhamilo z-20 fixed inset-0 flex items-center justify-center ">
-      <div className="roughbg w-[550px] h-[450px] flex flex-wrap">
-        <img
+    <div className=" z-10 fixed dhamilo top-0 left-0 w-full h-screen flex items-center justify-center ">
+      <div className="roughbg w-[550px] h-[450px] flex justify-around flex-col">
+       <div className="flex gap-4">
+       <img
           src="/Image/samay.png"
           alt="samay"
-          className="h-[220px] w-[240px] mt-8 ml-5"
+          className="h-[250px] w-[240px] mt-8 ml-5"
         />
-        <h1 className="text-white font-semibold text-[25px] mx-10 my-8">
-          {data.foodName}
-        </h1>
-        <h1
-          className="text-white font-bold text-[22px] ml-[24px] mt-[8px] hover:cursor-pointer"
-          onClick={onClose}
-        >
-          {" "}
-          X
-        </h1>
-        <p className="text-white ml-[300px] mt-[-180px]">{data.description}</p>
-        <table className="text-white font-thin transform translate-y-[-110px] ml-[300px]">
-          <tr>
-            <th>Price: Rs {data.price}</th>
-          </tr>
-          <tr>
-            <th>Type:{}</th>
-          </tr>
-          <tr>
-            <th>Meat:</th>
-          </tr>
-          <tr>
-            <th>
-              Quantity:{" "}
-              <button
-                className="border-1 border-white w-[26px] "
-                onClick={subtractQuantity}
-              >
-                -
-              </button>{" "}
-              {quantity}
-              <button
-                className="border-1 border-white w-[26px]"
-                onClick={addQuantity}
-              >
-                +
-              </button>
-            </th>
-          </tr>
-        </table>
-       
-        <button className="mb-5"  onClick={addToCart} >
+
+        <div>
+          <div className="flex mt-4">
+            <h1 className="text-white font-semibold text-[25px] ">
+              {data.foodName}
+            </h1>
+            <h1
+              className="text-white absolute ml-[230px] -mt-[20px] font-bold text-[22px] hover:cursor-pointer"
+              onClick={onClose}
+            >
+              {" "}
+              <i className="fa-solid fa-xmark"></i>
+            </h1>
+          </div>
+          <p className="text-white mt-2 ">
+            {data.description}
+          </p>
+          <div className="flex flex-col gap-2 text-white mt-4
+          ">
+            <div className="flex gap-4">
+              <h1 className="font-bold">Price: </h1>
+              <p>Rs {data.price}</p>
+            </div>
+            
+            <div className="flex gap-4 border items-center">
+              <h1 className="font-bold">Price:</h1>
+              <div className="flex jus">
+                <button className="-mt-1 border-1">+</button>
+                <p>{data.foodQuantity}3</p>
+                <button className="border- px-2">-</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+       </div>
+
+        <button className="mb-5" onClick={addToCart}>
           {" "}
           <img
             src="/Image/redcomp.png"
             alt="order"
-            className="w-[300px] mx-[100px] h-[70px] mb-[20px] "
+            className="w-[300px]  h-[70px] "
           />
-          <p className="text-white mt-[-85px] ml-[20px] font-semibold text-[28px] hover:cursor-pointer ">
+          <p className="text-white  ml-[20px] font-semibold text-[28px] hover:cursor-pointer ">
             {" "}
             Add to Cart{" "}
           </p>
