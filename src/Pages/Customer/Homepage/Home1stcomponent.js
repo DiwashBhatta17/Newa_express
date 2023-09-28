@@ -6,6 +6,7 @@ import Home5thcomponent from "./Home5thcomponent";
 import Footer from "../Footer";
 import CustomerNavbar from "../customerNavbar";
 import { useNavigate } from "react-router-dom";
+import ReviewPopup from "./ReviewPopup";
 
 export default function Topcomponent() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +23,7 @@ export default function Topcomponent() {
   return (
     <>
       <CustomerNavbar />
+      <ReviewPopup/>
       <div className="ImageheaderSection  flex flex-col justify-center items-center  h-[100vh]">
         <div className="dhamilo flex flex-col justify-center items-center w-full  h-[100vh] ">
           <p className=" text-[#ffffff]  text-xl mt-5 font-semibold">
