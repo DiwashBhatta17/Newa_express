@@ -28,11 +28,11 @@ const RequestRestroForm = ({ onClose }) => {
       message: formData.message,
     }
     const response = await restaurantRqstForm(data);
-    // You can handle form submission logic here
+  
     console.log("res",response);
     
 
-    // onClose(); // Close the form after submission
+    onClose(); // Close the form after submission
   };
 
   return (
