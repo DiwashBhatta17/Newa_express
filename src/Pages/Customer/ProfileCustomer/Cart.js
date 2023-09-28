@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getCartItem } from '../../../Services/CustomerService/cartService';
 import CustomerOrderPage from './CustomerOrderPage';
 import OrderPopup from './OrderPopup';
+import { addQuantity,subQuantity } from '../../../Services/CustomerService/cartService';
+import { removeCart } from '../../../Services/CustomerService/cartService';
 
 function Cart(props) {
   const { isCartOpen } = props;
@@ -10,10 +12,25 @@ function Cart(props) {
 
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Product 1', price: 10.00, quantity: 1 },
-    { id: 2, name: 'Product 2', price: 15.00, quantity: 1 },
-    { id: 3, name: 'Product 3', price: 20.00, quantity: 1 },
+   
   ]);
   const [top, setTop] = useState(null);
+
+  async function add(id){
+    const response = await addQuantity(top.id, id);
+    console.log(cartItems.id);
+    console.log(response);
+  }
+
+  async function sub(id){
+    const response = await subQuantity(top.id, id);
+    console.log(response);
+  }
+
+  async function remove(ids){
+    const response = await removeCart(ids);
+    console.log(response);
+  }
 
   // const totalPrice = cartItems.reduce((total, item) => total + item.cartItems.foodPrice * item.cartItems.cartFoodItemQuantity, 0);
 
@@ -49,9 +66,9 @@ function Cart(props) {
   return (
     <div>
       {isCartOpen && (
-        <div className="text-black w-[300px] absolute right-[196px] mt-4">
+        <div className="text-black w-[400px] absolute right-[196px] mt-4">
           {/* Arrow frame */}
-          <div className="absolute -top-3 left-[73%] transform -translate-x-1/2 ">
+          <div className="absolute -top-3 left-[80%] transform -translate-x-1/2 ">
             <i className="text-[#fc1e1e] text-xl fa-solid fa-caret-up"></i>
           </div>
 
@@ -63,21 +80,22 @@ function Cart(props) {
                 <li key={item.id} className="mb-2">
                   <div className="flex justify-between">
                     <span>
-                      {item.foodItem.foodName} - Rs {item.foodPrice.toFixed(2)} x {item.cartFoodItemQuantity}
+                      {item.foodItem.foodName}   -   Rs {item.foodPrice.toFixed(2)}  x  {item.cartFoodItemQuantity}
                     </span>
-                    <div className="flex space-x-2">
+                    <div className="flex gap-4">
                       <button
-                        onClick={() => increaseQuantity(item.id)}
-                        className="bg-green-500 text-white px-2 py-1 rounded"
+                        onClick={() => add(item.foodItem.id)}
+                        className="bg-green-500 text-white px-[10px] py-1 rounded"
                       >
                         +
                       </button>
                       <button
-                        onClick={() => decreaseQuantity(item.id)}
-                        className="bg-red-500 text-white px-2 py-1 rounded"
+                        onClick={() => sub(item.foodItem.id)}
+                        className="bg-red-500 text-white px-[10px] py- rounded"
                       >
                         -
                       </button>
+                      <button onClick={()=>remove(item.id)} className=''><i className='fa-solid fa-trash'></i></button>
                     </div>
                   </div>
                 </li>
