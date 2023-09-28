@@ -16,8 +16,6 @@ function Signup(props) {
     confirmPassword: "",
   });
 
-
-  
   const [errorMessage, setErrormessage] = useState("");
   const [redirectToOTP, setRedirectToOTP] = useState(false);
 
@@ -67,17 +65,17 @@ function Signup(props) {
     });
   }
 
-    useEffect(() => {
-      if (redirectToOTP) {
-        const timeout = setTimeout(() => {
-          setRedirectToOTP(false); // Reset the flag
-          props.setSignup(false);
-          props.setOtp(true);
-        }, 3000); // 3000 milliseconds = 3 seconds
+  useEffect(() => {
+    if (redirectToOTP) {
+      const timeout = setTimeout(() => {
+        setRedirectToOTP(false); // Reset the flag
+        props.setSignup(false);
+        props.setOtp(true);
+      }, 3000); // 3000 milliseconds = 3 seconds
 
-        return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
-      }
-    }, [redirectToOTP]);
+      return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
+    }
+  }, [redirectToOTP]);
 
   function handelChange(event) {
     const { name, value } = event.target;
@@ -88,17 +86,21 @@ function Signup(props) {
   //     dispatch(setlogin(true));
   //     dispatch(setSignup(false));
   //   }
-  return (props.signup)?
+  return props.signup ? (
     <div className="flex z-40 top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white h-[580px] w-[480px] overflow-hidden flex flex-col ">
         <div className=" h-[100px] border-[#a03636]">
-          <img className=" relative -top-[480px] w-[600px] h-[600px] " src={flag} alt="" />
+          <img
+            className=" relative -top-[480px] w-[600px] h-[600px] "
+            src={flag}
+            alt=""
+          />
         </div>
         <div className="mb-4 flex  pl-4">
-              <button onClick={()=>props.setSignup(false)}>
-                <i className="absolute  top-[150px]   text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
-              </button>
-            </div>
+          <button onClick={() => props.setSignup(false)}>
+            <i className="absolute  top-[150px]   text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
+          </button>
+        </div>
 
         <div className=" justify-end items-center flex-col mt-2 mb-6 flex">
           <img className="w-[50%] pt-[0px]" src={logo} alt="" />
@@ -191,7 +193,11 @@ function Signup(props) {
               onClick={handelClick}
               className="mr-[10px] hover:bg-[#5672d7]  bg-[#EC2633] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white "
             >
-              Register <p className="absolute -mt-[23px] ml-5"> {spinner &&  <Spinner/>}</p>
+              Register{" "}
+              <p className="absolute -mt-[23px] ml-5">
+                {" "}
+                {spinner && <Spinner />}
+              </p>
             </button>
           </div>
           <div className="flex mt-2 w-[365px] justify-between ">
@@ -200,13 +206,14 @@ function Signup(props) {
               <button className="text-[#2181F1] hover:text-[#4c7bb9]">
                 Login?
               </button>
-             
             </a>
           </div>
         </div>
       </div>
     </div>
-  :"";
+  ) : (
+    ""
+  );
 }
 
 export default Signup;

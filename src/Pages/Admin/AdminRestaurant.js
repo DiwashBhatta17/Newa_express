@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import AdminHeader from "./AdminHeader";
 import AddRestaurantpopup from "./Popups/AddRestaurantpopup";
 import axios from "axios";
+import { Flip, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminRestaurant() {
   //popup logic
@@ -22,7 +24,7 @@ export default function AdminRestaurant() {
     "restaurantName",
     "restaurantAddress",
     "phone",
-    "tagline",
+    "email",
   ];
 
   useEffect(() => {
@@ -39,13 +41,11 @@ export default function AdminRestaurant() {
 
   // deleting restaurants
   const handleDelete = (restaurantId) => {
-    // Make a DELETE request to the API
     axios
       .delete(
         `http://localhost:8080/restaurants/delete-restaurant/${restaurantId}`
       )
       .then((resp) => {
-        // Check for a successful response, and then remove the deleted restaurant from the state
         if (resp.status === 200) {
           const updatedRestaurants = restaurants.filter(
             (restaurant) => restaurant.restaurantId !== restaurantId
@@ -56,6 +56,12 @@ export default function AdminRestaurant() {
       .catch((error) => {
         console.log("Error deleting restaurant:", error);
       });
+    //succesfulDeletion Toast
+    toast.success("Succesfully deleted", {
+      position: "top-center",
+      autoClose: 2000,
+      transition: Flip,
+    });
   };
 
   return (
@@ -68,7 +74,8 @@ export default function AdminRestaurant() {
           </h1>
           <p>View all your connected restaurants here. </p>
           <h1
-            className="border-1 border-green-300 bg-[#3aff3a28] ml-[800px] text-[green] rounded-[20px] w-[125px] p-1 hover:cursor-pointer"
+            className="border-2 border-[#41c441] bg-[white] ml-[800px] text-[green] rounded-[20px] w-[125px] p-1 hover:cursor-pointer hover:text-white hover:bg-[#41c441]
+            "
             onClick={handleopenPopup}
           >
             Add Restaurant
@@ -107,6 +114,7 @@ export default function AdminRestaurant() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

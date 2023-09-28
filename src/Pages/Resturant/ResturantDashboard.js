@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ResturantNavbar from "./ResturantNavbar";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Dashboardservice from "../../Services/restaurantService/Dashboardservice";
+import axios from "axios";
+import baseURL from "../../Services/Api/api";
 
 function ResturantDashboard() {
   const [profileImage, setProfileImage] = useState(null);
@@ -34,6 +39,20 @@ function ResturantDashboard() {
       console.log("Uploading banner image:", bannerImage);
     }
   };
+
+  //validating total revenue
+
+  const [restaurantID, setRestaurantID] = useState([]);
+
+  useEffect(() => {
+    axios.get(baseURL + "restaurants/get-all-restaurants").then((resp) => {
+      setRestaurantID(resp.data[0]);
+    });
+  }, []);
+  {
+    console.log("the restaurant id is:", restaurantID);
+  }
+
   return (
     <>
       {/* <AdminNavbar /> */}
@@ -58,17 +77,23 @@ function ResturantDashboard() {
         </div>
 
         <div className="flex gap-[50px] mt-[9px]">
-          <div className="bg-white  w-[60vh] h-[340px] flex justify-start  pl-5 ">
+          <div className="bg-white  w-[60vh] h-[370px] flex justify-start  pl-5 ">
             <div className="mt-3">
-              <h1 className="text-3xl mb-3">Update Profile</h1>
+              <h1 className="text-2xl mb-3">Update Restaurant Details</h1>
               <p>Name</p>
               <input className="border w-[250px]" type="text" />
-              <p>Age</p>
+              <p>Address</p>
               <input className="border w-[250px]" type="text" />
               <p>Description</p>
-              <input className="border mb-2 h-[80px] w-[250px]" type="text" />
+              <textarea
+                className="border mb-2 h-[60px] w-[250px]"
+                type="text"
+              />
+              <p>Contact</p>
+              <input className="border mb-2 w-[250px]" type="text" />
+
               <div>
-                <button className="px-4 py-1 bg-[#64cf3a] text-white rounded-3xl">
+                <button className="px-4 py-1 bg-[#64cf3a] text-white rounded-3xl hover:bg-[green]">
                   Update
                 </button>
               </div>
@@ -89,7 +114,7 @@ function ResturantDashboard() {
                     onChange={handleProfileImageChange}
                   />
                   <button
-                    className="bg-[#9ebd92] text-white px-5 py-1 rounded-xl mt-3"
+                    className="bg-[#9ebd92] text-white px-5 py-1 rounded-xl mt-3 hover:bg-[green]"
                     onClick={handleUploadProfileImage}
                   >
                     Upload
@@ -104,7 +129,7 @@ function ResturantDashboard() {
                     onChange={handleBannerImageChange}
                   />
                   <button
-                    className="bg-[#9ebd92] text-white px-5 py-1 rounded-xl mt-3"
+                    className="bg-[#9ebd92] text-white px-5 py-1 rounded-xl mt-3  hover:bg-[green]"
                     onClick={handleUploadBannerImage}
                   >
                     Upload

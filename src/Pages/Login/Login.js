@@ -1,17 +1,23 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import img from "../Images/Rectangle 4365.png";
 import loginService from "../../Services/Login/loginService";
 import loginLogo from "../Images/loginLogo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Flip, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { setUserTrue, setAdminTrue,setRestaurantTrue } from "../../Services/Redux-Service/counterSlice";
+
+import {
+  setUserTrue,
+  setAdminTrue,
+  setRestaurantTrue,
+} from "../../Services/Redux-Service/counterSlice";
+import { toast } from "react-toastify";
 
 function Login(props) {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -21,6 +27,17 @@ function Login(props) {
   console.log(loginData);
 
   const [errorMessage, setErrormessage] = useState("");
+  //logged in toast
+  const [isloggedin, setIsloggedin] = useState(false);
+
+  const loggedin = () => {
+    setIsloggedin(true);
+
+    console.log("Login vaiyoooooo");
+
+    toast.success("Succesfully logged In.");
+    // window.location.reload();
+  };
 
   async function handelClick() {
     if (loginData.username == "") {
@@ -37,40 +54,43 @@ function Login(props) {
         const response = await loginService(loginDataApi);
         console.log(response.user.role);
 
-        if(response.user.role==="ROLE_RESTAURANT"){
+        if (response.user.role === "ROLE_RESTAURANT") {
           dispatch(setRestaurantTrue());
-          localStorage.setItem("restaurantId",response.user.restaurantId);
+          localStorage.setItem("restaurantId", response.user.restaurantId);
 
           navigate("/resturantDashboard");
-
-        }
-        else if(response.user.role==="ROLE_CUSTOMER") {
+        } else if (response.user.role === "ROLE_CUSTOMER") {
           dispatch(setUserTrue());
-          localStorage.setItem("customerId",response.user.customerId);
+          localStorage.setItem("customerId", response.user.customerId);
           navigate("/");
-
         }
         localStorage.setItem("JWTtoken", response.accessToken);
-        
       } catch (error) {
         console.error(error);
       }
     }
+
+    loggedin();
   }
-  return (props.login)?
+
+  return props.login ? (
     <>
       <div className="flex z-40 top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
         <div className=" backgroundImg2 w-[770px] w-[750px] h-[500px] flex ">
           <div className="text-right ">
             {/* 2nd pat of image  */}
 
-            <img className=" h-full w-[480px]" src={img} alt="" />
+            <img
+              className=" h-full w-[480px]"
+              src="/Image/welcome.png"
+              alt=""
+            />
           </div>
 
           {/* ist one */}
           <div className="justify-center flex-col w-[60%] p-5 flex">
             <div className="mb-4 flex justify-end pt-4">
-              <button onClick={()=>props.setLogin(false)}>
+              <button onClick={() => props.setLogin(false)}>
                 <i className="absolute text-right top-[150px]  text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
               </button>
             </div>
@@ -132,23 +152,25 @@ function Login(props) {
               <div className="mt-3 text-center w-full ">
                 <button
                   onClick={handelClick}
-                  className=" hover:bg-[#5672d7] bg-[#EC2633] active:bg-[#88b7ed] w-full py-2 rounded-lg text-white "
+                  className="hover:bg-[#5672d7] bg-[#EC2633] active:bg-[#88b7ed] w-full py-2 rounded-lg text-white"
                 >
                   Login
                 </button>
               </div>
               <div className="flex mt-4 justify-between w-[9">
                 <p>Don't have an account?</p>
-                <a to="#">
-                  <button className="text-[#EC2633]">Register?</button>
-                </a>
+
+                <button className="text-[#EC2633]">Register?</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
-  :"";
+  ) : (
+    ""
+  );
 }
 
 export default Login;

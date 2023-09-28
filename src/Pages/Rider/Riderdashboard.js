@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Riderprofile from "./Riderprofile";
+import axios from "axios";
 
 export default function Riderdashboard() {
+  const [updateprofile, setUpdateprofile] = useState();
+  const [rideriD, setRiderID] = useState();
+
+  function handleopenClick() {
+    setUpdateprofile(true);
+  }
+  function handlecloseClick() {
+    setUpdateprofile(false);
+  }
+
+  axios.get("http://localhost:8081/riders/get-all-riders").then((resp) => {
+    console.log(resp.data[0]);
+    setRiderID(resp.data[0].id);
+
+    console.log("the ID is:", rideriD);
+  });
   return (
     <>
       <div className="header flex w-screen fixed justify-between shadow-xl h-[90px] itmes-center bg-[#ffffff] py-4 px-5">
         <div className="flex gap-2 ">
-          <Link to="/admin">
+          <Link to="/">
             <img
               src="/Image/newaExpress.png"
               alt="logo"
               className=" h-[80px] mt-[-20px] hover:cursor-pointer"
             />
           </Link>
-          <i className="fa-solid text-2xl mt-[2px] ml-[400px] text-black fa-user-lock"></i>
+          <img
+            src="/Image/profile.png"
+            alt="profile"
+            className="fa-solid text-2xl mt-[2px] ml-[400px] text-black fa-user-lock hover:cursor-pointer
+            "
+            onClick={handleopenClick}
+          />
+          {updateprofile && <Riderprofile onClose={handlecloseClick} />}
           <h1 className="text-2xl font-bold text-black">Rider Name</h1>
         </div>
         <Link

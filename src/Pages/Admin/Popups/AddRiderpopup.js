@@ -3,97 +3,79 @@ import React, { useState } from "react";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AddRestaurantpopup({ onClose }) {
+export default function AddRiderpopup({ onClose }) {
   //sending data
 
-  const [postdata, setPostdata] = useState({
+  const [riderdata, setRiderdata] = useState({
     username: "",
-    restaurantName: "",
-    restaurantAddress: "",
-    phone: "",
+    password: "1111",
     email: "",
-
-    role: "ROLE_RESTAURANT",
-    isPublished: true,
+    phone: "",
+    riderName: "",
+    role: "ROLE_RIDER",
+    orders: null,
   });
   const resetForm = () => {
-    setPostdata({
+    setRiderdata({
       username: "",
-      restaurantName: "",
-      restaurantAddress: "",
+      riderName: "",
       phone: "",
+      password: "1111",
       email: "",
-
       role: "ROLE_RESTAURANT",
-      isPublished: true,
+      orders: null,
     });
   };
 
   const handleUsernameChange = (event) => {
-    setPostdata({
-      ...postdata,
+    setRiderdata({
+      ...riderdata,
       username: event.target.value,
     });
   };
 
-  const handleRestaurantNameChange = (event) => {
-    setPostdata({
-      ...postdata,
-      restaurantName: event.target.value,
-    });
-  };
-
-  const handleRestaurantAddressChange = (event) => {
-    setPostdata({
-      ...postdata,
-      restaurantAddress: event.target.value,
-    });
-  };
-
-  const handleEmailChange = (event) => {
-    setPostdata({
-      ...postdata,
-      email: event.target.value,
+  const handleRiderNameChange = (event) => {
+    setRiderdata({
+      ...riderdata,
+      riderName: event.target.value,
     });
   };
 
   const handlePhoneChange = (event) => {
-    setPostdata({
-      ...postdata,
+    setRiderdata({
+      ...riderdata,
       phone: event.target.value,
     });
   };
 
-  console.log("The data is:", postdata);
+  const handleEmailChange = (event) => {
+    setRiderdata({
+      ...riderdata,
+      email: event.target.value,
+    });
+  };
+
+  console.log("The data is:", riderdata);
 
   //posting data
   function handlePost() {
     axios
-      .post("http://localhost:8080/register-restaurant", postdata)
+      .post("http://localhost:8080/riders", riderdata)
       .then((resp) => {
         console.log("Api response", resp.data);
         resetForm();
       })
+
       .catch((error) => {
         console.log("Error!!!", error);
       });
-  }
 
-  const successToast = () => {
-    toast.success("Restaurant successfully added.", {
+    window.location.reload();
+    toast.success("Rider succesfully added.", {
       position: "top-center",
-      autoClose: 5000,
       transition: Flip,
     });
-  };
-
-  const handleButtonClick = () => {
-    handlePost();
-    setTimeout(() => {
-      window.location.reload();
-      successToast();
-    }, 1000);
-  };
+  }
 
   return (
     <>
@@ -102,7 +84,7 @@ export default function AddRestaurantpopup({ onClose }) {
           <div className=" flex header bg-[#e8e8e8eb] h-[80px] ">
             <img src="/Image/newaExpress.png" alt="Logo" className="h-[90px]" />
             <p className="a ml-7 mt-[25px] text-[#FB6612] font-semibold  text-base">
-              Add Restaurants to your Site
+              Add Riders details
             </p>
             <button
               className="x ml-[80px] mt-[0px] font-extrabold text-[20px] text-black"
@@ -111,55 +93,46 @@ export default function AddRestaurantpopup({ onClose }) {
               X
             </button>
           </div>
-          <div className="middle flex">
-            <p className=" text-black mt-4 ml-7 font-semibold text-[15px] pr-[10px]">
-              Restaurant Name:
+          <div className="middle flex mt-[30px]">
+            <p className=" text-black mt-4 ml-[69px] font-semibold text-[15px] pr-[10px]">
+              RiderName:
             </p>{" "}
             <input
               type="text"
               className="bg-[#fb671233] mt-4 border-[#FB6612] border-1 rounded-[5px] h-fit text-black"
-              value={postdata.restaurantName}
-              onChange={handleRestaurantNameChange}
+              value={riderdata.riderName}
+              onChange={handleRiderNameChange}
             />
-            <p className=" ml-[-275px] mt-[80px] text-black font-semibold pr-[10px]">
+            <p className=" ml-[-273px] mt-[80px] text-black font-semibold pr-[10px]">
               UserName:
             </p>
             <input
               type="text"
               className="bg-[#fb671233] mt-[80px] border-[#FB6612] border-1 rounded-[5px] h-fit text-black"
-              value={postdata.username}
+              value={riderdata.username}
               onChange={handleUsernameChange}
             />
             <p className=" ml-[-255px] mt-[130px] text-black font-semibold pr-[10px]">
-              Address:
+              Contact:{" "}
             </p>
             <input
               type="text"
               className="bg-[#fb671233] mt-[130px] border-[#FB6612] border-1 rounded-[5px] h-fit text-black"
-              value={postdata.restaurantAddress}
-              onChange={handleRestaurantAddressChange}
+              value={riderdata.phone}
+              onChange={handlePhoneChange}
             />
-            <p className=" ml-[-252px] mt-[180px] text-black font-semibold pr-[10px]">
-              Contact:
+            <p className=" ml-[-240px] mt-[180px] text-black font-semibold pr-[10px]">
+              email:
             </p>
             <input
               type="text"
               className="bg-[#fb671233] mt-[180px] border-[#FB6612] border-1 rounded-[5px] h-fit text-black"
-              value={postdata.phone}
-              onChange={handlePhoneChange}
-            />
-            <p className=" ml-[-280px] mt-[230px] text-black font-semibold pr-[10px]">
-              email
-            </p>
-            <input
-              type="text"
-              className="bg-[#fb671233] mt-[230px] border-[#FB6612] border-1 rounded-[5px] h-fit text-black w-[200px]"
-              value={postdata.email}
+              value={riderdata.email}
               onChange={handleEmailChange}
             />
             <button
-              className="ad border-1 border-green-300 bg-[#3aff3a28] h-fit mt-[310px] w-[64px] hover:bg-[#3fb83fe8] rounded-[10px] text-teal-800"
-              onClick={handleButtonClick}
+              className="ad border-1 border-green-300 bg-[#3aff3a28] h-fit mt-[270px] w-[64px] hover:bg-[#3fb83fe8] rounded-[10px] text-teal-800"
+              onClick={handlePost}
             >
               Add
             </button>

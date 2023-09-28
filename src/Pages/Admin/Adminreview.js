@@ -1,7 +1,20 @@
 import React from "react";
 import AdminHeader from "./AdminHeader";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function Adminreview() {
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/customers/get-all-customers")
+      .then((resp) => {
+        console.log("respones is:", resp);
+      })
+      .catch((error) => {
+        console.log("eror", error);
+      });
+  }, []);
+
   return (
     <>
       <AdminHeader />
@@ -18,32 +31,12 @@ export default function Adminreview() {
                 <tr>
                   <th scope="col">Customer Name</th>
                   <th scope="col"> Contact</th>
-                  <th scope="col">Order ID</th>
-                  <th scope="col">Restaurant Name</th>
+                  <th scope="col">Customer ID</th>
+                  <th scope="col">Rating</th>
                   <th scope="col">View</th>
-                  <th scope="col">Home Display</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Rames</td>
-                  <td>0983534120</td>
-                  <td>01</td>
-                  <td>Newa ghar</td>
-                  <td>view</td>
-                  <td>Display</td>
-                </tr>
-                <tr>
-                  <td>Food Name</td>
-                  <td>20$</td>
-                  <td>30 Min</td>
-                </tr>
-                <tr>
-                  <td>Food Name</td>
-                  <td>20$</td>
-                  <td>30 Min</td>
-                </tr>
-              </tbody>
+              <tbody></tbody>
             </table>
           </div>
         </div>

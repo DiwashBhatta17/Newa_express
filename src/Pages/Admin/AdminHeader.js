@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Admin1stpage() {
+  function handletoast() {
+    toast.success("Logged out", {
+      position: "top-center",
+      transition: Flip,
+      autoClose: 2000,
+    });
+  }
   return (
     <>
       <div className="bg-[#ffffff] fixed shadow-xl h-screen">
@@ -19,7 +28,8 @@ export default function Admin1stpage() {
           </div>
           <Link
             to="/"
-            className=" px-4 py-2 rounded-full border-2 border-[#a42222]"
+            className=" px-4 py-2 rounded-full border-2 border-[red] hover:bg-[red] hover:text-white"
+            onClick={handletoast}
           >
             Logout
           </Link>
@@ -53,9 +63,10 @@ export default function Admin1stpage() {
         </div>
         <div className="bg-white fixed top-[84vh] left-0 mt-3 w-[30vh] h-[10vh] flex flex-col shadow-xl items-center gap-1">
           <h1 className="mt-2">Newa Express</h1>
-          <p>version: 1.0.0.11</p>
+          <p>version: 1.0.0.10</p>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

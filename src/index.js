@@ -12,6 +12,7 @@ import AdminRestaurant from "./Pages/Admin/AdminRestaurant";
 import Adminrider from "./Pages/Admin/Adminrider";
 import Adminreview from "./Pages/Admin/Adminreview";
 import Riderdashboard from "./Pages/Rider/Riderdashboard";
+import Riderprofile from "./Pages/Rider/Riderprofile";
 
 import Topcomponent from "./Pages/Customer/Homepage/Home1stcomponent";
 import Resturent1stComp from "./Pages/Customer/ResturentPage/Resturent1stComp";
@@ -80,6 +81,10 @@ const routerConfig = createBrowserRouter([
   {
     path: "/riderdashboard",
     element: <Riderdashboard />,
+  },
+  {
+    path: "/riderprofile",
+    element: <Riderprofile />,
   },
 ]);
 
