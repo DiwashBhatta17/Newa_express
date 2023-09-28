@@ -10,6 +10,7 @@ import Itempopup from "./Itempopup";
 import getAllrestaurantService, {getBannerImage,getProfileImage} from "../../../Services/CustomerService/getAllrestaurantService";
 import { Link } from "react-router-dom";
 import { getFood, getBreakfast,getDrink,getSnacks } from "../../../Services/CustomerService/foodItemService";
+import cartService from "../../../Services/CustomerService/cartService";
 
 
 function Resturent2ndComp(props) {
@@ -94,6 +95,15 @@ function Resturent2ndComp(props) {
     currentPage * itemsPerPage + itemsPerPage
   );
   //get all restaurant service call here
+  async function addToCart(id) {
+    try {
+      const userId = localStorage.getItem("customerId");
+      const response = await cartService(userId, id);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
  
 
@@ -143,7 +153,7 @@ function Resturent2ndComp(props) {
              <div className=" z-10 flex flex-col gap-3 text-2xl items-center">
                
              <i className=" p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-eye"></i>
-              <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i>
+              <button onClick={()=>addToCart(value.id)}><i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-solid fa-cart-plus"></i></button>
               <i className="p-1 bg-[#f22a2a] hover:scale-125 hover:bg-[#FF9800] text-white fa-regular fa-heart"></i>
              </div>
               </div>
