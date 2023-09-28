@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import flag from "../Images/flag22.png";
 import signupService from "../../Services/Login/signupService";
 import logo from "../Images/regLOgo.png";
+import DemoLoader from "../component/Loader";
 
 function Signup(props) {
   const [signupData, setSignupdata] = useState({
@@ -15,25 +16,27 @@ function Signup(props) {
     confirmPassword: "",
   });
   const [isDoctor, setisDoctor] = useState(true);
+  //Adding Spinner loading
+  const [loading, setLoading] = useState(false);
 
   const [status, setStatus] = useState(true);
   const [errorMessage, setErrormessage] = useState("");
-    const [redirectToOTP, setRedirectToOTP] = useState(false);
+  const [redirectToOTP, setRedirectToOTP] = useState(false);
 
   async function handelClick() {
-    if (signupData.name == "") {
+    if (signupData.name === "") {
       setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.username == "") {
-      setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.password == "") {
-      setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.email == "") {
-      setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.phone == "") {
-      setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.confirmPassword == "") {
-      setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.password != signupData.confirmPassword) {
+    } else if (signupData.username === "") {
+      setErrormessage("Username Field can't be Empty !!");
+    } else if (signupData.password === "") {
+      setErrormessage("Password Field can't be Empty !!");
+    } else if (signupData.email === "") {
+      setErrormessage("Email Field can't be Empty !!");
+    } else if (signupData.phone === "") {
+      setErrormessage("Phone Field can't be Empty !!");
+    } else if (signupData.confirmPassword === "") {
+      setErrormessage("Confirm Password Field can't be Empty !!");
+    } else if (signupData.password !== signupData.confirmPassword) {
       setErrormessage("Confirm Password does not match with the new password");
     } else {
       const data = {
@@ -44,6 +47,8 @@ function Signup(props) {
         phone: signupData.phone,
       };
 
+      setLoading(true); // Start loading
+
       try {
         const response = await signupService(data);
         console.log("response", response);
@@ -51,9 +56,12 @@ function Signup(props) {
       } catch (error) {
         console.error(error);
       }
+
+      setLoading(false); // Stop loading when registration is complete
     }
+
+    // Reset form fields
     setSignupdata({
-      ...signupData,
       name: "",
       username: "",
       password: "",
@@ -63,17 +71,17 @@ function Signup(props) {
     });
   }
 
-    useEffect(() => {
-      if (redirectToOTP) {
-        const timeout = setTimeout(() => {
-          setRedirectToOTP(false); // Reset the flag
-          props.setSignup(false);
-          props.setOtp(true);
-        }, 3000); // 3000 milliseconds = 3 seconds
+  useEffect(() => {
+    if (redirectToOTP) {
+      const timeout = setTimeout(() => {
+        setRedirectToOTP(false); // Reset the flag
+        props.setSignup(false);
+        props.setOtp(true);
+      }, 3000); // 3000 milliseconds = 3 seconds
 
-        return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
-      }
-    }, [redirectToOTP]);
+      return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
+    }
+  }, [redirectToOTP]);
 
   function handelChange(event) {
     const { name, value } = event.target;
@@ -84,17 +92,22 @@ function Signup(props) {
   //     dispatch(setlogin(true));
   //     dispatch(setSignup(false));
   //   }
-  return (props.signup)?
+
+  return props.signup ? (
     <div className="flex z-40 top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white h-[580px] w-[480px] overflow-hidden flex flex-col ">
         <div className=" h-[100px] border-[#a03636]">
-          <img className=" relative -top-[480px] w-[600px] h-[600px] " src={flag} alt="" />
+          <img
+            className=" relative -top-[480px] w-[600px] h-[600px] "
+            src={flag}
+            alt=""
+          />
         </div>
-        <div className="mb-4 flex  pl-4">
-              <button onClick={()=>props.setSignup(false)}>
-                <i className="absolute  top-[150px]   text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
-              </button>
-            </div>
+        <div className="mb-4 flex ml-[400px] pl-4">
+          <button onClick={() => props.setSignup(false)}>
+            <i className="absolute  top-[150px]   text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
+          </button>
+        </div>
 
         <div className=" justify-end items-center flex-col mt-2 mb-6 flex">
           <img className="w-[50%] pt-[0px]" src={logo} alt="" />
@@ -185,9 +198,12 @@ function Signup(props) {
           <div className="mt-5 text-center w-full ">
             <button
               onClick={handelClick}
-              className="mr-[10px] hover:bg-[#5672d7] bg-[#EC2633] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white "
+              className={`mr-[10px] hover:bg-[#5672d7] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white ${
+                loading ? "bg-gray-400 cursor-default" : "bg-[#EC2633]"
+              }`}
+              disabled={loading}
             >
-              Register
+              {loading ? <DemoLoader /> : "Register"}
             </button>
           </div>
           <div className="flex mt-2 w-[365px] justify-between ">
@@ -201,7 +217,9 @@ function Signup(props) {
         </div>
       </div>
     </div>
-  :"";
+  ) : (
+    ""
+  );
 }
 
 export default Signup;

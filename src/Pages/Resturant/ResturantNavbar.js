@@ -1,41 +1,42 @@
-
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import restaurantInfoService from '../../Services/restaurantService/restaurantInfoService';
-
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import restaurantInfoService from "../../Services/restaurantService/restaurantInfoService";
 
 function ResturantNavbar() {
-    const [data,setData] = useState("");
+  const [data, setData] = useState("");
 
-    const navigate = useNavigate()
-    function handleLogout(){
-        localStorage.removeItem("JWTtoken");
-        localStorage.removeItem("restaurantId");
-    
-        navigate("/")
-    
-    
-      }
+  const navigate = useNavigate();
+  function handleLogout() {
+    localStorage.removeItem("JWTtoken");
+    localStorage.removeItem("restaurantId");
 
-      useEffect(()=>{
-        restaurantInfoService().then((res)=>{
-          setData(res);
-          console.log("Res",res);
-        }
-        )
-        .catch((e)=>console.log("Error",e));
-      },[])
+    navigate("/");
+  }
+
+  useEffect(() => {
+    restaurantInfoService()
+      .then((res) => {
+        setData(res);
+        console.log("Res", res);
+      })
+      .catch((e) => console.log("Error", e));
+  }, []);
   return (
     <>
-
-    <div className='bg-[#d4d0d0] absolute shadow-xl h-screen'>
-        <div className='flex w-screen justify-between absolute shadow-xl itmes-center bg-white py-4 px-5'>
-            <div className='flex gap-2 '>
+      <div className="bg-[#d4d0d0] absolute shadow-xl h-screen">
+        <div className="flex w-screen justify-between absolute shadow-xl itmes-center bg-white py-4 px-5">
+          <div className="flex gap-2 ">
             <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
-                <h1 className='text-2xl font-bold text-black'>{data.restaurantName}</h1>
-            </div>
-            <button onClick={handleLogout} className=' px-5 py-2 rounded-full border-2 border-[#a42222]'>Logout</button>
-
+            {/* <h1 className="text-2xl font-bold text-black">
+              {data.restaurantName}
+            </h1> */}
+          </div>
+          <button
+            onClick={handleLogout}
+            className=" px-5 py-2 rounded-full border-2 border-[#a42222]"
+          >
+            Logout
+          </button>
         </div>
         <div className="w-[30vh] top-[11vh] fixed flex flex-col items-start p-5 gap-4 h-[70vh] mt-4 bg-white shadow-xl">
           <div className="flex gap-3">

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Riderprofile from "./Riderprofile";
+import axios from "axios";
 
 export default function Riderdashboard() {
   const [updateprofile, setUpdateprofile] = useState();
+  const [rideriD, setRiderID] = useState();
 
   function handleopenClick() {
     setUpdateprofile(true);
@@ -11,6 +13,13 @@ export default function Riderdashboard() {
   function handlecloseClick() {
     setUpdateprofile(false);
   }
+
+  axios.get("http://localhost:8081/riders/get-all-riders").then((resp) => {
+    console.log(resp.data[0]);
+    setRiderID(resp.data[0].id);
+
+    console.log("the ID is:", rideriD);
+  });
   return (
     <>
       <div className="header flex w-screen fixed justify-between shadow-xl h-[90px] itmes-center bg-[#ffffff] py-4 px-5">

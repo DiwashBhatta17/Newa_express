@@ -28,7 +28,7 @@ export default function Admin1stpage() {
           </div>
           <Link
             to="/"
-            className=" px-4 py-2 rounded-full border-2 border-[#a42222]"
+            className=" px-4 py-2 rounded-full border-2 border-[red] hover:bg-[red] hover:text-white"
             onClick={handletoast}
           >
             Logout

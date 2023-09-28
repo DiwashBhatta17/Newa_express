@@ -62,10 +62,25 @@ function Browse2() {
   }, []);
 
   return (
-    <div className="backgroundImg1 mb-5">
-      <div className="py-5 px-[120px]">
-        <img className="w-[30%]" src="/Image/restroList.png" alt="" />
+    <div className="backgroundImg1 mb-5 pt-[20px]">
+      <div className="flex mt-[0px] ml-[820px] justify-end  bg-[#fffffffc] w-[370px] h-[45px] rounded-full">
+        <div>
+          {" "}
+          <input
+            type="text"
+            className=" relative outline-none bg-transparent  text-black text-center font-semibold w-[310px] h-[47px]  rounded-[10px]"
+          />
+        </div>
+        <img
+          src="/Image/search.png"
+          alt="icon"
+          className="w-[20px] h-[20px] mt-[10px] mr-4 "
+        />
       </div>
+      <div className="py-5 px-[120px]">
+        <img className="w-[40%]" src="/Image/restroList.png" alt="" />
+      </div>
+
       <div className="pb-[280px]">
         <div className="flex backgroundImg2 py-5 flex-wrap gap-3 items-cente justify-center mx-[110px] ">
           {data.map((value, index) => (

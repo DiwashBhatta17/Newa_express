@@ -10,11 +10,8 @@ export default function AddRestaurantpopup({ onClose }) {
     username: "",
     restaurantName: "",
     restaurantAddress: "",
-    tagline: "",
     phone: "",
-    password: "pass123",
-    email: "restro69@gmail.com",
-    restaurantId: 8,
+    email: "",
 
     role: "ROLE_RESTAURANT",
     isPublished: true,
@@ -24,11 +21,9 @@ export default function AddRestaurantpopup({ onClose }) {
       username: "",
       restaurantName: "",
       restaurantAddress: "",
-      tagline: "",
       phone: "",
-      password: "pass123",
-      email: "restro69@gmail.com",
-      restaurantId: 8,
+      email: "",
+
       role: "ROLE_RESTAURANT",
       isPublished: true,
     });
@@ -55,10 +50,10 @@ export default function AddRestaurantpopup({ onClose }) {
     });
   };
 
-  const handleTaglineChange = (event) => {
+  const handleEmailChange = (event) => {
     setPostdata({
       ...postdata,
-      tagline: event.target.value,
+      email: event.target.value,
     });
   };
 
@@ -74,7 +69,7 @@ export default function AddRestaurantpopup({ onClose }) {
   //posting data
   function handlePost() {
     axios
-      .post("http://localhost:8080/restaurants/create-restaurant", postdata)
+      .post("http://localhost:8080/register-restaurant", postdata)
       .then((resp) => {
         console.log("Api response", resp.data);
         resetForm();
@@ -154,13 +149,13 @@ export default function AddRestaurantpopup({ onClose }) {
               onChange={handlePhoneChange}
             />
             <p className=" ml-[-280px] mt-[230px] text-black font-semibold pr-[10px]">
-              Description:
+              email
             </p>
-            <textarea
+            <input
               type="text"
               className="bg-[#fb671233] mt-[230px] border-[#FB6612] border-1 rounded-[5px] h-fit text-black w-[200px]"
-              value={postdata.tagline}
-              onChange={handleTaglineChange}
+              value={postdata.email}
+              onChange={handleEmailChange}
             />
             <button
               className="ad border-1 border-green-300 bg-[#3aff3a28] h-fit mt-[310px] w-[64px] hover:bg-[#3fb83fe8] rounded-[10px] text-teal-800"
