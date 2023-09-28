@@ -1,13 +1,9 @@
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AdminHeader from "./Pages/Admin/AdminHeader";
 
@@ -17,15 +13,16 @@ import Adminrider from "./Pages/Admin/Adminrider";
 import Adminreview from "./Pages/Admin/Adminreview";
 import Riderdashboard from "./Pages/Rider/Riderdashboard";
 
-import Topcomponent from './Pages/Customer/Homepage/Home1stcomponent';
-import Resturent1stComp from './Pages/Customer/ResturentPage/Resturent1stComp';
-import ResturantDashboard from './Pages/Resturant/ResturantDashboard';
-import ResturantMenu from './Pages/Resturant/ResturantMenu';
-import ResturantOrderList from './Pages/Resturant/ResturantOrderList';
-import Browse1 from './Pages/Customer/BrowseRestropage/Browse1';
-import { Provider } from 'react-redux';
-import store from './Services/Redux-Service/store';
+import Topcomponent from "./Pages/Customer/Homepage/Home1stcomponent";
+import Resturent1stComp from "./Pages/Customer/ResturentPage/Resturent1stComp";
+import ResturantDashboard from "./Pages/Resturant/ResturantDashboard";
+import ResturantMenu from "./Pages/Resturant/ResturantMenu";
+import ResturantOrderList from "./Pages/Resturant/ResturantOrderList";
+import Browse1 from "./Pages/Customer/BrowseRestropage/Browse1";
+import { Provider } from "react-redux";
+import store from "./Services/Redux-Service/store";
 
+import { ChakraProvider } from "@chakra-ui/react";
 
 const routerConfig = createBrowserRouter([
   {
@@ -33,18 +30,16 @@ const routerConfig = createBrowserRouter([
     element: <Topcomponent />,
   },
   {
-
     path: "restaurant/:restaurantId",
-    element: <Resturent1stComp/>,
-
+    element: <Resturent1stComp />,
   },
   {
     path: "browseRestaurant/:query",
-    element: <Browse1/>
+    element: <Browse1 />,
   },
   {
     path: "browseResturant",
-    element: <Browse1/>
+    element: <Browse1 />,
   },
   // Resturant part
 
@@ -60,8 +55,6 @@ const routerConfig = createBrowserRouter([
     path: "resturantOrderList",
     element: <ResturantOrderList />,
   },
-
-
 
   //Admin part
   {
@@ -94,8 +87,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     {/* <App /> */}
-    <RouterProvider router={routerConfig} />
-    </Provider>
+    <ChakraProvider>
+      <RouterProvider router={routerConfig} />
+    </ChakraProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
