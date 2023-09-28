@@ -22,6 +22,41 @@ export async function getCartItem(userId) {
   }
 }
 
+
+export async function addQuantity(cartId, foodId) {
+  try {
+    const response = await axios.put(
+      baseURL + "carts/increase/food-item/"+foodId+"/cart/"+cartId
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
+export async function removeCart(itemId) {
+  try {
+    const response = await axios.delete(
+      baseURL + "carts/delete-cartItem/"+itemId
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function subQuantity(cartId, foodId) {
+  try {
+    const response = await axios.put(
+      baseURL + "carts/decrease/food-item/"+foodId+"/cart/"+cartId
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function confirmOrder(customerId, data){
     try {
         const response = await axios.post(baseURL+"orders/customer/"+customerId, data)

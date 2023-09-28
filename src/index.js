@@ -22,8 +22,8 @@ import ResturantOrderList from "./Pages/Resturant/ResturantOrderList";
 import Browse1 from "./Pages/Customer/BrowseRestropage/Browse1";
 import { Provider } from "react-redux";
 import store from "./Services/Redux-Service/store";
-import DemoLoader from "./Pages/component/Loader";
-import { MantineProvider } from "@mantine/core";
+
+import { ChakraProvider } from "@chakra-ui/react";
 
 const routerConfig = createBrowserRouter([
   {
@@ -91,10 +91,10 @@ const routerConfig = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <MantineProvider>
-      {/* <App /> */}
+    {/* <App /> */}
+    <ChakraProvider>
       <RouterProvider router={routerConfig} />
-    </MantineProvider>
+    </ChakraProvider>
   </Provider>
 );
 

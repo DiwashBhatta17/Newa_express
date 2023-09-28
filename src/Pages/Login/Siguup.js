@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import flag from "../Images/flag22.png";
 import signupService from "../../Services/Login/signupService";
 import logo from "../Images/regLOgo.png";
-import DemoLoader from "../component/Loader";
+import { Spinner } from "@chakra-ui/react";
 
 function Signup(props) {
   const [signupData, setSignupdata] = useState({
@@ -15,28 +15,26 @@ function Signup(props) {
     phone: "",
     confirmPassword: "",
   });
-  const [isDoctor, setisDoctor] = useState(true);
-  //Adding Spinner loading
-  const [loading, setLoading] = useState(false);
 
-  const [status, setStatus] = useState(true);
   const [errorMessage, setErrormessage] = useState("");
   const [redirectToOTP, setRedirectToOTP] = useState(false);
 
+  const [spinner, setSpinner] = useState(false);
+
   async function handelClick() {
-    if (signupData.name === "") {
+    if (signupData.name == "") {
       setErrormessage("Name Field can't be Empty !!");
-    } else if (signupData.username === "") {
-      setErrormessage("Username Field can't be Empty !!");
-    } else if (signupData.password === "") {
-      setErrormessage("Password Field can't be Empty !!");
-    } else if (signupData.email === "") {
-      setErrormessage("Email Field can't be Empty !!");
-    } else if (signupData.phone === "") {
-      setErrormessage("Phone Field can't be Empty !!");
-    } else if (signupData.confirmPassword === "") {
-      setErrormessage("Confirm Password Field can't be Empty !!");
-    } else if (signupData.password !== signupData.confirmPassword) {
+    } else if (signupData.username == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.password == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.email == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.phone == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.confirmPassword == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.password != signupData.confirmPassword) {
       setErrormessage("Confirm Password does not match with the new password");
     } else {
       const data = {
@@ -47,21 +45,17 @@ function Signup(props) {
         phone: signupData.phone,
       };
 
-      setLoading(true); // Start loading
-
       try {
+        setSpinner(true);
         const response = await signupService(data);
         console.log("response", response);
         setRedirectToOTP(true);
       } catch (error) {
         console.error(error);
       }
-
-      setLoading(false); // Stop loading when registration is complete
     }
-
-    // Reset form fields
     setSignupdata({
+      ...signupData,
       name: "",
       username: "",
       password: "",
@@ -92,7 +86,6 @@ function Signup(props) {
   //     dispatch(setlogin(true));
   //     dispatch(setSignup(false));
   //   }
-
   return props.signup ? (
     <div className="flex z-40 top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white h-[580px] w-[480px] overflow-hidden flex flex-col ">
@@ -103,7 +96,7 @@ function Signup(props) {
             alt=""
           />
         </div>
-        <div className="mb-4 flex ml-[400px] pl-4">
+        <div className="mb-4 flex  pl-4">
           <button onClick={() => props.setSignup(false)}>
             <i className="absolute  top-[150px]   text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
           </button>
@@ -198,12 +191,13 @@ function Signup(props) {
           <div className="mt-5 text-center w-full ">
             <button
               onClick={handelClick}
-              className={`mr-[10px] hover:bg-[#5672d7] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white ${
-                loading ? "bg-gray-400 cursor-default" : "bg-[#EC2633]"
-              }`}
-              disabled={loading}
+              className="mr-[10px] hover:bg-[#5672d7]  bg-[#EC2633] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white "
             >
-              {loading ? <DemoLoader /> : "Register"}
+              Register{" "}
+              <p className="absolute -mt-[23px] ml-5">
+                {" "}
+                {spinner && <Spinner />}
+              </p>
             </button>
           </div>
           <div className="flex mt-2 w-[365px] justify-between ">

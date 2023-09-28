@@ -29,7 +29,7 @@ export default function AdminRestaurant() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/restaurants/get-all-restaurants")
+      .get("http://localhost:8080/restaurants/get-all-restaurants")
       .then((resp) => {
         console.log(resp.data);
         setRestaurants(resp.data);
