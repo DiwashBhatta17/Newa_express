@@ -19,6 +19,17 @@ export async function getWishlist(userId){
     }
 }
 
+export async function removeWishlist(favId){
+  try {
+    const response = await axios.delete(baseURL+"favourite-food/delete-favourite/"+favId);
+    return response;
+    
+  } catch (error) {
+    throw error;
+    
+  }
+}
+
  async function getItemImage(foodId) {
     try {
       const response = await axios.get(
@@ -38,9 +49,9 @@ export async function getWishlist(userId){
     }
   }
 
-export async function postWishlist(userId, id){
+export async function postWishlist(userId, foodid){
     try {
-        const response = await axios.post(baseURL+"favourite-food/customer/"+userId+"/food-item/"+id);
+        const response = await axios.post(baseURL+"favourite-food/customer/"+userId+"/food-item/"+foodid);
         return response.data;
         
     } catch (error) {

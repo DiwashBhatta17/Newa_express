@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { getWishlist } from '../../../Services/CustomerService/wishListService'
+import { getWishlist, removeWishlist } from '../../../Services/CustomerService/wishListService'
 
 function CustomerWishListPage() {
   const [data, setData] = useState([""]);
   const userId = localStorage.getItem("customerId");
+
+  const [ids, setId] = useState(0);
 
 
   async function fetchData(){
@@ -12,10 +14,21 @@ function CustomerWishListPage() {
     console.log(res);
     
   }
+  async function removeWish(favId){
+   try {
+    const response = await removeWishlist(favId);
+    console.log(response);
+    
+   } catch (error) {
+    console.error(error);
+    
+   }
+  }
 
   useEffect(()=>{
     fetchData();
-  },[]);
+  },[ids]);
+ 
 
 
   return (
@@ -36,16 +49,14 @@ function CustomerWishListPage() {
           <th scope="row"><img className='w-[50px]' src={value.images} alt="" /></th>
           <td>{value.foodItem?.foodName}</td>
           <td>Rs: {value.foodItem?.price}</td>
-          <td><i className="fa-solid fa-trash-can"></i></td>
+          <td><button onClick={()=>{
+            removeWish(value.id);
+            setId(value.id)
+          }}><i className="fa-solid fa-trash-can"></i></button></td>
         </tr>
         ))
        }
-        <tr className='item-center '>
-          <th scope="row"><img className='w-[50px]' src="/Image/yomarichi.png" alt="" /></th>
-          <td>Yamorich</td>
-          <td>Rs 250</td>
-          <td><i className="fa-solid fa-trash-can"></i></td>
-        </tr>
+        
        
       </tbody>
     </table>

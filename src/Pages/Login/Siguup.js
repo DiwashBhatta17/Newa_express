@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import flag from "../Images/flag22.png";
 import signupService from "../../Services/Login/signupService";
 import logo from "../Images/regLOgo.png";
+import { Spinner } from "@chakra-ui/react";
 
 function Signup(props) {
   const [signupData, setSignupdata] = useState({
@@ -14,11 +15,13 @@ function Signup(props) {
     phone: "",
     confirmPassword: "",
   });
-  const [isDoctor, setisDoctor] = useState(true);
 
-  const [status, setStatus] = useState(true);
+
+  
   const [errorMessage, setErrormessage] = useState("");
-    const [redirectToOTP, setRedirectToOTP] = useState(false);
+  const [redirectToOTP, setRedirectToOTP] = useState(false);
+
+  const [spinner, setSpinner] = useState(false);
 
   async function handelClick() {
     if (signupData.name == "") {
@@ -45,6 +48,7 @@ function Signup(props) {
       };
 
       try {
+        setSpinner(true);
         const response = await signupService(data);
         console.log("response", response);
         setRedirectToOTP(true);
@@ -185,9 +189,9 @@ function Signup(props) {
           <div className="mt-5 text-center w-full ">
             <button
               onClick={handelClick}
-              className="mr-[10px] hover:bg-[#5672d7] bg-[#EC2633] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white "
+              className="mr-[10px] hover:bg-[#5672d7]  bg-[#EC2633] active:bg-[#88b7ed] w-[365px] py-2 rounded-lg text-white "
             >
-              Register
+              Register <p className="absolute -mt-[23px] ml-5"> {spinner &&  <Spinner/>}</p>
             </button>
           </div>
           <div className="flex mt-2 w-[365px] justify-between ">
@@ -196,6 +200,7 @@ function Signup(props) {
               <button className="text-[#2181F1] hover:text-[#4c7bb9]">
                 Login?
               </button>
+             
             </a>
           </div>
         </div>
