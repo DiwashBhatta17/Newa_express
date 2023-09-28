@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../Images/Logo.png";
 import Login from "../Login/Login";
 import Signup from "../Login/Siguup";
@@ -8,6 +8,7 @@ import dummy from "../Images/dummy-profile-pic.jpg";
 import CusProfileNavbar from "./ProfileCustomer/CusProfileNavbar";
 import Cart from "./ProfileCustomer/Cart";
 import CusBigNavbar from "./ProfileCustomer/CustomerBigNavbar";
+import { getPic } from "../../Services/CustomerService/profilePicService";
 
 
 function CustomerNavbar() {
@@ -19,6 +20,25 @@ function CustomerNavbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const userLogin = useNavigate((state)=> state.counter.userAuthentication);
+
+  const [pip, setPip] = useState(null);
+
+  
+
+  const userId = localStorage.getItem("customerId");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {  
+        const res2 = await getPic(userId);
+        setPip(res2);
+        console.log("res2", res2);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <>
       <Login login={login} setLogin={setLogin} />
@@ -62,10 +82,10 @@ function CustomerNavbar() {
             <button
             onClick={()=> setProfile(true)}
              
-              className=" hover:text-red-700 hover:underline underline-offset-4"
+              className=" hover:text-red-700 hover:underline w-[40px] rounded-full overflow-hidden  h-[40px] underline-offset-4"
               
             >
-              <img className="w-[40px] h-[40px] rounded-full" src={dummy} alt="" />
+              <img className=" scale-125" src={pip||dummy} alt="" />
             </button></> : <><button
               onClick={() => setLogin(true)}
               className=" hover:text-red-700 hover:underline underline-offset-4"

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ABOUT from "../../Images/ABOUT.png";
+import RequestRestroForm from "./RequestRestroForm";
 
 function Home5thcomponent() {
+
+  const [close, onClose] = useState(false);
   return (
     <div>
       <div className="h-[650px] flex  items-center justify-between ml-[120px  mb-[230px]">
@@ -35,9 +38,10 @@ function Home5thcomponent() {
             <h1 className="text-5xl text-[#EC2633]">List Your Restaurant</h1>
             <p className="text-black text-2xl">At NewaExpress!</p>
           </div>
-          <button className="bg-[#EC2633] mt-3 text-2xl text-white px-4 py-1 rounded-xl">
+          <button onClick={()=>onClose(true)} className="bg-[#EC2633] mt-3 text-2xl text-white px-4 py-1 rounded-xl">
             Send a request
           </button>
+          {  close && <RequestRestroForm onClose={onClose}/>}
          </div>
 
         </div>

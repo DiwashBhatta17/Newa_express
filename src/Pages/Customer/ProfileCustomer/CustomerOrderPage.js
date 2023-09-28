@@ -1,60 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import orderHistoryService from "../../../Services/CustomerService/orderHistoryService";
 
 function CustomerOrderPage() {
+  const userID = localStorage.getItem("customerId");
+
+  const [data, setData] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+  async function fetchData() {
+    try {
+      const response = await orderHistoryService(userID);
+      setData(response);
+      console.log(response);
+    } catch (error) {
+      console.error("Error", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Function to handle row click
+  const handleRowClick = (order) => {
+    setSelectedOrder(order);
+  };
+
+  // Function to get the restaurant name
+  const getRestaurantName = (order) => {
+    if (order.orderItems.length > 0) {
+      return order.orderItems[0].foodItem.restaurant.restaurantName;
+    }
+    return "";
+  };
+
+  // Function to display order items with food names
+  const renderOrderItems = () => {
+    if (selectedOrder) {
+      return (
+        <div>
+          <h2>Order Items for {getRestaurantName(selectedOrder)}</h2>
+          <ul>
+            {selectedOrder.orderItems.map((item) => (
+              <li key={item.id}>{item.foodItem.foodName}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="ml-5 mt-2 flex flex-col items-center h-full overflow-y-auto  w-[550px]">
-      <table class="table table-striped  table-hover">
-        <thead >
-          <tr className=" font-thin">
-            <th scope="col">Item Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
+    <div className="ml-5 mt-2 flex flex-col items-center h-full overflow-y-auto w-[550px]">
+      <table className="table table-striped table-hover">
+        <thead>
+          <tr className="font-thin">
+            <th scope="col">Restaurant Name</th>
+            <th scope="col">Total Price</th>
             <th scope="col">Order Date</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr>
-          <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr>
-          <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr>
-          <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr>
-          <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr> <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr> <tr>
-            <th scope="row">Yamorie</th>
-            <td>5</td>
-            <td>Rs 250</td>
-            <td>02/21/2023</td>
-          </tr>
+          {data.map((order) => (
+            <tr
+              key={order.id}
+              onClick={() => handleRowClick(order)} // Handle row click
+              style={{ cursor: "pointer" }}
+            >
+              <td>{getRestaurantName(order)}</td>
+              <td>Rs {order.totalPrice}</td>
+              <td>{order.orderDate}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
+
+      {/* Display selected order items */}
+      {renderOrderItems()}
     </div>
   );
 }
