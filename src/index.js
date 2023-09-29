@@ -23,8 +23,12 @@ import Browse1 from "./Pages/Customer/BrowseRestropage/Browse1";
 import { Provider } from "react-redux";
 import store from "./Services/Redux-Service/store";
 
+import Contactus from "./Pages/Customer/Homepage/Contactus";
+
 import { ChakraProvider } from "@chakra-ui/react";
+
 import AboutUs from "./Pages/Customer/Homepage/AboutUs";
+
 
 const routerConfig = createBrowserRouter([
   {
@@ -42,6 +46,14 @@ const routerConfig = createBrowserRouter([
   {
     path: "browseResturant",
     element: <Browse1 />,
+  },
+  {
+    path: "/contactus",
+    element: <Contactus />,
+  },
+  {
+    path: "/aboutus",
+    element: <AboutUs />,
   },
   // Resturant part
 

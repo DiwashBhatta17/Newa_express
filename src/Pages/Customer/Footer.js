@@ -7,8 +7,11 @@ function Footer() {
   return (
     <>
       <div className="bg-[#000000] absolute text-white flex flex-col justify-end h-[550px] w-full">
-
-      <img className="w-[2000px] sm:top-[80px] lg:top-[100px] xl:top-[120px] relative" src={flag} alt="logo" />
+        <img
+          className="w-[2000px] sm:top-[80px] lg:top-[100px] xl:top-[120px] relative"
+          src={flag}
+          alt="logo"
+        />
 
         <div className="flex justify-center">
           <img className="w-[200px]" src={logo} alt="logo" />
@@ -48,7 +51,9 @@ function Footer() {
           {/* 3rd parts */}
 
           <div className="flex flex-col gap-1">
+
             <Link to="/aboutUs">About</Link>
+
             <a href="#">Our Story</a>
             <a href="#">Benefits</a>
             <a href="#">Team</a>
@@ -60,7 +65,7 @@ function Footer() {
           <div className="flex flex-col gap-1">
             <a href="#">Help</a>
             <a href="#">FAQs</a>
-            <a href="#">Contact Us</a>
+            <Link to="/contactus">Contact Us</Link>
           </div>
         </div>
       </div>
