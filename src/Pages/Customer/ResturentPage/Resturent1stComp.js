@@ -32,7 +32,7 @@ function Resturent1stComp() {
       <div className="border-2 border-black">
         <img className="h-[70vh] w-full" src={restoData.bannerImg} alt="" />
 
-        <div className="flex absolute justify-center items-center bottom-[120px] left-1/2 transform -translate-x-1/2">
+        <div className="flex absolute justify-center items-center top-[450px] left-1/2 transform -translate-x-1/2">
           <img
             className="h-[200px]  w-[200px] rounded-full"
             src={restoData.profileImg}

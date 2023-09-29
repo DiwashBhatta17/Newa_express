@@ -23,7 +23,7 @@ export default function Topcomponent() {
   return (
     <>
       <CustomerNavbar />
-      <ReviewPopup/>
+      {/* <ReviewPopup/> */}
       <div className="ImageheaderSection  flex flex-col justify-center items-center  h-[100vh]">
         <div className="dhamilo flex flex-col justify-center items-center w-full  h-[100vh] ">
           <p className=" text-[#ffffff]  text-xl mt-5 font-semibold">

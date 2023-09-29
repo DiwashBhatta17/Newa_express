@@ -6,6 +6,7 @@ import loginLogo from "../Images/loginLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { useDispatch } from "react-redux";
 
 import {
@@ -60,6 +61,11 @@ function Login(props) {
 
           navigate("/resturantDashboard");
         } else if (response.user.role === "ROLE_CUSTOMER") {
+          dispatch(setUserTrue());
+          localStorage.setItem("customerId", response.user.customerId);
+          navigate("/");
+        }
+        else if (response.user.role === "ROLE_CUSTOMER") {
           dispatch(setUserTrue());
           localStorage.setItem("customerId", response.user.customerId);
           navigate("/");
