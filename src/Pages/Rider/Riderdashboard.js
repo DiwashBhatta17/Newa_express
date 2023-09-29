@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Riderprofile from "./Riderprofile";
 import axios from "axios";
+import { Flip, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Riderdashboard() {
   const [updateprofile, setUpdateprofile] = useState();
   const [rideriD, setRiderID] = useState();
+  const [ridername, setRidername] = useState();
 
   function handleopenClick() {
     setUpdateprofile(true);
@@ -14,12 +17,27 @@ export default function Riderdashboard() {
     setUpdateprofile(false);
   }
 
-  axios.get("http://localhost:8081/riders/get-all-riders").then((resp) => {
+  axios.get("http://localhost:8080/riders/get-all-riders").then((resp) => {
     console.log(resp.data[0]);
     setRiderID(resp.data[0].id);
+    setRidername(resp.data[0].username);
 
     console.log("the ID is:", rideriD);
   });
+
+  function picked() {
+    toast.info("Order picked.", {
+      autoClose: 2000,
+      transition: Flip,
+    });
+  }
+
+  function delivered() {
+    toast.success("Order Delivered,", {
+      autoClose: 2000,
+      transition: Flip,
+    });
+  }
   return (
     <>
       <div className="header flex w-screen fixed justify-between shadow-xl h-[90px] itmes-center bg-[#ffffff] py-4 px-5">
@@ -36,10 +54,10 @@ export default function Riderdashboard() {
             alt="profile"
             className="fa-solid text-2xl mt-[2px] ml-[400px] text-black fa-user-lock hover:cursor-pointer
             "
-            onClick={handleopenClick}
+            // onClick={handleopenClick}
           />
           {updateprofile && <Riderprofile onClose={handlecloseClick} />}
-          <h1 className="text-2xl font-bold text-black">Rider Name</h1>
+          <h1 className="text-2xl font-bold text-black">{ridername}</h1>
         </div>
         <Link
           to="/"
@@ -66,11 +84,32 @@ export default function Riderdashboard() {
                 <th>Customer Contact</th>
               </thead>
 
-              <tbody></tbody>
+              <tbody>
+                <tr>
+                  <td>aayush</td>
+                  <td>restro1</td>
+                  <td>kathmandu</td>
+                  <td>Lalitpur</td>
+                  <td>9878987890</td>
+                  <button
+                    className="border-black hover:bg-[#00000023]"
+                    onClick={picked}
+                  >
+                    picked
+                  </button>
+                  <button
+                    className="border-black hover:bg-[#00000023]"
+                    onClick={delivered}
+                  >
+                    Delivered
+                  </button>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

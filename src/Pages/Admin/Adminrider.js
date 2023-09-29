@@ -21,7 +21,7 @@ export default function Adminrider() {
   const keysToDisplay = ["id", "username", "phone"];
   useEffect(() => {
     axios
-      .get("http://localhost:8081/riders/get-all-riders")
+      .get("http://localhost:8080/riders/get-all-riders")
       .then((resp) => {
         console.log(resp.data);
         setRiders(resp.data);
@@ -34,7 +34,7 @@ export default function Adminrider() {
   //deleting riders
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8081/riders/delete-rider/${id}`)
+      .delete(`http://localhost:8080/riders/delete-rider/${id}`)
       .then((resp) => {
         if (resp.status === 200) {
           const updatedRiders = riders.filter((riders) => riders.id !== id);
