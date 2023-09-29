@@ -24,6 +24,7 @@ import { Provider } from "react-redux";
 import store from "./Services/Redux-Service/store";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import AboutUs from "./Pages/Customer/Homepage/AboutUs";
 
 const routerConfig = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const routerConfig = createBrowserRouter([
   {
     path: "resturantOrderList",
     element: <ResturantOrderList />,
+  },
+  {
+    path: "aboutUs",
+    element: <AboutUs/>,
   },
 
   //Admin part

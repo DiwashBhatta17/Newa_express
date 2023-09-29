@@ -15,42 +15,29 @@ function Cart(props) {
    
   ]);
   const [top, setTop] = useState(null);
+  const [idss, setid] = useState(null);
 
   async function add(id){
     const response = await addQuantity(top.id, id);
-    console.log(cartItems.id);
+    setid(id+1);
     console.log(response);
   }
 
   async function sub(id){
     const response = await subQuantity(top.id, id);
     console.log(response);
+    setid(top.id+1);
   }
 
   async function remove(ids){
     const response = await removeCart(ids);
     console.log(response);
+    setid(ids+1);
   }
 
   // const totalPrice = cartItems.reduce((total, item) => total + item.cartItems.foodPrice * item.cartItems.cartFoodItemQuantity, 0);
 
-  const increaseQuantity = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
 
-  const decreaseQuantity = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
 
   async function fetchCartItem(){
     const response = await getCartItem(userId)
@@ -62,6 +49,11 @@ function Cart(props) {
     fetchCartItem();
   },
   []);
+  function handleClick(){
+    fetchCartItem();
+    fetchCartItem();
+
+  }
 
   return (
     <div>
@@ -84,18 +76,30 @@ function Cart(props) {
                     </span>
                     <div className="flex gap-4">
                       <button
-                        onClick={() => add(item.foodItem.id)}
+                        onClick={() => {
+                          add(item.foodItem.id);
+                          handleClick();
+
+                        }
+                        }
                         className="bg-green-500 text-white px-[10px] py-1 rounded"
                       >
                         +
                       </button>
                       <button
-                        onClick={() => sub(item.foodItem.id)}
+                        onClick={() =>{
+                          sub(item.foodItem.id);
+                          handleClick();
+
+                        }}
                         className="bg-red-500 text-white px-[10px] py- rounded"
                       >
                         -
                       </button>
-                      <button onClick={()=>remove(item.id)} className=''><i className='fa-solid fa-trash'></i></button>
+                      <button onClick={()=>{
+                        remove(item.id);
+                        handleClick();
+                      }} className=''><i className='fa-solid fa-trash'></i></button>
                     </div>
                   </div>
                 </li>

@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../Images/Logo.png";
 import flag from "../Images/flagup.png";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -47,7 +48,7 @@ function Footer() {
           {/* 3rd parts */}
 
           <div className="flex flex-col gap-1">
-            <a href="#">About</a>
+            <Link to="/aboutUs">About</Link>
             <a href="#">Our Story</a>
             <a href="#">Benefits</a>
             <a href="#">Team</a>
