@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Adminreview() {
   useEffect(() => {
     axios
-      .get("http://localhost:8081/customers/get-all-customers")
+      .get("http://localhost:8080/customers/get-all-customers")
       .then((resp) => {
         console.log("respones is:", resp);
       })
