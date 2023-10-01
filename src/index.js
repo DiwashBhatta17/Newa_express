@@ -29,7 +29,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import AboutUs from "./Pages/Customer/Homepage/AboutUs";
 
-
 const routerConfig = createBrowserRouter([
   {
     path: "/",
@@ -71,7 +70,7 @@ const routerConfig = createBrowserRouter([
   },
   {
     path: "aboutUs",
-    element: <AboutUs/>,
+    element: <AboutUs />,
   },
 
   //Admin part

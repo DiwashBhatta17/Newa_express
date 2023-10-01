@@ -14,7 +14,6 @@ function App() {
     <>
       {/* <CustomerProfile/> */}
       {/* <CusProfileNavbar/> */}
-      <OrderPopup/>
     </>
   );
 }
