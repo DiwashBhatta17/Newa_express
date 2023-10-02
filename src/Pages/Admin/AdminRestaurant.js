@@ -29,7 +29,7 @@ export default function AdminRestaurant() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/restaurants/get-all-restaurants")
+      .get("http://localhost:8081/restaurants/get-all-restaurants")
       .then((resp) => {
         console.log(resp.data);
         setRestaurants(resp.data);
@@ -43,7 +43,7 @@ export default function AdminRestaurant() {
   const handleDelete = (restaurantId) => {
     axios
       .delete(
-        `http://localhost:8080/restaurants/delete-restaurant/${restaurantId}`
+        `http://localhost:8081/restaurants/delete-restaurant/${restaurantId}`
       )
       .then((resp) => {
         if (resp.status === 200) {

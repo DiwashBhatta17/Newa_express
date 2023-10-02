@@ -27,9 +27,9 @@ function ResturantNavbar() {
         <div className="flex w-screen justify-between absolute shadow-xl itmes-center bg-white py-4 px-5">
           <div className="flex gap-2 ">
             <i className="fa-solid text-2xl mt-[2px] text-black fa-user-lock"></i>
-            {/* <h1 className="text-2xl font-bold text-black">
+            <h1 className="text-2xl font-bold text-black">
               {data.restaurantName}
-            </h1> */}
+            </h1>
           </div>
           <button
             onClick={handleLogout}
@@ -59,13 +59,13 @@ function ResturantNavbar() {
               Menus
             </Link>
           </div>
-
+          {/* 
           <div className="flex gap-3">
             <i className="fa-regular mt-1 fa-chart-bar"></i>
             <a className="" href="#">
               Analytics
             </a>
-          </div>
+          </div> */}
         </div>
         <div className="bg-white fixed top-[84vh] left-0 mt-3 w-[30vh] h-[10vh] flex flex-col shadow-xl items-center gap-1">
           <h1 className="mt-2">Newa Express</h1>

@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ResturantNavbar from "./ResturantNavbar";
 import orderItemService from "../../Services/restaurantService/orderItemService";
 
 function ResturantOrderList() {
   const [data, setData] = useState([""]); 
 
+  const userId = localStorage.getItem("restaurantId");
+
   async function fetchData(){
-    const response = await orderItemService()
+    const response = await orderItemService(userId)
     setData(response)
   }
+
+  useEffect(()=>{
+    fetchData();
+  })
   return (
     <>
       <ResturantNavbar />
@@ -31,9 +37,9 @@ function ResturantOrderList() {
 
               {data.map((value)=>(
                 <tr key={value.id}>
-                {/* <th scope="row">{value.customer.customerName}</th> */}
-                <td>{value.specialInstruction}</td>
-                <td></td>
+                <th scope="row">Diwash Bhatta</th>
+                <td>Its a instructions</td>
+                <td>Yamorie</td>
                 <td>@mdo</td>
                 <td><button className="mr-1 border px-3 py-1 rounded-lg text-white bg-[#4f9cdf]">Received</button><button className="mr-1 border px-3 py-1 rounded-lg text-white bg-[#49e78e]">Picked</button></td>
               </tr>

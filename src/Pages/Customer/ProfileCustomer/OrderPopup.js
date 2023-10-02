@@ -3,6 +3,8 @@ import Modal from "react-modal";
 import { confirmOrder } from "../../../Services/CustomerService/cartService";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Spinner } from "@chakra-ui/react";
+import MarkerMap from "../../../Services/Locations/locationMarker";
 
 Modal.setAppElement("#root"); // Set the root element for accessibility
 
@@ -10,16 +12,33 @@ function OrderPopup({ isOpen, setisOpen }) {
   const [address, setAddress] = useState("");
   const [promoCode, setPromoCode] = useState("");
   const [specialInstructions, setSpecialInstructions] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showMap, setShowMap] = useState(false); // State to toggle map visibility
 
-  const [onRequestClose, setonRequestClose] = useState(false);
+  // State to hold the location coordinates
+  const [locationCoordinates, setLocationCoordinates] = useState(null);
 
   const userId = localStorage.getItem("customerId");
 
+  // Function to update the address when a new location is selected
+  const updateAddress = (newCoordinates) => {
+    setLocationCoordinates(newCoordinates);
+    // You can use a reverse geocoding service to get the address from coordinates
+    // Example:
+    // const newAddress = reverseGeocode(newCoordinates);
+    // setAddress(newAddress);
+  };
+
+  const handleChooseOnMapClick = () => {
+    setShowMap(true); // Show the map when the "Choose on Map" button is clicked
+  };
+
   const handleSubmit = async () => {
+    setIsSubmitted(true);
     const data = {
       address: address,
       promocode: promoCode,
-      speciaInstruction: specialInstructions,
+      specialInstruction: specialInstructions,
     };
     const response = await confirmOrder(userId, data);
     console.log(response);
@@ -29,14 +48,15 @@ function OrderPopup({ isOpen, setisOpen }) {
       autoClose: 2000,
       transition: Flip,
     });
+    setIsSubmitted(false);
   };
 
   return (
     <>
       <Modal
         isOpen={isOpen}
-        onRequestClose={onRequestClose}
-        className="order-modal p-4 rounded-lg bg-white max-w-md mx-auto"
+        onRequestClose={setisOpen}
+        className="order-modal p-4 rounded-lg bg-[#ece8e8] w-[500px] mx-auto text-black"
         overlayClassName="order-modal-overlay dhamilo fixed inset-0 flex items-center justify-center"
       >
         <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
@@ -71,11 +91,22 @@ function OrderPopup({ isOpen, setisOpen }) {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
+        {/* Conditionally render the MarkerMap component when showMap is true */}
+        {showMap && <MarkerMap updateAddress={updateAddress} />}
+        {/* Show the "Choose on Map" button only when the map is not visible */}
+        {!showMap && (
+          <button
+            onClick={handleChooseOnMapClick}
+            className="bg-white  border-2 border-red-500 text-red-500 px-4 py-2 rounded mt-4 w-full hover:bg-red-600"
+          >
+            Choose on Map
+          </button>
+        )}
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-600"
+          className="bg-white border-2 border-red-500 text-red-500 px-4 py-2 rounded mt-4 w-full hover:bg-red-600"
         >
-          Confirm Order
+          {isSubmitted ? <Spinner /> : <p>Confirm Order</p>}
         </button>
       </Modal>
       <ToastContainer />

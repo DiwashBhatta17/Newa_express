@@ -51,8 +51,7 @@ function Footer() {
           {/* 3rd parts */}
 
           <div className="flex flex-col gap-1">
-
-            <Link to="/aboutUs">About</Link>
+            <Link to="/aboutus">Blog</Link>
 
             <a href="#">Our Story</a>
             <a href="#">Benefits</a>
