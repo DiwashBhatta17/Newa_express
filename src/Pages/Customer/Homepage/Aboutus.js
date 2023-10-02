@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AboutUs = () => {
+function AboutUs() {
   return (
     <div className="backgroundImg1 min-h-screen p-4">
       <div className="max-w-screen-md mx-auto">
@@ -122,6 +122,6 @@ const AboutUs = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AboutUs;
