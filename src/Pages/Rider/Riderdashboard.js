@@ -20,7 +20,7 @@ export default function Riderdashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/riders/get-rider/1")
+      .get("http://localhost:8080/riders/get-rider/2")
       .then((resp) => {
         console.log("resp", resp.data);
         setRiderdata(resp.data);
@@ -92,23 +92,23 @@ export default function Riderdashboard() {
 
               <tbody>
                 <tr>
-                  <td>{riderdata?.orders[0]?.customer?.customerName}</td>
+                  {/* <td>{riderdata?.orders[0]?.customer?.customerName}</td> */}
                 </tr>
 
                 <tr>
-                  <button
+                  {/* <button
                     className="border-black hover:bg-[#00000023]"
                     onClick={picked}
                   >
                     picked
-                  </button>
+                  </button> */}
 
-                  <button
+                  {/* <button
                     className="border-black hover:bg-[#00000023]"
                     onClick={delivered}
                   >
                     Delivered
-                  </button>
+                  </button> */}
                 </tr>
               </tbody>
             </table>

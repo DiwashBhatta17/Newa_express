@@ -10,6 +10,73 @@ function ResturantDashboard() {
   const [profileImage, setProfileImage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
 
+  //updating details of restaurant
+  const [updatedata, setUpdatedata] = useState({
+    restaurantName: "",
+    tagline: "",
+    phone: "",
+    restaurantAddress: "",
+    role: "ROLE_RESTAURANT",
+    isPublished: false,
+  });
+
+  const resetform = () => {
+    setUpdatedata({
+      username: "",
+      restaurantName: "",
+      restaurantAddress: "",
+      phone: "",
+      email: "",
+
+      role: "ROLE_RESTAURANT",
+      isPublished: true,
+    });
+  };
+
+  const handleRestaurantNameChange = (event) => {
+    setUpdatedata({
+      ...updatedata,
+      restaurantName: event.target.value,
+    });
+  };
+
+  const handleRestaurantAddressChange = (event) => {
+    setUpdatedata({
+      ...updatedata,
+      restaurantAddress: event.target.value,
+    });
+  };
+
+  const handleRestaurantPhoneChange = (event) => {
+    setUpdatedata({
+      ...updatedata,
+      phone: event.target.value,
+    });
+  };
+
+  const handleRestauranttaglineChange = (event) => {
+    setUpdatedata({
+      ...updatedata,
+      tagline: event.target.value,
+    });
+  };
+
+  function handlePost() {
+    axios
+      .put("http://localhost:8080/restaurants/update-restaurant/5", updatedata)
+      .then((resp) => {
+        console.log("Api response", resp.data);
+        resetform();
+      })
+      .catch((error) => {
+        console.log("Error!!!", error);
+      });
+  }
+
+  console.log("The updated data is", updatedata);
+
+  //updating restaurant Images
+
   const handleProfileImageChange = (e) => {
     const imageFile = e.target.files[0];
     if (imageFile) {
@@ -42,16 +109,13 @@ function ResturantDashboard() {
 
   //validating total revenue
 
-  const [restaurantID, setRestaurantID] = useState([]);
+  // const [restaurantID, setRestaurantID] = useState([]);
 
   useEffect(() => {
-    axios.get(baseURL + "restaurants/get-all-restaurants").then((resp) => {
-      setRestaurantID(resp.data[0]);
+    axios.get(baseURL + "restaurants/get-restaurant/5").then((resp) => {
+      console.log("The data is", resp.data);
     });
   }, []);
-  {
-    console.log("the restaurant id is:", restaurantID);
-  }
 
   return (
     <>
@@ -81,19 +145,39 @@ function ResturantDashboard() {
             <div className="mt-3">
               <h1 className="text-2xl mb-3">Update Restaurant Details</h1>
               <p>Name</p>
-              <input className="border w-[250px]" type="text" />
+              <input
+                className="border w-[250px] font-thin text-sm"
+                type="text"
+                value={updatedata.restaurantName}
+                onChange={handleRestaurantNameChange}
+              />
               <p>Address</p>
-              <input className="border w-[250px]" type="text" />
+              <input
+                className="border w-[250px] font-thin text-sm"
+                type="text"
+                value={updatedata.restaurantAddress}
+                onChange={handleRestaurantAddressChange}
+              />
               <p>Description</p>
               <textarea
-                className="border mb-2 h-[60px] w-[250px]"
+                className="border mb-2 h-[60px] w-[250px] font-thin text-sm"
                 type="text"
+                value={updatedata.tagline}
+                onChange={handleRestauranttaglineChange}
               />
               <p>Contact</p>
-              <input className="border mb-2 w-[250px]" type="text" />
+              <input
+                className="border mb-2 w-[250px] font-thin text-sm"
+                type="text"
+                value={updatedata.phone}
+                onChange={handleRestaurantPhoneChange}
+              />
 
               <div>
-                <button className="px-4 py-1 bg-[#64cf3a] text-white rounded-3xl hover:bg-[green]">
+                <button
+                  className="px-4 py-1 bg-[#64cf3a] text-white rounded-3xl hover:bg-[green]"
+                  onClick={handlePost}
+                >
                   Update
                 </button>
               </div>
