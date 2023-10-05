@@ -8,26 +8,20 @@ import MarkerMap from "../../../Services/Locations/locationMarker";
 
 Modal.setAppElement("#root"); // Set the root element for accessibility
 
-function OrderPopup({ isOpen, setisOpen }) {
-  const [address, setAddress] = useState("");
+function OrderPopup({ isOpen, setisOpen ,position}) {
+  const [address, setAddress] = useState(null);
   const [promoCode, setPromoCode] = useState("");
   const [specialInstructions, setSpecialInstructions] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showMap, setShowMap] = useState(false); // State to toggle map visibility
-
-  // State to hold the location coordinates
-  const [locationCoordinates, setLocationCoordinates] = useState(null);
+  const [showMap, setShowMap] = useState(false);
+  const [coordinate, setCoordinates] = useState(null);
 
   const userId = localStorage.getItem("customerId");
 
   // Function to update the address when a new location is selected
-  const updateAddress = (newCoordinates) => {
-    setLocationCoordinates(newCoordinates);
-    // You can use a reverse geocoding service to get the address from coordinates
-    // Example:
-    // const newAddress = reverseGeocode(newCoordinates);
-    // setAddress(newAddress);
-  };
+  const location = localStorage.getItem(location);
+  console.log(location);
+  
 
   const handleChooseOnMapClick = () => {
     setShowMap(true); // Show the map when the "Choose on Map" button is clicked
@@ -40,6 +34,7 @@ function OrderPopup({ isOpen, setisOpen }) {
       promocode: promoCode,
       specialInstruction: specialInstructions,
     };
+    console.log('data',data)
     const response = await confirmOrder(userId, data);
     console.log(response);
     setisOpen(false);
@@ -50,6 +45,13 @@ function OrderPopup({ isOpen, setisOpen }) {
     });
     setIsSubmitted(false);
   };
+
+  // Function to receive the position from LocationMarker
+  // const receivePosition = (newPosition) => {
+  //   setCoordinates(newPosition);
+  //   setAddress(`Latitude: ${newPosition[0]}, Longitude: ${newPosition[1]}`);
+  //   console.log(address);
+  // };
 
   return (
     <>
@@ -64,8 +66,6 @@ function OrderPopup({ isOpen, setisOpen }) {
           <label className="block text-sm font-medium">Delivery Address:</label>
           <input
             type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
             placeholder="Enter your delivery address"
             className="w-full p-2 border border-gray-300 rounded"
           />
@@ -92,7 +92,7 @@ function OrderPopup({ isOpen, setisOpen }) {
           />
         </div>
         {/* Conditionally render the MarkerMap component when showMap is true */}
-        {showMap && <MarkerMap updateAddress={updateAddress} />}
+        {showMap && <MarkerMap setAddress={setAddress} />}
         {/* Show the "Choose on Map" button only when the map is not visible */}
         {!showMap && (
           <button

@@ -13,6 +13,7 @@ import {
   setUserTrue,
   setAdminTrue,
   setRestaurantTrue,
+  setLogin,
 } from "../../Services/Redux-Service/counterSlice";
 import { toast } from "react-toastify";
 
@@ -34,9 +35,9 @@ function Login(props) {
   const loggedin = () => {
     setIsloggedin(true);
 
-    console.log("Login vaiyoooooo");
+    // console.log("Login vaiyoooooo");
 
-    toast.success("Succesfully logged In.");
+    // toast.success("Succesfully logged In.");
     // window.location.reload();
   };
 
@@ -58,17 +59,19 @@ function Login(props) {
         if (response.user.role === "ROLE_RESTAURANT") {
           dispatch(setRestaurantTrue());
           localStorage.setItem("restaurantId", response.user.restaurantId);
-
+          dispatch(()=>setLogin(false));
           navigate("/resturantDashboard");
+
         } else if (response.user.role === "ROLE_CUSTOMER") {
           dispatch(setUserTrue());
           localStorage.setItem("customerId", response.user.customerId);
           navigate("/");
-        }
-        else if (response.user.role === "ROLE_CUSTOMER") {
-          dispatch(setUserTrue());
-          localStorage.setItem("customerId", response.user.customerId);
-          navigate("/");
+
+        } else if (response.user.role === "ROLE_RIDER") {
+          localStorage.setItem("riderId", response.user.id);
+          dispatch(setLogin(false));
+          navigate("/riderDashboard");
+
         }
         localStorage.setItem("JWTtoken", response.accessToken);
       } catch (error) {

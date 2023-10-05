@@ -13,6 +13,7 @@ function LocationMarker({ mapRef }) {
         click(e) {
             setPosition([e.latlng.lat, e.latlng.lng])
             console.log(position);
+            localStorage.setItem("location",position);
         }
     })
 
