@@ -27,7 +27,7 @@ import Contactus from "./Pages/Customer/Homepage/Contactus";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import Aboutus from "./Pages/Customer/Homepage/Aboutus";
+import AboutUs from "./Pages/Customer/Homepage/Abouts";
 const routerConfig = createBrowserRouter([
   {
     path: "/",
@@ -66,7 +66,7 @@ const routerConfig = createBrowserRouter([
   },
   {
     path: "aboutUs",
-    element: <Aboutus />,
+    element: <AboutUs />,
   },
 
   //Admin part
