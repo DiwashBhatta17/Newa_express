@@ -1,127 +1,121 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const AboutUs = () => {
-  return (
-    <div className="backgroundImg1 min-h-screen p-4">
-      <div className="max-w-screen-md mx-auto">
-        <h1 className="text-3xl font-semibold mb-6 text-center">
-          Newari Dishes: A Journey Through Culture and Tradition
-        </h1>
+function AboutUs() {
+    return (
+        <div className="backgroundImg1 min-h-screen p-4">
+            <div className="max-w-screen-md mx-auto">
+                <h1 className="text-3xl font-bold text-center mb-4">Newari Food</h1>
 
-        <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
-          <div className="md:w-1/2">
-            <h2 className="text-xl font-semibold mb-2">Chhoila</h2>
-            <p className="text-xl">
-              Chhoila is a culinary masterpiece made from buffalo meat,
-              specifically the tender portions. The meat is roasted over an open
-              flame, imparting a chewy and smoky flavor. Combined with homemade
-              spices and herbs.
-            </p>
-          </div>
-          <div className="md:w-1/2">
-            <img
-              src="https://www.bhaktapur.com/wp-content/uploads/2022/11/chhoila.jpg"
-              alt="Regional Variations in Newari Food"
-              className="w-full rounded-md shadow-md"
-            />
-          </div>
-        </div>
+                {/* Introduction */}
+                <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
+                    <div className="md:w-1/2">
+                        <img
+                            src="https://i0.wp.com/s3.tipsnepal.com/2020/08/newari-food.jpg?fit=1080%2C663&quality=100&strip=all&ssl=1"
+                            alt="Introduction to Newari Food"
+                            className="w-full rounded-md shadow-md"
+                        />
+                    </div>
+                    <div className="md:w-1/2">
+                        <h2 className="text-xl font-semibold mb-2">Introduction to Newari Food</h2>
+                        <p>
+                            Newari food is renowned for its rich history and unique flavors. It has been a staple of Newari culture for generations.
+                            This cuisine reflects the cultural diversity and culinary creativity of the Newar community.
+                            It is often associated with festivals, celebrations, and traditional gatherings.
+                        </p>
+                    </div>
+                </div>
 
-        <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
-          <div className="md:w-1/2">
-            <img
-              src="https://nepalicookbook.com/wp-content/uploads/2015/08/black-gram-pancake-maasko-bara.jpg"
-              alt="Regional Variations in Newari Food"
-              className="w-full rounded-md shadow-md"
-            />
-          </div>
-          <div className="md:w-1/2">
-            <h2 className="text-xl font-semibold mb-2">Bara</h2>
-            <p className="text-xl">
-              Bara, or Wo in Newari, is a lentil pancake with cultural
-              significance. It symbolizes good luck and is often offered as
-              "Sagun" during special occasions. These lentils are ground into a
-              smooth paste and fried into a pancake-like delicacy. You have the
-              freedom to choose your toppings, whether it's meat, eggs, or
-              veggies, each offering a unique and alluring taste.
-            </p>
-          </div>
-        </div>
+                {/* Popular Dishes */}
+                <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
+                    <div className="md:w-1/2">
+                        <h2 className="text-xl font-semibold mb-2">Popular Newari Dishes</h2>
+                        <ul className="list-disc list-inside">
+                            <li>Yomari</li>
+                            <li>Bara</li>
+                            <li>Samay Baji</li>
+                            <li>Chatamari</li>
+                            <li>Lakhmari</li>
+                            <li>Chhyalcha</li>
+                            <li>Senla</li>
+                            <li>Sapu Mhicha</li>
+                        </ul>
+                    </div>
+                    <div className="md:w-1/2">
+                        <img
+                            src="https://i0.wp.com/s3.tipsnepal.com/2020/08/594046f3bae8a25175397b37.jpg?w=360&quality=100&strip=all&ssl=1"
+                            alt="Popular Newari Dishes"
+                            className="w-full rounded-md shadow-md"
+                        />
+                    </div>
+                </div>
 
-        <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
-          <div className="md:w-1/2">
-            <h2 className="text-xl font-semibold mb-2">Yomari</h2>
-            <p className="text-xl">
-              Yomari is a steamed dumpling filled with sweet fillings made from
-              ingredients like Chakku or Khoya. It is often served with a
-              special pickle for an extra flavor kick. The combination of rice
-              flour and sweet fillings creates a consistent, soft, and tender
-              delight. Many restaurants offer Yomari at affordable prices,
-              ensuring you won't get enough of this heavenly taste.
-            </p>
-          </div>
-          <div className="md:w-1/2">
-            <img
-              src="https://www.bhaktapur.com/wp-content/uploads/2021/12/yomari.jpg"
-              alt="Regional Variations in Newari Food"
-              className="w-full rounded-md shadow-md"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
-          <div className="md:w-1/2">
-            <img
-              src="https://newarirecipeshut.com/wp-content/uploads/2020/09/chatamari-768x512.jpg"
-              alt="Regional Variations in Newari Food"
-              className="w-full rounded-md shadow-md"
-            />
-          </div>
-          <div className="md:w-1/2">
-            <h2 className="text-xl font-semibold mb-2">Chatamari</h2>
-            <p className="text-xl">
-              Chatamari, known as the Newari pizza, is a delightful dish. Unlike
-              traditional pizza, it features a thin rice flour crust that is
-              crispy on the outside and tender on the inside. Topped with a
-              variety of delicious ingredients, every bite is a burst of
-              irresistible flavors.
-            </p>
-          </div>
-        </div>
+                {/* Cultural Significance */}
+                <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
+                    <div className="md:w-1/2">
+                        <img
+                            src="https://i0.wp.com/s3.tipsnepal.com/2020/08/yomari-punhi-festival-nepal-2019.jpg?resize=768%2C432&quality=100&strip=all&ssl=1"
+                            alt="Cultural Significance of Newari Food"
+                            className="w-full rounded-md shadow-md"
+                        />
+                    </div>
+                    <div className="md:w-1/2">
+                        <h2 className="text-xl font-semibold mb-2">Cultural Significance</h2>
+                        <p>
+                            Newari food holds immense cultural significance within the Newar community. It plays a central role in various festivals
+                            and rituals, such as New Year's celebrations and wedding ceremonies. Each dish carries its own symbolism and tradition,
+                            making Newari cuisine an integral part of the culture's identity.
+                        </p>
+                    </div>
+                </div>
 
-        <h1 className="text-3xl font-semibold mb-6 text-center mt-10">
-          Cultural Significane
-        </h1>
+                {/* Ingredients and Preparation */}
+                <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
+                    <div className="md:w-1/2">
+                        <img
+                            src="https://blog-images-1.pharmeasy.in/blog/production/wp-content/uploads/2021/01/01204919/shutterstock_324427688-4-1024x683.jpg"
+                            alt="Ingredients and Preparation of Newari Food"
+                            className="w-full rounded-md shadow-md"
+                        />
+                    </div>
+                    <div className="md:w-1/2">
+                        <h2 className="text-xl font-semibold mb-2">Ingredients and Preparation</h2>
+                        <p>
+                            Newari cuisine features a unique blend of spices and ingredients that give its dishes their distinctive flavor.
+                            Common ingredients include rice, lentils, meat, and various herbs and spices.
+                            The preparation often involves intricate techniques that have been passed down through generations.
+                        </p>
+                    </div>
+                </div>
 
-        <div className="flex items-center">
-          <p className="text-gray-700 leading-relaxed text-justify px-11 font-semibold text-xl">
-            Newari food holds profound cultural significance in Kathmandu,
-            Nepal, particularly among the indigenous Newar community. It is an
-            integral part of traditional festivals, religious rituals, and
-            community gatherings, serving as offerings to deities and
-            symbolizing unity. Newari cuisine is a cornerstone of Newar cultural
-            identity, with recipes passed down through generations. Its
-            influence extends beyond the community, shaping Nepali cuisine as a
-            whole. In Kathmandu, restaurants and street food vendors offer
-            authentic Newari dishes, contributing to cultural exchange and the
-            local economy. Overall, Newari food represents not only sustenance
-            but also the rich cultural heritage and communal bonds of
-            Kathmandu's Newar residents.
-          </p>
+                {/* Regional Variations */}
+                <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
+                    <div className="md:w-1/2">
+                        <h2 className="text-xl font-semibold mb-2">Regional Variations</h2>
+                        <p>
+                            Newari cuisine can vary from one Newari community to another. For example, the dishes prepared in the Kathmandu Valley
+                            may differ from those in the Bhaktapur or Lalitpur regions. These regional variations offer a diverse culinary experience.
+                        </p>
+                    </div>
+                    <div className="md:w-1/2">
+                        <img
+                            src="https://i0.wp.com/s3.tipsnepal.com/2020/08/98c11e769d737d96d417b3af5853be3a-2-scaled.jpg?resize=768%2C576&quality=100&strip=all&ssl=1"
+                            alt="Regional Variations in Newari Food"
+                            className="w-full rounded-md shadow-md"
+                        />
+                    </div>
+                </div>
+                
+
+                {/* Order Now Button */}
+                <div className="text-center">
+                    <Link to="/" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md">
+                        Order Now
+                    </Link>
+                </div>
+            </div>
         </div>
-        <div className="text-center mt-6">
-          <p className="text-xl text-red-500 font-semibold">
-            Craving Newari food?
-          </p>
-          <Link to="/">
-            <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded mt-4">
-              Order Now
-            </button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
+    );
+}
 
 export default AboutUs;
