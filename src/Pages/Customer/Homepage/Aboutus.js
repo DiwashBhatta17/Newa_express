@@ -19,6 +19,23 @@ const AboutUs = () => {
               spices and herbs.
             </p>
           </div>
+                </div>
+
+                {/* Popular Dishes */}
+                <div className="flex flex-col md:flex-row md:space-x-4 mb-8">
+                    <div className="md:w-1/2">
+                        <h2 className="text-xl font-semibold mb-2">Popular Newari Dishes</h2>
+                        <ul className="list-disc list-inside">
+                            <li>Yomari</li>
+                            <li>Bara</li>
+                            <li>Samay Baji</li>
+                            <li>Chatamari</li>
+                            <li>Lakhmari</li>
+                            <li>Chhyalcha</li>
+                            <li>Senla</li>
+                            <li>Sapu Mhicha</li>
+                        </ul>
+                    </div>
           <div className="md:w-1/2">
             <img
               src="https://www.bhaktapur.com/wp-content/uploads/2022/11/chhoila.jpg"
