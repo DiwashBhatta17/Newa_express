@@ -29,7 +29,7 @@ function useInterval(callback, delay) {
     }, [delay]);
 }
 
-function LocationMarker({ mapRef, setMessage }) {
+export function LocationMarker({ mapRef, setMessage, message }) {
     const [position, setPosition] = useState(null);
     const [zoom, setZoom] = useState(13);
 
@@ -45,10 +45,10 @@ function LocationMarker({ mapRef, setMessage }) {
                     console.log(mapRef.current);
                     mapRef.current.flyTo([latitude, longitude], zoom);
                 }
-                setMessage({
-                    receiverName: "ayush",
-                    text: `${latitude},${longitude}`
-                });
+                setMessage({...message, text: `${latitude},${longitude}` })
+                
+                    
+                
             });
         }
     }, []);
@@ -65,11 +65,13 @@ function LocationMarker({ mapRef, setMessage }) {
     ) : null;
 }
 
-function RiderLocationSend() {
+function RiderLocationSend({username}) {
     const [isWebSocketConnected, setIsWebSocketConnected] = useState(false);
     const [lol, setLol] = useState(0);
 
     const mapRef = useRef();
+
+    console.log("use", username);
 
     const [message, setMessage] = useState({
         receiverName: "hii",
@@ -120,7 +122,7 @@ function RiderLocationSend() {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <LocationMarker mapRef={mapRef} setMessage={setMessage} />
+                <LocationMarker username={username} mapRef={mapRef} message={message} setMessage={setMessage} />
             </MapContainer>
         </>
     )

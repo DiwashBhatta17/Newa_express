@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const routerConfig = createBrowserRouter([
   {
-    path: "/customerLook/:username",
+    path: "/customerLook",
     element: <UserGetLocation/>
 },
 {

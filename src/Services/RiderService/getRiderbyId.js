@@ -3,7 +3,7 @@ import baseURL from "../Api/api";
 
 async function getRiderbyId(riderId) {
  try {
-    const response = await axios.get(baseURL+"riders/get-rider/"+riderId);
+    const response = await axios.get(baseURL+"riders/assigned-orders/"+riderId);
     return response.data;
 
     

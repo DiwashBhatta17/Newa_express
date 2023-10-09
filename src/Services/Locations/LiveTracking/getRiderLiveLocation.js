@@ -7,7 +7,10 @@ import Logo from '../../../Pages/Images/marker img.png';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
+import profileService from '../../CustomerService/profileService';
+
 var socketClient = null;
+
 
 function UserGetLocation() {
     const mapRef = useRef();
@@ -16,8 +19,16 @@ function UserGetLocation() {
         iconUrl: Logo,
         iconSize: [22, 22]
     });
+    const [username, setUsername] = useState("hii");
 
-    const { username } = useParams();
+    const userId = localStorage.getItem("customerId");
+
+    async function getUsername(){
+        const response = await profileService(userId);
+        setUsername(response.username);
+    }
+    getUsername();
+
 
     const [position, setPosition] = useState([0, 0]);
 
@@ -62,7 +73,7 @@ function UserGetLocation() {
 
     return (
         <>
-            <div>
+            <div className='ml-5 mt-2 flex flex-col items-center h-full overflow-y-auto w-[550px]'>
 
                 <MapContainer ref={mapRef} center={position} zoom={13} style={{ height: '400px', width: '100%' }}>
                     <TileLayer

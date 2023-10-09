@@ -6,7 +6,10 @@ import L from 'leaflet';
 import 'leaflet-routing-machine';
 import mark1 from "../../Pages/Images/marker img.png";
 
-function ReceiverFile() {
+function ReceiverFile(props) {
+
+  
+
   const customIcon = L.icon({
     iconUrl: "https://webstockreview.net/images/clipart-circle-purple-16.png", // Replace with the URL to your custom user location icon
     iconSize: [25, 25], // Adjust the icon size as needed
@@ -17,12 +20,17 @@ function ReceiverFile() {
     iconSize: [45, 25], // Adjust the icon size as needed
   });
 
-  const { username } = useParams();
+  const coordinatesString = props.address;
 
-  // Define the destination coordinates
-  const DESTINATION_LATITUDE = 27.7172;
-  const DESTINATION_LONGITUDE = 85.3240;
-
+  // Split the coordinates string into latitude and longitude parts
+  const [latitude, longitude] = coordinatesString.split(',');
+  
+  // Convert the latitude and longitude strings to numbers
+  const DESTINATION_LATITUDE = parseFloat(latitude);
+  const DESTINATION_LONGITUDE = parseFloat(longitude);
+  
+  console.log(DESTINATION_LATITUDE); // 27.685777823577666
+  console.log(DESTINATION_LONGITUDE); 
   const [position, setPosition] = useState(null);
   const mapRef = useRef(null); // Create a ref to store the map instance
 

@@ -7,11 +7,17 @@ import "react-toastify/dist/ReactToastify.css";
 import getRiderbyId from "../../Services/RiderService/getRiderbyId";
 
 import ReceiverFile from "../../Services/Locations/MapContainer";
+import orderDelivered from "../../Services/RiderService/orderDelivered";
+import RiderLocationSend, { LocationMarker } from "../../Services/Locations/LiveTracking/sendRiderLiveLocation";
+
 export default function Riderdashboard() {
   const [updateprofile, setUpdateprofile] = useState(false);
   const [ridername, setRidername] = useState("");
   const [riderdata, setRiderdata] = useState(null);
-  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState("");
+
+  const [address, setAddress] = useState("");
+  const [username, setUsername] = useState("");
 
   const userID = localStorage.getItem("riderId");
 
@@ -22,19 +28,28 @@ export default function Riderdashboard() {
   function handlecloseClick() {
     setUpdateprofile(false);
   }
+  async function fetchData() {
+    try {
+      const response = await getRiderbyId(userID);
+      setRiderdata(response);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function sendUsername(){
+    setUsername(riderdata[0]?.customer.username);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getRiderbyId(userID);
-        setRiderdata(response);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
     fetchData();
-  }, []);
+
+    if (riderdata && riderdata.length > 0) {
+        sendUsername();
+    }
+}, []);
+
 
   function picked() {
     toast.info("Order picked.", {
@@ -43,7 +58,9 @@ export default function Riderdashboard() {
     });
   }
 
-  function delivered(orderId) {
+  async function delivered(orderId) {
+    await orderDelivered(orderId);
+    fetchData(); 
     // Perform the action to mark the order as delivered, e.g., send a request to your backend
     toast.success("Order Delivered,", {
       autoClose: 2000,
@@ -54,6 +71,7 @@ export default function Riderdashboard() {
   function viewLocationOnMap(order) {
     // Set the selected order for map display
     setSelectedOrder(order);
+    setAddress(order)
   }
 
   // Function to close the map popup
@@ -111,7 +129,7 @@ export default function Riderdashboard() {
               </thead>
               <tbody>
                 {riderdata &&
-                  riderdata.orders.map((order) => (
+                  riderdata.map((order) => (
                     <tr key={order.id} className="border-b">
                       <td className="px-4 py-2">
                         {order.customer.customerName}
@@ -147,7 +165,7 @@ export default function Riderdashboard() {
                             </button>
                             <button
                               className="bg-[#2F80ED] hover:bg-[#1F65D9] text-white px-2 py-1 rounded"
-                              onClick={() => viewLocationOnMap(order.id)}
+                              onClick={() => viewLocationOnMap(order.address)}
                             >
                               View Location
                             </button>
@@ -161,7 +179,7 @@ export default function Riderdashboard() {
               </tbody>
             </table>
             {riderdata &&
-              riderdata.orders.map((order) => (
+              riderdata.map((order) => (
                 <div key={order.id} className="mt-4 ">
                   <h2 className="text-xl font-bold text-[#2F80ED] mb-2">
                     Ordered Items
@@ -179,6 +197,8 @@ export default function Riderdashboard() {
               ))}
             {selectedOrder && (
               <ReceiverFile
+                address={address}
+
                 order={selectedOrder}
                 onClose={closeMapPopup} // Pass the function to close the popup
               />
@@ -186,6 +206,8 @@ export default function Riderdashboard() {
           </div>
         </div>
       </div>
+
+      <RiderLocationSend username = {username}/>
       <ToastContainer />
     </>
   );

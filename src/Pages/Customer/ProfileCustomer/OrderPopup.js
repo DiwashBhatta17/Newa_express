@@ -18,8 +18,11 @@ function OrderPopup({ isOpen, setisOpen ,position}) {
 
   const userId = localStorage.getItem("customerId");
 
+  // localStorage.setItem("location",27.69);
+
+
   // Function to update the address when a new location is selected
-  const location = localStorage.getItem(location);
+  const location = localStorage.getItem("location");
   console.log(location);
   
 
@@ -30,7 +33,7 @@ function OrderPopup({ isOpen, setisOpen ,position}) {
   const handleSubmit = async () => {
     setIsSubmitted(true);
     const data = {
-      address: address,
+      address: location,
       promocode: promoCode,
       specialInstruction: specialInstructions,
     };

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getPic } from "../../../Services/CustomerService/profilePicService";
+import UserGetLocation from "../../../Services/Locations/LiveTracking/getRiderLiveLocation";
 
 function CusProfileNavbar(props) {
   const { profile, setProfile } = props;
@@ -61,6 +62,9 @@ function CusProfileNavbar(props) {
     case 2:
       componentToRender = <CustomerOrderPage />;
       break;
+    case 3:
+      componentToRender = <UserGetLocation/>;
+      break;
     default:
       componentToRender = "";
   }
@@ -101,6 +105,11 @@ function CusProfileNavbar(props) {
                 <div className="flex hover:text-white p-2 hover:bg-[#d139399d] gap-2">
                   <i className="fa-solid mt-1 fa-cart-arrow-down"></i>
                   <button onClick={() => setShow(2)}>Order History</button>
+                </div>
+
+                <div className="flex hover:text-white p-2 hover:bg-[#d139399d] gap-2">
+                  <i className="fa-solid mt-1 fa-cart-arrow-down"></i>
+                  <button onClick={() => setShow(3)}>See Live</button>
                 </div>
 
                 <div className="flex hover:text-white p-2 hover:bg-[#d139399d] gap-2">
