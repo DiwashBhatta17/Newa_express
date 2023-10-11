@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminHeader from "./AdminHeader";
 import AddRestaurantpopup from "./Popups/AddRestaurantpopup";
 import axios from "axios";
+import baseURL from "../../Services/Api/api";
 import { Flip, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,7 +30,7 @@ export default function AdminRestaurant() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/restaurants/get-all-restaurants")
+      .get(baseURL+"restaurants/get-all-restaurants")
       .then((resp) => {
         console.log(resp.data);
         setRestaurants(resp.data);
@@ -43,7 +44,7 @@ export default function AdminRestaurant() {
   const handleDelete = (restaurantId) => {
     axios
       .delete(
-        `http://localhost:8081/restaurants/delete-restaurant/${restaurantId}`
+        `${baseURL}restaurants/delete-restaurant/${restaurantId}`
       )
       .then((resp) => {
         if (resp.status === 200) {
