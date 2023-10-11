@@ -11,7 +11,7 @@ import UserGetLocation from "../../../Services/Locations/LiveTracking/getRiderLi
 
 function CusProfileNavbar(props) {
   const { profile, setProfile } = props;
-  const [show, setShow] = useState(3);
+  const [show, setShow] = useState(4);
   const navigate = useNavigate();
   const [pip, setPip] = useState(null);
 

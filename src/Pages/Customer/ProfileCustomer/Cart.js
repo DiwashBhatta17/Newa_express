@@ -20,30 +20,46 @@ function Cart(props) {
   const [idss, setid] = useState(null);
 
   async function add(id) {
-    const response = await addQuantity(top.id, id);
-    setid(id + 1);
-    console.log(response);
+    try {
+      const response = await addQuantity(top.id, id);
+      setid(id + 1);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function sub(id) {
-    const response = await subQuantity(top.id, id);
-    console.log(response);
-    setid(top.id + 1);
+    try {
+      const response = await subQuantity(top.id, id);
+      console.log(response);
+      setid(top.id + 1);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function remove(ids) {
-    const response = await removeCart(ids);
-    console.log(response);
-    setid(ids + 1);
+    try {
+      const response = await removeCart(ids);
+      console.log(response);
+      setid(ids + 1);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // const totalPrice = cartItems.reduce((total, item) => total + item.cartItems.foodPrice * item.cartItems.cartFoodItemQuantity, 0);
 
   async function fetchCartItem() {
-    const response = await getCartItem(userId);
-    setCartItems(response.cartItems);
-    setTop(response);
-    console.log(response);
+    try {
+      const response = await getCartItem(userId);
+      setCartItems(response.cartItems);
+      setTop(response);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
   useEffect(() => {
     fetchCartItem();

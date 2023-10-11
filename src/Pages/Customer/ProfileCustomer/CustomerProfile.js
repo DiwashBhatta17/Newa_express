@@ -36,6 +36,7 @@ function CustomerProfile() {
     }
   }
 
+  
   useEffect(()=>{
     handleUpload();
   },[selectedImage])

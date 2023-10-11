@@ -12,11 +12,7 @@ const routerConfig = createBrowserRouter([
     path: "/customerLook",
     element: <UserGetLocation/>
 },
-{
-    path: "/riderLocation",
-    element: <RiderLocationSend/>
-},
- 
+
 ]);
 
 function App() {
