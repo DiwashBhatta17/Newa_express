@@ -11,7 +11,6 @@ function CustomerOrderPage() {
     try {
       const response = await orderHistoryService(userID);
       setData(response);
-      console.log(response);
     } catch (error) {
       console.error("Error", error);
     }
@@ -52,29 +51,32 @@ function CustomerOrderPage() {
   };
 
   return (
-    <div className="ml-5 mt-2 flex flex-col items-center h-full overflow-y-auto w-[550px]">
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr className="font-thin">
-            <th scope="col">Restaurant Name</th>
-            <th scope="col">Total Price</th>
-            <th scope="col">Order Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((order) => (
-            <tr
-              key={order.id}
-              onClick={() => handleRowClick(order)} // Handle row click
-              style={{ cursor: "pointer" }}
-            >
-              <td>{getRestaurantName(order)}</td>
-              <td>Rs {order.totalPrice}</td>
-              <td>{order.orderDate}</td>
+    <div className="ml-5 mt-2 flex flex-col items-center h-full overflow-y-scroll w-[550px]">
+      {/* Apply a fixed height and scroll to the container */}
+      <div style={{ height: "400px", overflowY: "auto" }}>
+        <table className="table table-striped table-hover">
+          <thead>
+            <tr className="font-thin">
+              <th scope="col">Restaurant Name</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Order Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="">
+            {data.map((order) => (
+              <tr
+                key={order.id}
+                onClick={() => handleRowClick(order)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>{getRestaurantName(order)}</td>
+                <td>Rs {order.totalPrice}</td>
+                <td>{order.orderDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Display selected order items */}
       {renderOrderItems()}

@@ -8,7 +8,7 @@ export default function AdminDashboard() {
   const [restaurantno, setRestaurantno] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8081/restaurants/get-all-restaurants")
+      .get(baseURL+"restaurants/get-all-restaurants")
       .then((resp) => {
         setRestaurantno(resp.data);
       })
@@ -21,7 +21,7 @@ export default function AdminDashboard() {
   const [totalcustomer, setTotalcustomer] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8081/customers/get-all-customers")
+      .get(baseURL+"customers/get-all-customers")
       .then((resp) => {
         setTotalcustomer(resp.data);
       })
@@ -34,7 +34,7 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8081/orders/get-all-orders")
+      .get(baseURL+"orders/get-all-orders")
       .then((resp) => {
         setOrders(resp.data);
       })

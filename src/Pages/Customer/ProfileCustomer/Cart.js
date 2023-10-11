@@ -1,58 +1,72 @@
-import React, { useEffect, useState } from 'react';
-import { getCartItem } from '../../../Services/CustomerService/cartService';
-import CustomerOrderPage from './CustomerOrderPage';
-import OrderPopup from './OrderPopup';
-import { addQuantity,subQuantity } from '../../../Services/CustomerService/cartService';
-import { removeCart } from '../../../Services/CustomerService/cartService';
+import React, { useEffect, useState } from "react";
+import { getCartItem } from "../../../Services/CustomerService/cartService";
+import CustomerOrderPage from "./CustomerOrderPage";
+import OrderPopup from "./OrderPopup";
+import {
+  addQuantity,
+  subQuantity,
+} from "../../../Services/CustomerService/cartService";
+import { removeCart } from "../../../Services/CustomerService/cartService";
 
 function Cart(props) {
   const { isCartOpen } = props;
   const userId = localStorage.getItem("customerId");
-  const [isOpen , setisOpen] = useState(false);
+  const [isOpen, setisOpen] = useState(false);
 
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Product 1', price: 10.00, quantity: 1 },
-   
+    { id: 1, name: "Product 1", price: 10.0, quantity: 1 },
   ]);
   const [top, setTop] = useState(null);
   const [idss, setid] = useState(null);
 
-  async function add(id){
-    const response = await addQuantity(top.id, id);
-    setid(id+1);
-    console.log(response);
+  async function add(id) {
+    try {
+      const response = await addQuantity(top.id, id);
+      setid(id + 1);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  async function sub(id){
-    const response = await subQuantity(top.id, id);
-    console.log(response);
-    setid(top.id+1);
+  async function sub(id) {
+    try {
+      const response = await subQuantity(top.id, id);
+      console.log(response);
+      setid(top.id + 1);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  async function remove(ids){
-    const response = await removeCart(ids);
-    console.log(response);
-    setid(ids+1);
+  async function remove(ids) {
+    try {
+      const response = await removeCart(ids);
+      console.log(response);
+      setid(ids + 1);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // const totalPrice = cartItems.reduce((total, item) => total + item.cartItems.foodPrice * item.cartItems.cartFoodItemQuantity, 0);
 
-
-
-  async function fetchCartItem(){
-    const response = await getCartItem(userId)
-    setCartItems(response.cartItems);
-    setTop(response);
-    console.log(response);
+  async function fetchCartItem() {
+    try {
+      const response = await getCartItem(userId);
+      setCartItems(response.cartItems);
+      setTop(response);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchCartItem();
-  },
-  []);
-  function handleClick(){
+  }, []);
+  function handleClick() {
     fetchCartItem();
     fetchCartItem();
-
   }
 
   return (
@@ -72,34 +86,37 @@ function Cart(props) {
                 <li key={item.id} className="mb-2">
                   <div className="flex justify-between">
                     <span>
-                      {item.foodItem.foodName}   -   Rs {item.foodPrice.toFixed(2)}  x  {item.cartFoodItemQuantity}
+                      {item.foodItem.foodName} - Rs {item.foodPrice.toFixed(2)}{" "}
+                      x {item.cartFoodItemQuantity}
                     </span>
                     <div className="flex gap-4">
                       <button
                         onClick={() => {
                           add(item.foodItem.id);
                           handleClick();
-
-                        }
-                        }
+                        }}
                         className="bg-green-500 text-white px-[10px] py-1 rounded"
                       >
                         +
                       </button>
                       <button
-                        onClick={() =>{
+                        onClick={() => {
                           sub(item.foodItem.id);
                           handleClick();
-
                         }}
                         className="bg-red-500 text-white px-[10px] py- rounded"
                       >
                         -
                       </button>
-                      <button onClick={()=>{
-                        remove(item.id);
-                        handleClick();
-                      }} className=''><i className='fa-solid fa-trash'></i></button>
+                      <button
+                        onClick={() => {
+                          remove(item.id);
+                          handleClick();
+                        }}
+                        className=""
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
                     </div>
                   </div>
                 </li>
@@ -111,7 +128,7 @@ function Cart(props) {
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mt-2 w-full"
               onClick={() => {
-               setisOpen(true);
+                setisOpen(true);
               }}
             >
               Confirm Order

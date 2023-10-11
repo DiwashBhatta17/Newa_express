@@ -27,9 +27,7 @@ import Contactus from "./Pages/Customer/Homepage/Contactus";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import AboutUs from "./Pages/Customer/Homepage/AboutUs";
-
-
+import AboutUs from "./Pages/Customer/Homepage/Abouts";
 const routerConfig = createBrowserRouter([
   {
     path: "/",
@@ -51,10 +49,7 @@ const routerConfig = createBrowserRouter([
     path: "/contactus",
     element: <Contactus />,
   },
-  {
-    path: "/aboutus",
-    element: <AboutUs />,
-  },
+
   // Resturant part
 
   {
@@ -71,7 +66,7 @@ const routerConfig = createBrowserRouter([
   },
   {
     path: "aboutUs",
-    element: <AboutUs/>,
+    element: <AboutUs />,
   },
 
   //Admin part
@@ -108,8 +103,9 @@ const routerConfig = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    {/* <App /> */}
+   
     <ChakraProvider>
+    {/* <App /> */}
       <RouterProvider router={routerConfig} />
     </ChakraProvider>
   </Provider>
