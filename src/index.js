@@ -27,8 +27,6 @@ import Contactus from "./Pages/Customer/Homepage/Contactus";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import AboutUs from "./Pages/Customer/Homepage/AboutUs";
-
 const routerConfig = createBrowserRouter([
   {
     path: "/",
@@ -50,10 +48,10 @@ const routerConfig = createBrowserRouter([
     path: "/contactus",
     element: <Contactus />,
   },
-  {
-    path: "/aboutus",
-    element: <AboutUs />,
-  },
+  // {
+  //   path: "/aboutus",
+  //   element: <AboutUs />,
+  // },
   // Resturant part
 
   {
@@ -68,10 +66,10 @@ const routerConfig = createBrowserRouter([
     path: "resturantOrderList",
     element: <ResturantOrderList />,
   },
-  {
-    path: "aboutUs",
-    element: <AboutUs />,
-  },
+  // {
+  //   path: "aboutUs",
+  //   element: <AboutUs />,
+  // },
 
   //Admin part
   {
