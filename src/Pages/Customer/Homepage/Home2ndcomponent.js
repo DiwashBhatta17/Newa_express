@@ -124,7 +124,7 @@ export default function Restcomponent() {
           </div>
         ))}
 
-        {/* this is a comp */}
+       
       </div>
 
       <div className=" flex justify-center items-center mx-[130px] mt-[-15px] mb-[10px] gap-3">
