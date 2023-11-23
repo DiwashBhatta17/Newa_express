@@ -28,7 +28,7 @@ This repository contains the development work for Component 1 by Diwash Bhatta.
 
 
 ## PHP Xdebug Install Screenshot
-![Xdebug Install Screenshot]("./readme_images/xdebug.png")
+<img src="./readme_images/xdebug.png" alt="">
 
 
 
